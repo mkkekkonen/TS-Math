@@ -1,0 +1,20 @@
+{
+  "name": "ts-math",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "webpack",
+    "test": "jest"
+  },
+  "author": "Maija Kekkonen",
+  "license": "CC-BY-4.0",
+  "dependencies": {
+    "typescript": "^3.7.3"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "webpack": "^4.41.3",
+    "webpack-cli": "^3.3.10"
+  }
+}
