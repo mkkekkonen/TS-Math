@@ -47,6 +47,20 @@ const run = async () => {
     res.render('home', { ...(await getCommonData()) });
   });
 
+  app.get('/:pageName', async (req, res) => {
+    const { pageName } = req.params;
+    const commonData = await getCommonData();
+    
+    const file = commonData.files.find(file => file.name === pageName);
+
+    if (!file) {
+      res.render('notFound', { ...commonData });
+      return;
+    }
+
+    res.render('page', { ...commonData, file, partial: () => file.name });
+  });
+
   const port = process.env.PORT || 3000;
   console.log(`Listening at localhost:${port}`);
   app.listen(port);
