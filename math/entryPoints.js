@@ -10,6 +10,9 @@ const generateEntryPoints = entryPoints => {
   return result;
 };
 
-const entryPointNames = ['foobar'];
+const entryPointNames = [
+  'foobar',
+  '1_1_distancepoints',
+];
 
 module.exports = generateEntryPoints(entryPointNames);

@@ -1,30 +1,28 @@
 import { Matrix4x4, Vector3 } from '../../math';
 
-describe('multiply', () => {
-  it('multiplies correctly 1', () => {
-    const A = new Matrix4x4([
-      [1, 2, 3, 0],
-      [2, 3, 1, 0],
-      [3, 1, 2, 0],
-      [0, 0, 0, 0],
-    ]);
+it('multiplies correctly 1', () => {
+  const A = new Matrix4x4([
+    [1, 2, 3, 0],
+    [2, 3, 1, 0],
+    [3, 1, 2, 0],
+    [0, 0, 0, 0],
+  ]);
 
-    const B = new Matrix4x4([
-      [-1, 2, -3, 0],
-      [2, -3, 1, 0],
-      [-3, 1, 2, 0],
-      [0, 0, 0, 0],
-    ]);
+  const B = new Matrix4x4([
+    [-1, 2, -3, 0],
+    [2, -3, 1, 0],
+    [-3, 1, 2, 0],
+    [0, 0, 0, 0],
+  ]);
 
-    const expectedResult = new Matrix4x4([
-      [-6, -1, 5, 0],
-      [1, -4, -1, 0],
-      [-7, 5, -4, 0],
-      [0, 0, 0, 0],
-    ]);
+  const expectedResult = new Matrix4x4([
+    [-6, -1, 5, 0],
+    [1, -4, -1, 0],
+    [-7, 5, -4, 0],
+    [0, 0, 0, 0],
+  ]);
 
-    expect(A.multiply(B).matrix).toMatchObject(expectedResult.matrix);
-  });
+  expect(A.multiply(B).matrix).toEqual(expectedResult.matrix);
 });
 
 it('multiplies vectors correctly', () => {

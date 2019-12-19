@@ -1,6 +1,7 @@
 import Konva from 'konva';
 
 import * as constants from '../constants';
+import { createViewportMatrix } from '../math';
 
 export const getDefaultKonvaStage = () => new Konva.Stage({
   container: document.getElementById('canvasContainer') as HTMLDivElement,
@@ -14,3 +15,5 @@ export const getDefaultKonvaStage2 = () => {
   stage.add(layer);
   return { stage, layer };
 };
+
+export const defaultViewportMatrix = createViewportMatrix();

@@ -31,7 +31,7 @@ export class Matrix4x4 {
   }
 
   multiply = (matrix: Matrix4x4) => {
-    const result = multiply(this.matrix, matrix.matrix) as Matrix;
+    const result = multiply(this.matrix, transpose(matrix.matrix)) as Matrix;
     return new Matrix4x4(result.toArray() as number[][]);
   }
 
@@ -42,5 +42,9 @@ export class Matrix4x4 {
     const y = result.get([1]);
     const z = result.get([2]);
     return new Vector3(x, y, z);
+  }
+
+  transpose = () => {
+    return new Matrix4x4(this.matrix.toArray() as number[][]);
   }
 }

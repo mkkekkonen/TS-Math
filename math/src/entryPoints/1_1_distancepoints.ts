@@ -1,6 +1,6 @@
 import * as util from '../util';
-import { Vector3 } from '../math/vector3';
+import { axis2DRenderer } from '../renderers';
 
 const { stage, layer } = util.getDefaultKonvaStage2();
-
-const xAxisStartPoint = new Vector3()
+axis2DRenderer.addAxesToLayer(layer);
+layer.draw();
