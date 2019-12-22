@@ -1,4 +1,5 @@
-import { createViewportMatrix, createReverseViewportMatrix, Matrix4x4 } from "../../math";
+import { Matrix4x4 } from "../../math";
+import { createViewportMatrix, createReverseViewportMatrix } from '../../math/viewport';
 
 it('creates correct viewport matrix', () => {
   const A = createViewportMatrix(10, 10, 640, 480);

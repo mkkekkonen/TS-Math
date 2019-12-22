@@ -1,7 +1,7 @@
 import Konva from 'konva';
 
 import * as constants from '../constants';
-import { createViewportMatrix, createReverseViewportMatrix } from '../math';
+import { createViewportMatrix, createReverseViewportMatrix } from '../math/viewport';
 import { LineSegment2D } from '../math/geometry';
 import { inputManager } from '../input';
 
