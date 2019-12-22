@@ -24,8 +24,8 @@ export const createReverseViewportMatrix = (
   screenWidth = constants.canvasWidthPx,
   screenHeight = constants.canvasHeightPx,
 ) => {
-  const scaleX = screenWidth / worldWidth;
-  const scaleY = screenHeight / worldHeight;
+  const scaleX = worldWidth / screenWidth;
+  const scaleY = worldHeight / screenHeight;
   const translateX = screenWidth / 2;
   const translateY = screenHeight / 2;
 

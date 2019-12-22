@@ -15,10 +15,15 @@ const clickTapHandler = () => {
   util.updateLineSegmentOnClick(line, stage);
 
   if (line.startPoint && line.endPoint) {
-    const outputElemeent = document.getElementById('output');
-    if (outputElemeent) {
-      outputElemeent.innerText = line.toString();
-      // Konva render
+    const outputElement = document.getElementById('output');
+    if (outputElement) {
+      outputElement.innerText = line.toString();
     }
+
+    line.konvaRender(layer);
+    layer.draw();
   }
-}
+};
+
+stage.on('click', clickTapHandler);
+stage.on('tap', clickTapHandler);

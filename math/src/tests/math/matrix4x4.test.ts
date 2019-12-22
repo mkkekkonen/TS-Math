@@ -37,19 +37,19 @@ it('multiplies vectors correctly', () => {
   const u = A.multiplyVector(v);
 
   const expectedResult = new Vector3(72, 43, 18);
-  expect(u).toEqual(expectedResult);
+  expect(u.toString()).toEqual(expectedResult.toString());
 });
 
 it('scales vector correctly', () => {
   const v = new Vector3(1, 2, 3);
   const u = Matrix4x4.scale(2, 10, 100).multiplyVector(v);
   const expectedResult = new Vector3(2, 20, 300);
-  expect(u).toEqual(expectedResult);
+  expect(u.toString()).toEqual(expectedResult.toString());
 });
 
 it('translates vector correctly', () => {
   const v = new Vector3(1, 2, 3);
   const u = Matrix4x4.translate(-3, 2, 1).multiplyVector(v);
   const expectedResult = new Vector3(-2, 4, 4);
-  expect(u).toEqual(expectedResult);
+  expect(u.toString()).toEqual(expectedResult.toString());
 });

@@ -1,9 +1,21 @@
+import Konva from 'konva';
+
 import { Vector3 } from '..';
-import { black, strokeWidth as defaultStrokeWidth } from '../../constants';
-import { round, radiansToDegrees } from '../../util';
+import { dotRenderer } from '../../renderers';
+import * as constants from '../../constants';
+import * as util from '../../util';
 
 export class LineSegment2D {
-  constructor(public startPoint?: Vector3, public endPoint?: Vector3, public strokeColor = black, public strokeWidth = defaultStrokeWidth) {}
+  konvaLine?: Konva.Line;
+
+  constructor(
+    public startPoint?: Vector3,
+    public endPoint?: Vector3,
+    public strokeColor = constants.black,
+    public strokeWidth = constants.strokeWidth,
+  ) {
+    this.konvaLine = undefined;
+  }
 
   get length() {
     if (this.startPoint && this.endPoint) {
@@ -42,12 +54,35 @@ export class LineSegment2D {
     }
 
     const angleInRadians = Math.atan(this.slope);
-    return radiansToDegrees(angleInRadians);
+    return util.radiansToDegrees(angleInRadians);
   }
 
   update = (startPoint?: Vector3, endPoint?: Vector3) => {
     this.startPoint = startPoint;
     this.endPoint = endPoint;
+  }
+
+  konvaRender = (layer: Konva.Layer, viewportMatrix = util.defaultViewportMatrix, renderMidpoint = false) => {
+    if (this.startPoint && this.endPoint) {
+      const screenStartPoint = viewportMatrix.multiplyVector(this.startPoint);
+      const screenEndPoint = viewportMatrix.multiplyVector(this.endPoint);
+
+      this.konvaLine = new Konva.Line({
+        points: [
+          screenStartPoint.x,
+          screenStartPoint.y,
+          screenEndPoint.x,
+          screenEndPoint.y,
+        ],
+        stroke: this.strokeColor,
+        strokeWidth: this.strokeWidth,
+      });
+      layer.add(this.konvaLine);
+
+      if (renderMidpoint) {
+        dotRenderer.addDotToLayer(this.midpoint, layer);
+      }
+    }
   }
 
   toString = ({ midpoint, slope, directionalAngle }: { midpoint?: boolean, slope?: boolean, directionalAngle?: boolean } = {}) => {
@@ -56,18 +91,18 @@ export class LineSegment2D {
     stringParts.push('Line');
     stringParts.push(`- startPoint: ${this.startPoint ? this.startPoint.toString() : 'undefined'}`);
     stringParts.push(`- endPoint: ${this.endPoint ? this.endPoint.toString() : 'undefined'}`);
-    stringParts.push(`- length: ${round(this.length)}`);
+    stringParts.push(`- length: ${util.round(this.length)}`);
 
     if (midpoint) {
       stringParts.push(`- midpoint: ${this.midpoint.toString()}`);
     }
 
     if (slope) {
-      stringParts.push(`- slope: ${round(this.slope)}`);
+      stringParts.push(`- slope: ${util.round(this.slope)}`);
     }
 
     if (directionalAngle) {
-      stringParts.push(`- directional angle: ${round(this.directionalAngle)}`);
+      stringParts.push(`- directional angle: ${util.round(this.directionalAngle)}`);
     }
 
     return stringParts.join('\n');
