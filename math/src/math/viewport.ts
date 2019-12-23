@@ -30,6 +30,6 @@ export const createReverseViewportMatrix = (
   const translateY = screenHeight / 2;
 
   const translationMatrix = Matrix4x4.translate(-translateX, -translateY, 0);
-  const scalingMatrix = Matrix4x4.scale(scaleX, scaleY, 1);
-  return translationMatrix.multiply(scalingMatrix);
+  const scalingMatrix = Matrix4x4.scale(scaleX, -scaleY, 1);
+  return translationMatrix.transpose().multiply(scalingMatrix);
 };
