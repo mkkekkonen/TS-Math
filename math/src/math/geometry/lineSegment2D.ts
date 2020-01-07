@@ -7,13 +7,17 @@ import * as util from '../../util';
 
 export class LineSegment2D {
   konvaLine?: Konva.Line;
+  strokeColor: string;
+  strokeWidth: number;
 
   constructor(
     public startPoint?: Vector3,
     public endPoint?: Vector3,
-    public strokeColor = constants.black,
-    public strokeWidth = constants.strokeWidth,
+    { strokeColor = constants.black, strokeWidth = constants.strokeWidth } = {},
   ) {
+    this.strokeColor = strokeColor;
+    this.strokeWidth = strokeWidth;
+
     this.konvaLine = undefined;
   }
 

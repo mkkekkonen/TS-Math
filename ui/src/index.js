@@ -29,6 +29,12 @@ const getCommonData = async () => {
   };
 };
 
+const pageData = {
+  '1_3_mirroraxes': {
+    inputs: ['x', 'y', 'o'],
+  },
+};
+
 const run = async () => {
   const app = express();
 
@@ -53,12 +59,14 @@ const run = async () => {
     
     const file = commonData.files.find(file => file.name === pageName);
 
+    const pageData = pageData[file.name] || {};
+
     if (!file) {
       res.render('notFound', { ...commonData });
       return;
     }
 
-    res.render('page', { ...commonData, file, partial: () => file.name });
+    res.render('page', { ...commonData, ...pageData, file, partial: () => file.name });
   });
 
   const port = process.env.PORT || 3000;
