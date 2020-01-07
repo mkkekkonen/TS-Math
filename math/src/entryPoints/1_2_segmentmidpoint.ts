@@ -15,8 +15,8 @@ const clickTapHandler = () => {
   util.updateLineSegmentOnClick(line, stage);
 
   if (line.startPoint && line.endPoint) {
-    document.getElementById('output')!.innerHTML = line.toString();
-    line.konvaRender(layer);
+    document.getElementById('output')!.innerText = line.toString();
+    line.konvaRender(layer, { renderMidpoint: true });
     layer.draw();
   }
 };

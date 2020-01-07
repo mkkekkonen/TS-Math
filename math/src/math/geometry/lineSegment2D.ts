@@ -62,7 +62,7 @@ export class LineSegment2D {
     this.endPoint = endPoint;
   }
 
-  konvaRender = (layer: Konva.Layer, viewportMatrix = util.defaultViewportMatrix, renderMidpoint = false) => {
+  konvaRender = (layer: Konva.Layer, { viewportMatrix = util.defaultViewportMatrix, renderMidpoint = false } = {}) => {
     if (this.startPoint && this.endPoint) {
       const screenStartPoint = viewportMatrix.multiplyVector(this.startPoint);
       const screenEndPoint = viewportMatrix.multiplyVector(this.endPoint);

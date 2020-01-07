@@ -1,3 +1,6 @@
+const path = require('path');
+const fs = require('fs');
+
 const formulatePath = function(fileName) {
   return './src/entryPoints/' + fileName + '.ts';
 };
@@ -10,9 +13,14 @@ const generateEntryPoints = entryPoints => {
   return result;
 };
 
-const entryPointNames = [
-  'foobar',
-  '1_1_distancepoints',
-];
+const getEntryPointNames = () => {
+  const dir = path.resolve(__dirname, 'src', 'entryPoints');
+  const files = fs.readdirSync(dir);
+  return files.map(file => {
+    const splitFile = file.split('.');
+    const [name] = splitFile;
+    return name;
+  });
+};
 
-module.exports = generateEntryPoints(entryPointNames);
+module.exports = generateEntryPoints(getEntryPointNames());
