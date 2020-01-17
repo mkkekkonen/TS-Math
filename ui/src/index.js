@@ -29,9 +29,25 @@ const getCommonData = async () => {
   };
 };
 
-const pageData = {
+const pageDataArr = {
   '1_3_mirroraxes': {
-    inputs: ['x', 'y', 'o'],
+    inputs: [
+      {
+        id: 'x',
+        checked: true,
+        label: 'X axis',
+      },
+      {
+        id: 'y',
+        checked: false,
+        label: 'Y axis',
+      },
+      {
+        id: 'o',
+        checked: false,
+        label: 'Origin',
+      },
+    ],
   },
 };
 
@@ -59,7 +75,7 @@ const run = async () => {
     
     const file = commonData.files.find(file => file.name === pageName);
 
-    const pageData = pageData[file.name] || {};
+    const pageData = pageDataArr[file.name] || {};
 
     if (!file) {
       res.render('notFound', { ...commonData });
