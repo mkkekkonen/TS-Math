@@ -15,7 +15,7 @@ const clickTapHandler = () => {
   util.updateLineSegmentOnClick(line, stage);
 
   if (line.startPoint && line.endPoint) {
-    util.logToDiv(line.toString());
+    util.logToDiv(line.toString({ slope: true }));
     line.konvaRender(layer);
     layer.draw();
   }

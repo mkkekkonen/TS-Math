@@ -29,3 +29,5 @@ export const updateLineSegmentOnClick = (lineSegment: LineSegment2D, stage: Konv
 export const round = (n: number) => Math.round(n * 100) / 100;
 
 export const radiansToDegrees = (radians: number) => radians * (180 / Math.PI);
+
+export const logToDiv = (str: string) => document.getElementById('output')!.innerText = str;

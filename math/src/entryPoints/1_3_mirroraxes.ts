@@ -59,7 +59,7 @@ const clickTapHandler = () => {
   util.updateLineSegmentOnClick(line, stage);
 
   if (line.startPoint && line.endPoint) {
-    document.getElementById('output')!.innerHTML = line.toString();
+    util.logToDiv(line.toString());
     drawLines();
   }
 };
