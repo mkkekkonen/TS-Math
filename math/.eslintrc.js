@@ -19,5 +19,8 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'semi': 'error',
+    'no-trailing-spaces': 'error',
+    'comma-dangle': 'error',
   },
 };
