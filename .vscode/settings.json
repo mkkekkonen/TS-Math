@@ -1,3 +1,4 @@
 {
-  "eslint.validate": ["javascript", "typescript"]
+  "eslint.validate": ["typescript"],
+  "eslint.workingDirectories": ["./math"]
 }
