@@ -6,11 +6,9 @@ import * as constants from '../../constants';
 import * as util from '../../util';
 
 export class PointSlopeEquation extends LineEquation {
-  konvaLines?: Konva.Line[];
-
   constructor(
     public point?: Vector3,
-    public slope?: number,
+    public slope: number = 0,
     strokeColor = constants.black,
     strokeWidth = constants.strokeWidth,
   ) {
@@ -25,7 +23,7 @@ export class PointSlopeEquation extends LineEquation {
   getX = () => this.point?.x;
 
   calculateY = (x: number) => {
-    if (this.point && this.slope) {
+    if (this.point && (this.slope || this.slope === 0)) {
       return (this.slope * (x - this.point.x)) + this.point.y;
     }
     return 0;
@@ -46,5 +44,15 @@ export class PointSlopeEquation extends LineEquation {
         this.plotLine(layer, worldWidth, viewportMatrix);
       }
     }
+  }
+
+  toString = () => {
+    if (this.point && (this.slope)) {
+      return `y - ${this.point.y} = ${this.slope}(x - ${this.point.x})`;
+    }
+    if (this.point && !this.slope) {
+      return `y = ${this.point.y}`;
+    }
+    return '';
   }
 }

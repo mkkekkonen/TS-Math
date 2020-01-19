@@ -29,4 +29,6 @@ document.getElementById('drawButton')?.addEventListener('click', () => {
 
   lineEquation.renderLine(layer);
   layer.draw();
+
+  util.logToDiv(lineEquation.toString());
 });

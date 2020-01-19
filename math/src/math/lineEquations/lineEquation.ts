@@ -20,6 +20,7 @@ export abstract class LineEquation {
   ) => {}
   abstract getX = (): number | undefined => 0;
   abstract calculateY = (x: number): number => 0;
+  abstract toString = (): string => '';
 
   plotVerticalLine = (
     layer: Konva.Layer,
