@@ -1,29 +1,28 @@
 import Konva from 'konva';
 
 import { LineEquation } from './lineEquation';
+import { Vector3 } from '..';
 import * as constants from '../../constants';
 import * as util from '../../util';
 
-export class GeneralFormEquation extends LineEquation {
+export class SlopeInterceptEquation extends LineEquation {
   constructor(
-    public a = 0,
-    public b = 0,
-    public c = 0,
+    public slope = 0,
+    public yIntercept = 0,
     strokeColor = constants.black,
     strokeWidth = constants.strokeWidth,
   ) {
     super(strokeColor, strokeWidth);
   }
 
-  update = ({ a, b, c }: { a: number, b: number, c: number }) => {
-    this.a = a;
-    this.b = b;
-    this.c = c;
+  update = ({ slope, yIntercept }: { slope: number, yIntercept: number }) => {
+    this.slope = slope;
+    this.yIntercept = yIntercept;
   }
 
-  getX = () => this.a;
+  getX = () => 0;
 
-  calculateY = (x: number) => ((-this.a * x) - this.c) / this.b;
+  calculateY = (x: number) => (this.slope * x) + this.yIntercept;
 
   renderLine = (
     layer: Konva.Layer,
@@ -31,23 +30,18 @@ export class GeneralFormEquation extends LineEquation {
     worldHeight = constants.worldHeight,
     viewportMatrix = util.defaultViewportMatrix,
   ) => {
-    if (!this.a && !this.b) {
-      // do nothing
+    if (this.slope === 0) {
+      this.plotVerticalLine(layer, worldHeight, viewportMatrix);
     } else {
       this.plotLine(layer, worldWidth, viewportMatrix);
     }
   }
 
   /**
-   * returns 0 = ax + by + c
+   * returns y = kx + b
    */
   toString = () => {
-    if (!this.a && !this.b) {
-      return '';
-    }
-    const a = this.a ? `${this.a}x + ` : '';
-    const b = this.b ? `${this.b}y + ` : '';
-    const c = this.c ? this.c : '';
-    return `0 = ${a}${b}${c}`;
+    const slope = this.slope ? `${this.slope}x + ` : '';
+    return `y = ${slope}${this.yIntercept}`;
   }
 }

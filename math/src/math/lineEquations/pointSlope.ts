@@ -46,6 +46,9 @@ export class PointSlopeEquation extends LineEquation {
     }
   }
 
+  /**
+   * returns y - y_1 = m(x - x_1)
+   */
   toString = () => {
     if (this.point && (this.slope)) {
       return `y - ${this.point.y} = ${this.slope}(x - ${this.point.x})`;
