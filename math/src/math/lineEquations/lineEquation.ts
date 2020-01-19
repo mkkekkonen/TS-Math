@@ -4,10 +4,16 @@ import { Matrix4x4, Vector3 } from '..';
 import * as constants from '../../constants';
 import * as util from '../../util';
 
+export const pointSlope = 'pointSlope';
+export const generalForm = 'generalForm';
+export const slopeIntercept = 'slopeIntercept'; 
+
 export abstract class LineEquation {
   point?: Vector3;
 
   konvaLine?: Konva.Line;
+
+  type?: string;
 
   constructor(public strokeColor = constants.black, public strokeWidth = constants.strokeWidth) {}
 
