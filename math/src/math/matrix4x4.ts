@@ -1,4 +1,6 @@
-import { matrix, zeros, multiply, transpose, Matrix } from 'mathjs';
+import {
+  matrix, zeros, multiply, transpose, Matrix,
+} from 'mathjs';
 import { Vector3 } from './vector3';
 
 export class Matrix4x4 {
@@ -12,26 +14,22 @@ export class Matrix4x4 {
     }
   }
 
-  static scale = (x = 1, y = 1, z = 1) => {
-    return new Matrix4x4([
-      [x, 0, 0, 0],
-      [0, y, 0, 0],
-      [0, 0, z, 0],
-      [0, 0, 0, 1],
-    ])
-  };
+  static scale = (x = 1, y = 1, z = 1) => new Matrix4x4([
+    [x, 0, 0, 0],
+    [0, y, 0, 0],
+    [0, 0, z, 0],
+    [0, 0, 0, 1],
+  ]);
 
-  static translate = (x = 0, y = 0, z = 0) => {
-    return new Matrix4x4([
-      [1, 0, 0, 0],
-      [0, 1, 0, 0],
-      [0, 0, 1, 0],
-      [x, y, z, 1],
-    ]);
-  }
+  static translate = (x = 0, y = 0, z = 0) => new Matrix4x4([
+    [1, 0, 0, 0],
+    [0, 1, 0, 0],
+    [0, 0, 1, 0],
+    [x, y, z, 1],
+  ]);
 
-  multiply = (matrix: Matrix4x4) => {
-    const result = multiply(this.matrix, transpose(matrix.matrix)) as Matrix;
+  multiply = (m: Matrix4x4) => {
+    const result = multiply(this.matrix, transpose(m.matrix)) as Matrix;
     return new Matrix4x4(result.toArray() as number[][]);
   }
 
@@ -44,7 +42,5 @@ export class Matrix4x4 {
     return new Vector3(x, y, z);
   }
 
-  transpose = () => {
-    return new Matrix4x4(this.matrix.toArray() as number[][]);
-  }
+  transpose = () => new Matrix4x4(this.matrix.toArray() as number[][]);
 }

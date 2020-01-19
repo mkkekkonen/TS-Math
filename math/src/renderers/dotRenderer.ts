@@ -9,16 +9,17 @@ export const addDotToLayer = (
   layer: Konva.Layer,
   radius = constants.dotRadius,
   fillColor = constants.red,
-  viewportMatrix = util.defaultViewportMatrix
+  viewportMatrix = util.defaultViewportMatrix,
 ) => {
   const screenPoint = viewportMatrix.multiplyVector(point);
   const { x, y } = screenPoint;
 
   const circle = new Konva.Circle({
-    x, y,
+    x,
+    y,
     radius,
     fill: fillColor,
   });
-  
+
   layer.add(circle);
 };

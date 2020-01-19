@@ -13,7 +13,7 @@ const mirroredLine = new LineSegment2D(undefined, undefined, { strokeColor: cons
 
 const getCheckedInputId = () => {
   const radioButtons = Array.from(<HTMLInputElement[]><any>document.getElementsByName('mirroracross'));
-  const checkedElement = radioButtons.find(rb => rb.checked);
+  const checkedElement = radioButtons.find((rb) => rb.checked);
   return checkedElement ? checkedElement.id : undefined;
 };
 
@@ -24,8 +24,8 @@ const drawMirroredLine = (startPoint?: Vector3, endPoint?: Vector3) => {
     return;
   }
 
-  let mirroredStartPoint: Vector3 | undefined = undefined;
-  let mirroredEndPoint: Vector3 | undefined = undefined;
+  let mirroredStartPoint: Vector3 | undefined;
+  let mirroredEndPoint: Vector3 | undefined;
 
   if (checkedInputId === 'x') {
     const multiplyWith = new Vector3(1, -1);

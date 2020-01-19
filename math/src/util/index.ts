@@ -38,7 +38,7 @@ export const logToDiv = (str: string) => {
 export const parseFloatById = (id: string) => {
   const valueString = (document.getElementById(id) as HTMLInputElement).value;
   return valueString ? parseFloat(valueString) : 0;
-}
+};
 
 export const plotKonvaLineSegment = (
   layer: Konva.Layer,

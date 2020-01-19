@@ -1,6 +1,8 @@
 import Konva from 'konva';
 
-import { worldWidth, worldHeight, black, strokeWidth } from '../constants';
+import {
+  worldWidth, worldHeight, black, strokeWidth,
+} from '../constants';
 import { Vector3 } from '../math';
 import { defaultViewportMatrix } from '../util';
 

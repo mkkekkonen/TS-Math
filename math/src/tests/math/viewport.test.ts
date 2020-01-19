@@ -1,4 +1,4 @@
-import { Matrix4x4, Vector3 } from "../../math";
+import { Matrix4x4, Vector3 } from '../../math';
 import { createViewportMatrix, createReverseViewportMatrix } from '../../math/viewport';
 
 it('creates correct viewport matrix', () => {
@@ -18,7 +18,7 @@ it('creates correct reverse viewport matrix', () => {
     [64, 0, 0, -320],
     [0, 48, 0, -240],
     [0, 0, 1, 0],
-    [0, 0, 0, 1]
+    [0, 0, 0, 1],
   ]);
   expect(A.matrix).toEqual(expectedResult.matrix);
 });

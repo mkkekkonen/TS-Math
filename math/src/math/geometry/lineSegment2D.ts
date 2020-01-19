@@ -66,7 +66,10 @@ export class LineSegment2D {
     this.endPoint = endPoint;
   }
 
-  konvaRender = (layer: Konva.Layer, { viewportMatrix = util.defaultViewportMatrix, renderMidpoint = false } = {}) => {
+  konvaRender = (
+    layer: Konva.Layer,
+    { viewportMatrix = util.defaultViewportMatrix, renderMidpoint = false } = {},
+  ) => {
     if (this.startPoint && this.endPoint) {
       const screenStartPoint = viewportMatrix.multiplyVector(this.startPoint);
       const screenEndPoint = viewportMatrix.multiplyVector(this.endPoint);
@@ -89,8 +92,11 @@ export class LineSegment2D {
     }
   }
 
-  toString = ({ midpoint, slope, directionalAngle }: { midpoint?: boolean, slope?: boolean, directionalAngle?: boolean } = {}) => {
-    const stringParts = []
+  toString = (
+    { midpoint, slope, directionalAngle }:
+    { midpoint?: boolean, slope?: boolean, directionalAngle?: boolean } = {},
+  ) => {
+    const stringParts = [];
 
     stringParts.push('Line');
     stringParts.push(`- startPoint: ${this.startPoint ? this.startPoint.toString() : 'undefined'}`);
@@ -112,4 +118,3 @@ export class LineSegment2D {
     return stringParts.join('\n');
   }
 }
-
