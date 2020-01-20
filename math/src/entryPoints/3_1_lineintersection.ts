@@ -1,7 +1,8 @@
 import * as util from '../util';
 import * as constants from '../constants';
-import { axis2DRenderer } from '../renderers';
+import { axis2DRenderer, dotRenderer } from '../renderers';
 import { SlopeInterceptEquation } from '../math/lineEquations';
+import { Vector3 } from '../math';
 
 const { layer } = util.getDefaultKonvaStage2();
 axis2DRenderer.addAxesToLayer(layer);
@@ -28,5 +29,16 @@ document.getElementById('drawButton')?.addEventListener('click', () => {
   fixedLineEquation.renderLine(layer);
   lineEquation.renderLine(layer);
 
-  
-})
+  const intersection = fixedLineEquation.lineIntersects(lineEquation);
+
+  if (intersection === true) {
+    util.logToDiv('Lines are equal');
+  } else if (intersection) {
+    util.logToDiv(`Intersection point: ${(intersection as Vector3).toString()}`);
+    dotRenderer.addDotToLayer(intersection as Vector3, layer);
+  } else if (!intersection) {
+    util.logToDiv('Lines are parallel - no intersection');
+  }
+
+  layer.draw();
+});

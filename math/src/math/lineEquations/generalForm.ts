@@ -1,10 +1,12 @@
 import Konva from 'konva';
 
-import { LineEquation } from './lineEquation';
+import { LineEquation, GENERAL_FORM } from './lineEquation';
 import * as constants from '../../constants';
 import * as util from '../../util';
 
 export class GeneralFormEquation extends LineEquation {
+  type = GENERAL_FORM;
+
   constructor(
     public a = 0,
     public b = 0,

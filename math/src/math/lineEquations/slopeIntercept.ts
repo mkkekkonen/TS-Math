@@ -1,11 +1,13 @@
 import Konva from 'konva';
 
-import { LineEquation } from './lineEquation';
+import { LineEquation, SLOPE_INTERCEPT } from './lineEquation';
 import { Vector3 } from '..';
 import * as constants from '../../constants';
 import * as util from '../../util';
 
 export class SlopeInterceptEquation extends LineEquation {
+  type = SLOPE_INTERCEPT;
+
   constructor(
     public slope = 0,
     public yIntercept = 0,

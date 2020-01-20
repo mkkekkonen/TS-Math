@@ -3,10 +3,11 @@ import Konva from 'konva';
 import { Matrix4x4, Vector3 } from '..';
 import * as constants from '../../constants';
 import * as util from '../../util';
+import * as lineUtils from './util';
 
-export const pointSlope = 'pointSlope';
-export const generalForm = 'generalForm';
-export const slopeIntercept = 'slopeIntercept'; 
+export const POINT_SLOPE = 'pointSlope';
+export const GENERAL_FORM = 'generalForm';
+export const SLOPE_INTERCEPT = 'slopeIntercept';
 
 export abstract class LineEquation {
   point?: Vector3;
@@ -71,5 +72,9 @@ export abstract class LineEquation {
     this.konvaLine = util.plotKonvaLineSegment(
       layer, segmentStartPoint, segmentEndPoint, this.strokeColor, this.strokeWidth,
     );
+  }
+
+  lineIntersects = (otherLine: LineEquation) => {
+    return lineUtils.solveSystem(this, otherLine);
   }
 }

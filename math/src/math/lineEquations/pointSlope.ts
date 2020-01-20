@@ -1,11 +1,13 @@
 import Konva from 'konva';
 
-import { LineEquation } from './lineEquation';
+import { LineEquation, POINT_SLOPE } from './lineEquation';
 import { Vector3 } from '..';
 import * as constants from '../../constants';
 import * as util from '../../util';
 
 export class PointSlopeEquation extends LineEquation {
+  type = POINT_SLOPE;
+
   constructor(
     public point?: Vector3,
     public slope: number = 0,
