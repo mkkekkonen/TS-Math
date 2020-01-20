@@ -5,16 +5,16 @@ import * as constants from '../../constants';
 import * as util from '../../util';
 import * as lineUtils from './util';
 
-export const POINT_SLOPE = 'pointSlope';
-export const GENERAL_FORM = 'generalForm';
-export const SLOPE_INTERCEPT = 'slopeIntercept';
+export const POINT_SLOPE = 'pointSlope' as const;
+export const GENERAL_FORM = 'generalForm' as const;
+export const SLOPE_INTERCEPT = 'slopeIntercept' as const;
 
 export abstract class LineEquation {
   point?: Vector3;
 
   konvaLine?: Konva.Line;
 
-  type?: string;
+  type?: 'pointSlope' | 'generalForm' | 'slopeIntercept';
 
   constructor(public strokeColor = constants.black, public strokeWidth = constants.strokeWidth) {}
 
