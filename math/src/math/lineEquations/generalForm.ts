@@ -3,10 +3,9 @@ import Konva from 'konva';
 import { LineEquation, GENERAL_FORM } from './lineEquation';
 import * as constants from '../../constants';
 import * as util from '../../util';
+import { Vector3 } from '..';
 
 export class GeneralFormEquation extends LineEquation {
-  type = GENERAL_FORM;
-
   constructor(
     public a = 0,
     public b = 0,
@@ -26,6 +25,12 @@ export class GeneralFormEquation extends LineEquation {
   getX = () => this.a;
 
   calculateY = (x: number) => ((-this.a * x) - this.c) / this.b;
+
+  /** TODO: implement */
+  lineIntersects = (otherLine: LineEquation) => new Vector3();
+
+  /** TODO: implement */
+  angleBetween = (otherLine: LineEquation) => 0;
 
   renderLine = (
     layer: Konva.Layer,

@@ -29,5 +29,8 @@ document.getElementById('drawButton')?.addEventListener('click', () => {
   fixedLineEquation.renderLine(layer);
   lineEquation.renderLine(layer);
 
-  // jäi tähän
+  const angle = util.round(util.radiansToDegrees(lineEquation.angleBetween(fixedLineEquation)));
+  util.logToDiv(`Angle between lines: ${angle} degrees`);
+
+  layer.draw();
 });

@@ -6,8 +6,6 @@ import * as constants from '../../constants';
 import * as util from '../../util';
 
 export class SlopeInterceptEquation extends LineEquation {
-  type = SLOPE_INTERCEPT;
-
   constructor(
     public slope = 0,
     public yIntercept = 0,
@@ -25,6 +23,47 @@ export class SlopeInterceptEquation extends LineEquation {
   getX = () => 0;
 
   calculateY = (x: number) => (this.slope * x) + this.yIntercept;
+
+  lineIntersects = (otherLine: LineEquation) => {
+    if (!(otherLine instanceof SlopeInterceptEquation)) {
+      return false;
+    }
+
+    const otherSlopeIntercept = otherLine as SlopeInterceptEquation;
+
+    if (this.slope === otherSlopeIntercept.slope
+        && this.yIntercept === otherSlopeIntercept.yIntercept) {
+      return true;
+    }
+
+    if (this.slope === otherSlopeIntercept.slope
+        && this.yIntercept !== otherSlopeIntercept.yIntercept) {
+      return false;
+    }
+
+    const xFactor = this.slope - otherSlopeIntercept.slope;
+    const constant = otherSlopeIntercept.yIntercept - this.yIntercept;
+
+    const x = constant / xFactor;
+    const y = (this.slope * x) + this.yIntercept;
+
+    return new Vector3(x, y);
+  }
+
+  angleBetween = (otherLine: LineEquation) => {
+    if (!(otherLine instanceof SlopeInterceptEquation)) {
+      return 0;
+    }
+
+    const otherSlopeIntercept = otherLine as SlopeInterceptEquation;
+
+    const tangent = Math.abs(
+      (this.slope - otherSlopeIntercept.slope)
+        / (1 - (this.slope * otherSlopeIntercept.slope)),
+    );
+
+    return Math.atan(tangent);
+  };
 
   renderLine = (
     layer: Konva.Layer,

@@ -6,8 +6,6 @@ import * as constants from '../../constants';
 import * as util from '../../util';
 
 export class PointSlopeEquation extends LineEquation {
-  type = POINT_SLOPE;
-
   constructor(
     public point?: Vector3,
     public slope: number = 0,
@@ -30,6 +28,12 @@ export class PointSlopeEquation extends LineEquation {
     }
     return 0;
   }
+
+  /** TODO: implement */
+  lineIntersects = (otherLine: LineEquation) => new Vector3();
+
+  /** TODO: implement */
+  angleBetween = (otherLine: LineEquation) => 0;
 
   renderLine = (
     layer: Konva.Layer,
