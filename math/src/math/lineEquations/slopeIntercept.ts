@@ -63,7 +63,12 @@ export class SlopeInterceptEquation extends LineEquation {
     );
 
     return Math.atan(tangent);
-  };
+  }
+
+  /** TODO: implement */
+  distanceTo = (v: Vector3) => 0;
+
+  convertToSlopeIntercept = () => this;
 
   renderLine = (
     layer: Konva.Layer,

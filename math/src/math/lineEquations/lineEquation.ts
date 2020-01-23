@@ -3,6 +3,7 @@ import Konva from 'konva';
 import { Matrix4x4, Vector3 } from '..';
 import * as constants from '../../constants';
 import * as util from '../../util';
+import { SlopeInterceptEquation } from '.';
 
 export const POINT_SLOPE = 'pointSlope' as const;
 export const GENERAL_FORM = 'generalForm' as const;
@@ -27,6 +28,8 @@ export abstract class LineEquation {
   abstract toString = () => '';
   abstract lineIntersects = (otherLine: LineEquation): Vector3 | boolean => new Vector3();
   abstract angleBetween = (otherLine: LineEquation) => 0;
+  abstract convertToSlopeIntercept = (): SlopeInterceptEquation => new SlopeInterceptEquation();
+  abstract distanceTo = (v: Vector3) => 0;
 
   plotVerticalLine = (
     layer: Konva.Layer,

@@ -4,6 +4,7 @@ import { LineEquation, POINT_SLOPE } from './lineEquation';
 import { Vector3 } from '..';
 import * as constants from '../../constants';
 import * as util from '../../util';
+import { SlopeInterceptEquation } from '.';
 
 export class PointSlopeEquation extends LineEquation {
   constructor(
@@ -34,6 +35,14 @@ export class PointSlopeEquation extends LineEquation {
 
   /** TODO: implement */
   angleBetween = (otherLine: LineEquation) => 0;
+
+  /** TODO: implement */
+  distanceTo = (v: Vector3) => 0;
+
+  convertToSlopeIntercept = () => new SlopeInterceptEquation(
+    this.slope,
+    this.point ? -(this.slope * this.point.x) + this.point.y : 0,
+  );
 
   renderLine = (
     layer: Konva.Layer,
