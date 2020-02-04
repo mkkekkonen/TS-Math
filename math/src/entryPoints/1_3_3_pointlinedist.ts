@@ -44,7 +44,7 @@ const clickTapHandler = () => {
   point.render(layer);
   linePoint.render(layer);
 
-  // util.logToDiv(`Distance: ${util.round(point.point.distanceFromLine(fixedLineGeneralForm))}`);
+  util.logToDiv(`Distance: ${util.round(point.point.distanceFromLine(fixedLineGeneralForm))}`);
 
   layer.draw();
 };
