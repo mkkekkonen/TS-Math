@@ -23,11 +23,5 @@ export class Vector3 {
   distanceFrom = (vector: Vector3) => Math.sqrt(((vector.x - this.x) ** 2)
     + ((vector.y - this.y) ** 2));
 
-  distanceFromLine = (line: any) => {
-    const { a, b, c } = line;
-    return Math.abs(((a * this.x) + (b * this.y) + c)
-      / Math.sqrt((a * a) + (b * b)));
-  }
-
   toString = () => `(${round(this.x)}, ${round(this.y)}, ${round(this.z)})`;
 }
