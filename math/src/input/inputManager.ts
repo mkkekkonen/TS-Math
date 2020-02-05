@@ -9,3 +9,11 @@ export const getMouseWorldPosition = (stage: Konva.Stage) => {
 
   return defaultReverseViewportMatrix.multiplyVector(positionVector);
 };
+
+export const initializeKeyboardInput = (
+  keyDownCallback: (event: KeyboardEvent) => void,
+  keyUpCallback: (event: KeyboardEvent) => void,
+) => {
+  window.addEventListener('keydown', keyDownCallback);
+  window.addEventListener('keyup', keyUpCallback);
+};
