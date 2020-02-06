@@ -1,8 +1,10 @@
 import { Vector3, PolarCoordinates } from '../math';
+import * as util from '../util';
 
 const TURN_DELTA = 20; // degrees per second
 
 interface IUpdateOptions {
+  yAxis?: number
   turnLeft?: boolean,
   turnRight?: boolean,
 }
@@ -19,8 +21,12 @@ export class ObjectKinematics2D {
     return this.direction.theta;
   }
 
-  update = (time: number, { turnLeft, turnRight }: IUpdateOptions) => {
+  update = (time: number, { yAxis, turnLeft, turnRight }: IUpdateOptions) => {
     const direction = Vector3.fromPolarCoordinates(this.direction);
+
+    if (yAxis !== undefined) {
+      this.accelerationScalar = yAxis;
+    }
 
     const velocityDelta = direction.multiplyScalar(this.accelerationScalar * time);
     this.velocity = this.velocity.add(velocityDelta);
@@ -46,10 +52,19 @@ export class ObjectKinematics2D {
 
   turnRight = (time: number) => {
     const direction = this.direction.clone();
-    direction.theta -= TURN_DELTA + time;
+    direction.theta -= TURN_DELTA * time;
     if (direction.theta < 0) {
       direction.theta -= 360;
     }
     this.direction = direction;
+  }
+
+  toString = () => {
+    let str = 'ObjectKinematics2D:\n';
+    str += `~ acceleration: ${util.round(this.accelerationScalar)} units/s^2\n`;
+    str += `~ speed: ${util.round(this.velocity.length)} units/s^2\n`;
+    str += `~ direction polar coords angle: ${util.round(this.direction.theta)}\n`;
+    str += `~ position: ${this.position.toString()}`;
+    return str;
   }
 }

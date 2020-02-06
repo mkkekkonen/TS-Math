@@ -20,6 +20,10 @@ export class Vector3 {
     return [this.x, this.y, this.z, this.w];
   }
 
+  get length() {
+    return Math.sqrt((this.x ** 2) + (this.y ** 2));
+  }
+
   add = (vector: Vector3) => new Vector3(
     this.x + vector.x,
     this.y + vector.y,
