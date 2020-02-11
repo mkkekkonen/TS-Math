@@ -45,10 +45,10 @@ export class TimeKinematics2D {
 
   toString = () => {
     const strs = [];
-    strs.push('- TimeKinematics2D');
+    strs.push('TimeKinematics2D');
     strs.push(`~ position: ${this.position.toString()}`);
     strs.push(`~ velocity: ${this.velocity.toString()}`);
-    strs.push(`~ accelerations: ${this.acceleration.toString()}`);
+    strs.push(`~ acceleration: ${this.acceleration.toString()}`);
     return strs.join('\n');
   }
 }
