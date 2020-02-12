@@ -30,6 +30,12 @@ export class Vector3 {
     this.z + vector.z,
   );
 
+  subtract = (vector: Vector3) => new Vector3(
+    this.x - vector.x,
+    this.y - vector.y,
+    this.z - vector.z,
+  );
+
   multiply = (vector: Vector3) => new Vector3(
     this.x * vector.x,
     this.y * vector.y,
