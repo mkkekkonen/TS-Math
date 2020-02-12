@@ -1,3 +1,5 @@
+import Konva from 'konva';
+
 import * as util from '../util';
 import * as constants from '../constants';
 import { LineSegment2D } from '../math/geometry';
@@ -51,7 +53,27 @@ const render = () => {
   projectile.render(layer);
 
   layer.draw();
-  util.logToDiv('');
+  util.logToDiv(projectile.kinematics.toString());
 };
 
+const clickTapHandler = () => {
+  if (running) {
+    reset();
+  }
+  start();
+};
 
+document.getElementById('resetButton')?.addEventListener('click', reset);
+
+stage.on('click', clickTapHandler);
+stage.on('tap', clickTapHandler);
+
+const animation = new Konva.Animation((frame) => {
+  if (frame) {
+    const timeDeltaSeconds = frame.timeDiff / 1000;
+    update(timeDeltaSeconds);
+    render();
+  }
+});
+
+animation.start();
