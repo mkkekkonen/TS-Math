@@ -14,3 +14,10 @@ export const strokeWidth = 2;
 export const dotRadius = 4;
 
 export const accelerationGravity = new Vector3(0, -9.81);
+
+export enum Sides {
+  TOP,
+  RIGHT,
+  BOTTOM,
+  LEFT,
+}

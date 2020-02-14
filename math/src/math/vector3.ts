@@ -48,6 +48,12 @@ export class Vector3 {
     this.z * scalar,
   );
 
+  divideScalar = (scalar: number) => new Vector3(
+    this.x / scalar,
+    this.y / scalar,
+    this.z / scalar,
+  );
+
   distanceFrom = (vector: Vector3) => Math.sqrt(((vector.x - this.x) ** 2)
     + ((vector.y - this.y) ** 2));
 
