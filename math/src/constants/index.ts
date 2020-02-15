@@ -16,6 +16,7 @@ export const dotRadius = 4;
 export const accelerationGravity = new Vector3(0, -9.81);
 
 export enum Sides {
+  NONE = 0,
   TOP,
   RIGHT,
   BOTTOM,

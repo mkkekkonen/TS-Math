@@ -54,6 +54,8 @@ export class Vector3 {
     this.z / scalar,
   );
 
+  clone = () => new Vector3(this.x, this.y, this.z);
+
   distanceFrom = (vector: Vector3) => Math.sqrt(((vector.x - this.x) ** 2)
     + ((vector.y - this.y) ** 2));
 

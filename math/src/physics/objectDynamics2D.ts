@@ -4,6 +4,8 @@ import * as constants from '../constants';
 interface IDynamicsOptions {
   radius?: number
   bounce?: boolean
+  worldWidth?: number
+  worldHeight?: number
 }
 
 export class ObjectDynamics2D {
@@ -12,6 +14,9 @@ export class ObjectDynamics2D {
   radius: number;
 
   bounce: boolean;
+
+  worldWidth: number;
+  worldHeight: number;
 
   constructor(
     public position = new Vector3(),
@@ -22,15 +27,14 @@ export class ObjectDynamics2D {
 
     this.radius = options.radius || constants.dotRadius;
     this.bounce = !!options.bounce;
+
+    this.worldWidth = options.worldWidth || constants.worldWidth;
+    this.worldHeight = options.worldHeight || constants.worldHeight;
   }
 
   update = (
     time: number,
     force?: Vector3,
-    {
-      worldWidth = constants.worldWidth,
-      worldHeight = constants.worldHeight,
-    }: { worldWidth?: number, worldHeight?: number } = {},
   ) => {
     const acceleration = force ? force.divideScalar(this.massKg) : new Vector3();
 
@@ -41,40 +45,90 @@ export class ObjectDynamics2D {
     this.position = this.position.add(positionDelta);
   }
 
-  bounce = (worldWidth: number, worldHeight: number) => {
-    let crossedSide;
+  bounce = () => {
+    let crossedSide: constants.Sides | undefined;
     let loopGuard = 0;
+
+    while ((crossedSide = this.hasCrossedBorder()) && loopGuard < 2) {
+      loopGuard += 1;
+
+      switch (crossedSide) {
+        case constants.Sides.TOP: {
+          this.velocity.y = -this.velocity.y;
+          this.position = this.getBouncedPosition(constants.Sides.TOP);
+          break;
+        }
+        case constants.Sides.RIGHT: {
+          // jäi tähän
+          break;
+        }
+        case constants.Sides.BOTTOM: {
+          break;
+        }
+        case constants.Sides.LEFT: {
+          break;
+        }
+        default:
+          break;
+      }
+    }
   }
 
-  getCrossedSideKey = () => {
-    const crossedSideKey = Object.keys(constants.Sides)
-      .find(key => true);
+  hasCrossedBorder = () => {
+    if (this.position.y + this.radius > this.worldHeight / 2) {
+      return constants.Sides.TOP;
+    }
+    if (this.position.x + this.radius > this.worldWidth / 2) {
+      return constants.Sides.RIGHT;
+    }
+    if (this.position.y - this.radius < -this.worldHeight / 2) {
+      return constants.Sides.BOTTOM;
+    }
+    if (this.position.x - this.radius < -this.worldWidth / 2) {
+      return constants.Sides.LEFT;
+    }
+
+    return undefined;
   }
 
-  hasCrossedBorder = (side: constants.Sides, worldWidth: number, worldHeight: number) => {
+  getBouncedPosition = (side: constants.Sides) => {
+    const clonedPosition = this.position.clone();
+
     switch (side) {
-      case constants.Sides.TOP:
-        if (this.position.y + this.radius > worldHeight / 2) {
-          return true;
+      case constants.Sides.TOP: {
+        if (this.position.y < this.worldHeight / 2) {
+          return clonedPosition;
         }
-        return false;
-      case constants.Sides.RIGHT:
-        if (this.position.x + this.radius > worldWidth / 2) {
-          return true;
+        const distanceCrossed = this.position.y - (this.worldHeight / 2);
+        clonedPosition.y -= distanceCrossed * 2;
+        return clonedPosition;
+      }
+      case constants.Sides.RIGHT: {
+        if (this.position.x < this.worldWidth / 2) {
+          return clonedPosition;
         }
-        return false;
-      case constants.Sides.BOTTOM:
-        if (this.position.y - this.radius < -worldHeight / 2) {
-          return true;
+        const distanceCrossed = this.position.x - (this.worldWidth / 2);
+        clonedPosition.x -= distanceCrossed * 2;
+        return clonedPosition;
+      }
+      case constants.Sides.BOTTOM: {
+        if (this.position.y > -this.worldHeight / 2) {
+          return clonedPosition;
         }
-        return false;
-      case constants.Sides.LEFT:
-        if (this.position.x - this.radius < -worldWidth / 2) {
-          return true;
+        const distanceCrossed = -(this.worldHeight / 2) - this.position.y;
+        clonedPosition.y += distanceCrossed * 2;
+        return clonedPosition;
+      }
+      case constants.Sides.LEFT: {
+        if (this.position.x > -this.worldWidth / 2) {
+          return clonedPosition;
         }
-        return false;
+        const distanceCrossed = -(this.worldWidth / 2) - this.position.x;
+        clonedPosition.x += distanceCrossed * 2;
+        return clonedPosition;
+      }
       default:
-        return false;
+        return clonedPosition;
     }
   }
 }
