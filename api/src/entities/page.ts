@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 
 import { Subcategory } from './subcategory';
 
@@ -16,6 +16,6 @@ export class Page {
   @Column()
   index: number;
 
-  @OneToOne(t => Subcategory, subcategory => subcategory.)
+  @ManyToOne(t => Subcategory, subcategory => subcategory.pages, { onDelete: 'SET NULL' })
   subcategory: Subcategory;
 }

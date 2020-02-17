@@ -10,9 +10,9 @@ export class Category {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   index: number;
 
-  @OneToMany(t => Subcategory, subcatecory => subcatecory.category)
+  @OneToMany(t => Subcategory, subcategory => subcategory.category)
   subcategories: Subcategory[];
 }

@@ -1,0 +1,1 @@
+export { GenericDbInterface } from './genericDbInterface';
