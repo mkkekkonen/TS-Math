@@ -13,7 +13,7 @@ export class ObjectDynamics2D {
 
   radius: number;
 
-  bounce: boolean;
+  bounceFlag: boolean;
 
   worldWidth: number;
   worldHeight: number;
@@ -26,7 +26,7 @@ export class ObjectDynamics2D {
     this.velocity = new Vector3();
 
     this.radius = options.radius || constants.dotRadius;
-    this.bounce = !!options.bounce;
+    this.bounceFlag = !!options.bounce;
 
     this.worldWidth = options.worldWidth || constants.worldWidth;
     this.worldHeight = options.worldHeight || constants.worldHeight;
@@ -43,6 +43,10 @@ export class ObjectDynamics2D {
 
     const positionDelta = this.velocity.multiplyScalar(time);
     this.position = this.position.add(positionDelta);
+
+    if (this.bounceFlag) {
+      this.bounce();
+    }
   }
 
   bounce = () => {
@@ -59,13 +63,18 @@ export class ObjectDynamics2D {
           break;
         }
         case constants.Sides.RIGHT: {
-          // jäi tähän
+          this.velocity.x = -this.velocity.x;
+          this.position = this.getBouncedPosition(constants.Sides.RIGHT);
           break;
         }
         case constants.Sides.BOTTOM: {
+          this.velocity.y = -this.velocity.y;
+          this.position = this.getBouncedPosition(constants.Sides.BOTTOM);
           break;
         }
         case constants.Sides.LEFT: {
+          this.velocity.x = -this.velocity.x;
+          this.position = this.getBouncedPosition(constants.Sides.LEFT);
           break;
         }
         default:
