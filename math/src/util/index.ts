@@ -29,6 +29,8 @@ export const updateLineSegmentOnClick = (lineSegment: LineSegment2D, stage: Konv
 
 export const round = (n: number) => Math.round(n * 100) / 100;
 
+export const degreesToRadians = (degrees: number) => degrees * (Math.PI / 180);
+
 export const radiansToDegrees = (radians: number) => radians * (180 / Math.PI);
 
 export const logToDiv = (str: string) => {
@@ -36,7 +38,7 @@ export const logToDiv = (str: string) => {
 };
 
 export const parseFloatById = (id: string) => {
-  const valueString = (document.getElementById(id) as HTMLInputElement).value;
+  const valueString = (document.getElementById(id) as HTMLInputElement)?.value;
   return valueString ? parseFloat(valueString) : 0;
 };
 

@@ -36,6 +36,7 @@
     "no-useless-constructor": "off",
     "no-empty-function": "off",
     "no-unused-expressions": "off",
+    "no-cond-assign": ["error", "except-parens"],
     "semi": "error"
   }
 }

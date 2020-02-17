@@ -1,8 +1,10 @@
 import Konva from 'konva';
 
-import { LineEquation } from './lineEquation';
+import { LineEquation, GENERAL_FORM } from './lineEquation';
 import * as constants from '../../constants';
 import * as util from '../../util';
+import { Vector3 } from '..';
+import { SlopeInterceptEquation } from '.';
 
 export class GeneralFormEquation extends LineEquation {
   constructor(
@@ -24,6 +26,20 @@ export class GeneralFormEquation extends LineEquation {
   getX = () => this.a;
 
   calculateY = (x: number) => ((-this.a * x) - this.c) / this.b;
+
+  /** TODO: implement */
+  lineIntersects = (otherLine: LineEquation) => new Vector3();
+
+  /** TODO: implement */
+  angleBetween = (otherLine: LineEquation) => 0;
+
+  distanceTo = (v: Vector3) => Math.abs(((this.a * v.x) + (this.b * v.y) + this.c))
+    / Math.sqrt((this.a * this.a) + (this.b * this.b));
+
+  convertToSlopeIntercept = () => new SlopeInterceptEquation(
+    -(this.a / this.b),
+    -(this.c / this.b),
+  );
 
   renderLine = (
     layer: Konva.Layer,

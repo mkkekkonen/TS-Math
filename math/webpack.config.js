@@ -36,4 +36,11 @@ module.exports = {
       filename: '[name].js.map',
     }),
   ],
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      name: 'vendors',
+    },
+  },
 };

@@ -10,3 +10,11 @@ export const darkGrey = '#999';
 
 export const strokeWidth = 2;
 export const dotRadius = 4;
+
+export enum Sides {
+  NONE = 0,
+  TOP,
+  RIGHT,
+  BOTTOM,
+  LEFT,
+}

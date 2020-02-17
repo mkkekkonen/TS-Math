@@ -3,8 +3,11 @@ import Konva from 'konva';
 import {
   worldWidth, worldHeight, black, strokeWidth,
 } from '../constants';
-import { Vector3 } from '../math';
+import { Vector3 } from '../math/vector3';
 import { defaultViewportMatrix } from '../util';
+
+console.log('Vector3:');
+console.log(JSON.stringify(Vector3));
 
 const xAxisStartPoint = new Vector3(-(worldWidth / 2), 0, 0);
 const xAxisEndPoint = new Vector3(worldWidth / 2, 0, 0);
