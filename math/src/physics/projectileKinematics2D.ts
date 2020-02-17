@@ -1,5 +1,6 @@
 import { Vector3 } from '../math';
-import * as constants from '../constants';
+
+const accelerationGravity = new Vector3(0, -9.81);
 
 export class ProjectileKinematics2D {
   position: Vector3;
@@ -32,7 +33,7 @@ export class ProjectileKinematics2D {
 
     const y = this.initialPosition.y
       + (this.initialVelocity.y * this.totalTime)
-      + (0.5 * constants.accelerationGravity.y
+      + (0.5 * accelerationGravity.y
         * (this.totalTime ** 2));
 
     this.position = new Vector3(x, y);

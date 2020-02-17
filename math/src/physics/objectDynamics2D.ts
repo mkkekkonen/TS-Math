@@ -25,7 +25,7 @@ export class ObjectDynamics2D {
   ) {
     this.velocity = new Vector3();
 
-    this.radius = options.radius || constants.dotRadius;
+    this.radius = 0;
     this.bounceFlag = !!options.bounce;
 
     this.worldWidth = options.worldWidth || constants.worldWidth;

@@ -13,7 +13,7 @@ const { stage, layer } = util.getDefaultKonvaStage2();
 
 let forceStartPoint: Vector3 | undefined;
 let forceEndPoint: Vector3 | undefined;
-const dot = new DynamicsDot(new Vector3(), 10);
+const dot = new DynamicsDot(new Vector3(), 10, { bounce: true });
 
 const forceLineSegment = new LineSegment2D();
 
@@ -35,7 +35,7 @@ const resetForce = () => {
 const reset = () => {
   const massKg = util.parseFloatById('mass') || 10;
 
-  dot.reset(new Vector3(), massKg);
+  dot.reset(new Vector3(), massKg, { bounce: true });
 };
 
 const update = (time: number) => {
@@ -84,6 +84,7 @@ const animation = new Konva.Animation((frame) => {
     const timeDeltaSeconds = frame.timeDiff / 1000;
     update(timeDeltaSeconds);
     render();
+    resetForce();
   }
 });
 
