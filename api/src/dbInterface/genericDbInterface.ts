@@ -1,4 +1,4 @@
-import { Repository, createConnection, getConnection } from 'typeorm';
+import { Repository, FindManyOptions, createConnection, getConnection } from 'typeorm';
 import { Page, Category, Subcategory } from '../entities';
 
 const getDbPath = () => {
@@ -31,21 +31,22 @@ export const getConn = async () => {
   }
 };
 
-export class GenericDbInterface {
+export class GenericDbInterface<T> {
   constructor(private entityClass: any) {}
 
   private getRepository = async () => {
     const connection = await getConn();
     const { entityClass } = this;
-    return connection.getRepository(this.entityClass) as Repository<typeof entityClass>;
+    return connection.getRepository(this.entityClass) as Repository<T>;
   }
 
-  getAll = async (relations?: string[]) => {
+  getAll = async (options?: FindManyOptions<T>) => {
     try {
       const repository = await this.getRepository();
-      return repository.find({ relations });
+      return repository.find(options);
     } catch (e) {
       console.error(`Error: ${e.message}`);
+      return Promise.reject(e.message);
     }
   }
 
@@ -55,6 +56,7 @@ export class GenericDbInterface {
       return repository.findOne(id, { relations });
     } catch (e) {
       console.error(`Error: ${e.message}`);
+      return Promise.reject(e.message);
     }
   }
 
@@ -64,6 +66,7 @@ export class GenericDbInterface {
       return repository.save(entity);
     } catch (e) {
       console.error(`Error: ${e.message}`);
+      return Promise.reject(e.message);
     }
   }
 
@@ -73,6 +76,7 @@ export class GenericDbInterface {
       return repository.remove(entity);
     } catch (e) {
       console.error(`Error: ${e.message}`);
+      return Promise.reject(e.message);
     }
   }
 
@@ -82,6 +86,7 @@ export class GenericDbInterface {
       return repository.delete(id);
     } catch (e) {
       console.error(`Error: ${e.message}`);
+      return Promise.reject(e.message);
     }
   }
 
@@ -91,6 +96,7 @@ export class GenericDbInterface {
       return repository.clear();
     } catch (e) {
       console.error(`Error: ${e.message}`);
+      return Promise.reject(e.message);
     }
   }
 }

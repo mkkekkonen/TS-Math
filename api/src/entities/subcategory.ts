@@ -9,7 +9,7 @@ import {
 import { Category } from './category';
 import { Page } from './page';
 
-@Entity()
+@Entity('subcategory')
 export class Subcategory {
   @PrimaryGeneratedColumn()
   id: number;
@@ -22,6 +22,9 @@ export class Subcategory {
 
   @ManyToOne(t => Category, category => category.subcategories, { onDelete: 'SET NULL' })
   category: Category;
+
+  @Column({ nullable: true })
+  categoryId: number;
 
   @OneToMany(t => Page, page => page.subcategory)
   pages: Page[];

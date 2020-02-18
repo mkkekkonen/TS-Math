@@ -1,1 +1,1 @@
-export { GenericDbInterface } from './genericDbInterface';
+export { GenericDbInterface, getConn } from './genericDbInterface';
