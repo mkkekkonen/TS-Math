@@ -1,9 +1,6 @@
 import { Page, Category, Subcategory } from '../entities';
-import { GenericDbInterface, getConn } from '.';
-
-const pageInterface = new GenericDbInterface<Page>(Page);
-const categoryInterface = new GenericDbInterface<Category>(Category);
-const subcategoryInterface = new GenericDbInterface<Subcategory>(Subcategory);
+import { getConn } from '.';
+import { pageInterface, categoryInterface, subcategoryInterface } from './interfaces';
 
 const clearDb = async () => {
   try {
@@ -49,8 +46,6 @@ test('fetch pages', async () => {
 
   const [firstPage] = allPages;
 
-  console.log(firstPage);
-
   expect(firstPage.name).toEqual('Testisivu');
   expect(firstPage.subcategory.name).toEqual('Alakategoria');
   expect(typeof firstPage.subcategoryId).toEqual('number');
@@ -60,8 +55,6 @@ test('fetch subcategories', async () => {
   const allSubcategories = await subcategoryInterface.getAll({ relations: ['category'] });
 
   const [firstSubcategory] = allSubcategories;
-
-  console.log(firstSubcategory);
 
   expect(firstSubcategory.name).toEqual('Alakategoria');
   expect(firstSubcategory.category.name).toEqual('Testikategoria');

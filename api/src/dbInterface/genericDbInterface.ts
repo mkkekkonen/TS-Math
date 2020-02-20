@@ -1,5 +1,15 @@
-import { Repository, FindManyOptions, createConnection, getConnection } from 'typeorm';
-import { Page, Category, Subcategory } from '../entities';
+import {
+  Repository,
+  FindManyOptions,
+  createConnection,
+  getConnection,
+} from 'typeorm';
+import {
+  Page,
+  Category,
+  Subcategory,
+  User,
+} from '../entities';
 
 const getDbPath = () => {
   switch (process.env.NODE_ENV) {
@@ -20,6 +30,7 @@ export const createConn = () => createConnection({
     Page,
     Category,
     Subcategory,
+    User,
   ],
 });
 
@@ -54,6 +65,16 @@ export class GenericDbInterface<T> {
     try {
       const repository = await this.getRepository();
       return repository.findOne(id, { relations });
+    } catch (e) {
+      console.error(`Error: ${e.message}`);
+      return Promise.reject(e.message);
+    }
+  }
+
+  findOne = async (options: any, relations?: string[]) => {
+    try {
+      const repository = await this.getRepository();
+      return repository.findOne(options, { relations });
     } catch (e) {
       console.error(`Error: ${e.message}`);
       return Promise.reject(e.message);
