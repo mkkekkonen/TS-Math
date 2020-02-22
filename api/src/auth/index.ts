@@ -34,7 +34,13 @@ export const init = () => {
         return callback(e);
       }
 
-      return callback(null, user, { message: 'Logged in' });
+      const userObj = {
+        id: user.id,
+        email: user.email,
+        passwordHash: user.passwordHash,
+      };
+
+      return callback(null, userObj, { message: 'Logged in' });
     }),
   );
 
