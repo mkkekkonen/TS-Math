@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
 import * as auth from '../auth';
-import { loginRouter } from '../routers';
+import { loginRouter, entityRouters } from '../routers';
 import { getConn } from '../dbInterface';
 
 const initApp = async () => {
@@ -21,11 +21,21 @@ const initApp = async () => {
 
   app.use('/auth', loginRouter);
 
+  app.use('/category', entityRouters.categoryRouter);
+  app.use('/subcategory', entityRouters.subcategoryRouter);
+  app.use('/page', entityRouters.pageRouter);
+
+  app.use((req, res, next) => {
+    const err: any = new Error('Not found');
+    err.status = 404;
+    next(err);
+  });
+
   app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
     res.locals.message = err.message;
     res.locals.error = err;
 
-    res.status(err.status || 500).send('error');
+    res.status(err.status || 500).send(err.message);
   });
 
   app.listen(3100);

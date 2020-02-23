@@ -1,9 +1,11 @@
 import {
   Repository,
   FindManyOptions,
+  BaseEntity,
   createConnection,
   getConnection,
 } from 'typeorm';
+
 import {
   Page,
   Category,
@@ -21,6 +23,11 @@ const getDbPath = () => {
     default:
       return 'dev.sqlite';
   }
+};
+
+const handleError = (e: any) => {
+  console.error(`Error: ${e.message}`);
+  return Promise.reject(e.message);
 };
 
 export const createConn = () => createConnection({
@@ -56,8 +63,7 @@ export class GenericDbInterface<T> {
       const repository = await this.getRepository();
       return repository.find(options);
     } catch (e) {
-      console.error(`Error: ${e.message}`);
-      return Promise.reject(e.message);
+      return handleError(e);
     }
   }
 
@@ -66,8 +72,7 @@ export class GenericDbInterface<T> {
       const repository = await this.getRepository();
       return repository.findOne(id, { relations });
     } catch (e) {
-      console.error(`Error: ${e.message}`);
-      return Promise.reject(e.message);
+      return handleError(e);
     }
   }
 
@@ -76,8 +81,7 @@ export class GenericDbInterface<T> {
       const repository = await this.getRepository();
       return repository.findOne(options, { relations });
     } catch (e) {
-      console.error(`Error: ${e.message}`);
-      return Promise.reject(e.message);
+      return handleError(e);
     }
   }
 
@@ -86,8 +90,31 @@ export class GenericDbInterface<T> {
       const repository = await this.getRepository();
       return repository.save(entity);
     } catch (e) {
-      console.error(`Error: ${e.message}`);
-      return Promise.reject(e.message);
+      return handleError(e);
+    }
+  }
+
+  create = async (obj: any) => {
+    try {
+      const repository = await this.getRepository();
+      const entity = repository.create(obj);
+      return repository.save(entity);
+    } catch (e) {
+      return handleError(e);
+    }
+  }
+
+  update = async (id: number, obj: any) => {
+    try {
+      const repository = await this.getRepository();
+      const entity = await repository.findOne(id);
+      if (entity) {
+        repository.merge(entity, obj);
+        return repository.save(entity);
+      }
+      throw new Error('Not found!');
+    } catch (e) {
+      return handleError(e);
     }
   }
 
@@ -96,8 +123,7 @@ export class GenericDbInterface<T> {
       const repository = await this.getRepository();
       return repository.remove(entity);
     } catch (e) {
-      console.error(`Error: ${e.message}`);
-      return Promise.reject(e.message);
+      return handleError(e);
     }
   }
 
@@ -106,8 +132,7 @@ export class GenericDbInterface<T> {
       const repository = await this.getRepository();
       return repository.delete(id);
     } catch (e) {
-      console.error(`Error: ${e.message}`);
-      return Promise.reject(e.message);
+      return handleError(e);
     }
   }
 
@@ -116,8 +141,7 @@ export class GenericDbInterface<T> {
       const repository = await this.getRepository();
       return repository.clear();
     } catch (e) {
-      console.error(`Error: ${e.message}`);
-      return Promise.reject(e.message);
+      return handleError(e);
     }
   }
 }

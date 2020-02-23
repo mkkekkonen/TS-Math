@@ -1,4 +1,9 @@
-import { Router, Request, Response, NextFunction } from 'express';
+import {
+  Router,
+  Request,
+  Response,
+  NextFunction,
+} from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 
@@ -26,22 +31,20 @@ router.post('/login',
 
       req.login(user, { session: false }, loginErr => {
         if (loginErr) {
-          res.send(loginErr);
+          return res.status(loginErr.status || 500).send(loginErr.message);
         }
 
         const token = jwt.sign(user, secrets.secret);
 
         return res.json({ user, token });
       });
-
-      return res.status(500).send('Shouldn\'t come here');
     });
 
     middleware(req, res, next);
   },
-  (err: any, req: Request, res: Response, next: NextFunction) => {
-    return res.status(err.status || 500).send(err.message)
-  });
+  (err: any, req: Request, res: Response, next: NextFunction) => (
+    res.status(err.status || 500).send(err.message)
+  ));
 
 router.post('/register', async (req, res, next) => {
   const { email, password } = req.body;
