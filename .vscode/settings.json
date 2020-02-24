@@ -1,4 +1,4 @@
 {
   "eslint.validate": ["typescript"],
-  "eslint.workingDirectories": ["./math"]
+  "eslint.workingDirectories": ["./math", "./api"]
 }
