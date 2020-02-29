@@ -29,7 +29,17 @@ module.exports = {
       },
       {
         test: /\.md$/,
-        use: 'markdown-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'md/[name].[ext]',
+            },
+          },
+        ],
       },
       {
         test: /\.(ttf|eot|woff|woff2|svg)$/,

@@ -22,10 +22,14 @@ export class PageContent extends React.Component<Props, State> {
 
   async componentDidMount() {
     const { baseFileName } = this.props;
-    // const js = require(`../../mathScripts/${baseFileName}`);
-    // eval(js.default);
-    const markdown = require(`../../md/${baseFileName}.md`);
-    this.setState({ markdown: markdown.default });
+
+    await import(`../../mathScripts/vendors.js`);
+    await import(`file-loader?name=mathScripts/[name].[ext]!../../mathScripts/${baseFileName}.js`);
+
+    await import(`../../md/${baseFileName}.md`);
+    const res = await fetch(`md/${baseFileName}.md`);
+    const markdown = await res.text();
+    this.setState({ markdown: markdown });
   }
 
   render() {

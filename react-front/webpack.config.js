@@ -28,10 +28,17 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
-
+      
       {
         test: /\.md$/,
-        use: 'raw-loader',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'md/[name].[ext]',
+            },
+          },
+        ],
       },
 
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
