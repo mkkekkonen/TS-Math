@@ -3,3 +3,4 @@ dist/
 mathScripts/
 storybook-static/
 secrets.json
+math/*.tgz

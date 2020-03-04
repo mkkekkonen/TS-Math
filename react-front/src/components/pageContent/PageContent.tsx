@@ -6,6 +6,8 @@ import Col from 'react-bootstrap/Col';
 
 import ReactMarkdown from 'react-markdown';
 
+import * as tsMath from 'ts-math';
+
 interface Props {
   baseFileName: string
 }
@@ -23,13 +25,12 @@ export class PageContent extends React.Component<Props, State> {
   async componentDidMount() {
     const { baseFileName } = this.props;
 
-    await import(`../../mathScripts/vendors.js`);
-    await import(`file-loader?name=mathScripts/[name].[ext]!../../mathScripts/${baseFileName}.js`);
-
     await import(`../../md/${baseFileName}.md`);
     const res = await fetch(`md/${baseFileName}.md`);
     const markdown = await res.text();
     this.setState({ markdown: markdown });
+
+    tsMath.distancePointsRun();
   }
 
   render() {
@@ -45,12 +46,10 @@ export class PageContent extends React.Component<Props, State> {
             </Col>
             <Col>
               <div id="canvasContainer" />
+              <div id="output" />
             </Col>
           </Row>
         </Container>
-
-        {/* <script src="/mathScripts/vendors.js" />
-        <script src={`/mathScripts/${baseFileName}.js`} /> */}
       </Fragment>
     )
   }
