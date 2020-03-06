@@ -5,9 +5,9 @@ const webpack = require('webpack');
 const entryPoints = require('./entryPoints');
 
 module.exports = [
-  // *** BROWSER ***
+  // *** MULTIPLE FILES ***
   {
-    name: 'browser',
+    name: 'multipleFiles',
 
     entry: entryPoints,
 
@@ -59,6 +59,43 @@ module.exports = [
       filename: 'main.js',
       library: 'tsMath',
       libraryTarget: 'umd',
+    },
+
+    resolve: {
+      extensions: ['.js', '.ts', '.json'],
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          loader: 'awesome-typescript-loader',
+        },
+        {
+          test: /\.js$/,
+          enforce: 'pre',
+          loader: 'source-map-loader',
+        },
+      ],
+    },
+
+    plugins: [
+      new webpack.SourceMapDevToolPlugin({
+        filename: '[name].js.map',
+      }),
+    ],
+  },
+  // *** BROWSER ***
+  {
+    name: 'browser',
+
+    entry: './src/index.ts',
+
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'maijaMath.js',
+      library: 'jsMath',
+      libraryTarget: 'var',
     },
 
     resolve: {

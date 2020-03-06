@@ -1806,6 +1806,11 @@
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
 
+"@types/lodash@^4.14.149":
+  version "4.14.149"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
+  integrity sha512-ijGqzZt/b7BfzcK9vTrS6MFljQRPn5BFWOx8oE0GYxribu6uV+aA9zZuXI1zc/etK9E8nrgdoF2+LgUw7+9tJQ==
+
 "@types/mathjs@^6.0.2":
   version "6.0.4"
   resolved "https://registry.yarnpkg.com/@types/mathjs/-/mathjs-6.0.4.tgz#0adf7335b27a5385e0dd4f766e0c53931c5c2375"
@@ -10773,9 +10778,9 @@ ts-dedent@^1.1.0:
   resolved "https://registry.yarnpkg.com/ts-dedent/-/ts-dedent-1.1.1.tgz#68fad040d7dbd53a90f545b450702340e17d18f3"
   integrity sha512-UGTRZu1evMw4uTPyYF66/KFd22XiU+jMaIuHrkIHQ2GivAXVlLV0v/vHrpOuTRf9BmpNHi/SO7Vd0rLu0y57jg==
 
-"ts-math@.\\ts-math-v0.0.1-dev7.tgz":
-  version "0.0.1-dev7"
-  resolved ".\\ts-math-v0.0.1-dev7.tgz#8d0745114c8c62994263cacd14250ce812dbd3c8"
+"ts-math@.\\ts-math-v0.0.1-dev8.tgz":
+  version "0.0.1-dev8"
+  resolved ".\\ts-math-v0.0.1-dev8.tgz#814ec542a429b205996b4d20848fd37c262ba434"
   dependencies:
     "@types/mathjs" "^6.0.2"
     jest "^24.9.0"
@@ -10783,9 +10788,9 @@ ts-dedent@^1.1.0:
     mathjs "^6.2.5"
     typescript "^3.7.3"
 
-"ts-math@.\\ts-math-v0.0.1-dev8.tgz":
-  version "0.0.1-dev8"
-  resolved ".\\ts-math-v0.0.1-dev8.tgz#814ec542a429b205996b4d20848fd37c262ba434"
+"ts-math@.\\ts-math-v0.0.2.tgz":
+  version "0.0.2"
+  resolved ".\\ts-math-v0.0.2.tgz#171208fd2e53d9bc90ea2f8d8f363d9e48fb58bb"
   dependencies:
     "@types/mathjs" "^6.0.2"
     jest "^24.9.0"

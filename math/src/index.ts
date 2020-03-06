@@ -1,5 +1,15 @@
-import { run as distancePointsRun } from './entryPoints/1_1_1_distancepoints';
-
-export {
-  distancePointsRun,
-};
+export { run as distancepoints } from './entryPoints/1_1_1_distancepoints';
+export { run as segmentmidpoint } from './entryPoints/1_1_2_segmentmidpoint';
+export { run as mirroraxes } from './entryPoints/1_1_3_mirroraxes';
+export { run as slope } from './entryPoints/1_2_1_slope';
+export { run as angleslope } from './entryPoints/1_2_2_angleslope';
+export { run as pointslope } from './entryPoints/1_2_3_pointslope';
+export { run as generalequation } from './entryPoints/1_2_4_generalequation';
+export { run as slopeintercept } from './entryPoints/1_2_5_slopeintercept';
+export { run as lineintersection } from './entryPoints/1_3_1_lineintersection';
+export { run as anglelines } from './entryPoints/1_3_2_anglelines';
+export { run as pointlinedist } from './entryPoints/1_3_3_pointlinedist';
+export { run as planarvelocity } from './entryPoints/2_1_1_planarvelocity';
+export { run as constaccel } from './entryPoints/2_1_2_constaccel';
+export { run as projectilemotion } from './entryPoints/2_1_3_projectilemotion';
+export { run as newton2 } from './entryPoints/2_2_1_newton2';

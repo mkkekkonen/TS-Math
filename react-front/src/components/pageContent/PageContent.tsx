@@ -3,10 +3,11 @@ import React, { Fragment } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
 import ReactMarkdown from 'react-markdown';
 
-import * as tsMath from 'ts-math';
+import { last } from 'lodash';
+
+import { mathFuncs } from '../../utils';
 
 interface Props {
   baseFileName: string
@@ -30,7 +31,8 @@ export class PageContent extends React.Component<Props, State> {
     const markdown = await res.text();
     this.setState({ markdown: markdown });
 
-    tsMath.distancePointsRun();
+    const urlTitle = last(baseFileName.split('_'));
+    mathFuncs[urlTitle]();
   }
 
   render() {
