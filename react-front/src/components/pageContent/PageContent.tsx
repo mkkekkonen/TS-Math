@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown';
 
 import { last } from 'lodash';
 
-import { mathFuncs } from '../../utils';
+import { entryPoints } from 'ts-math';
 
 interface Props {
   baseFileName: string
@@ -32,7 +32,7 @@ export class PageContent extends React.Component<Props, State> {
     this.setState({ markdown: markdown });
 
     const urlTitle = last(baseFileName.split('_'));
-    mathFuncs[urlTitle]();
+    entryPoints[urlTitle]();
   }
 
   render() {

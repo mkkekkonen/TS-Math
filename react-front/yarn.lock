@@ -10778,9 +10778,9 @@ ts-dedent@^1.1.0:
   resolved "https://registry.yarnpkg.com/ts-dedent/-/ts-dedent-1.1.1.tgz#68fad040d7dbd53a90f545b450702340e17d18f3"
   integrity sha512-UGTRZu1evMw4uTPyYF66/KFd22XiU+jMaIuHrkIHQ2GivAXVlLV0v/vHrpOuTRf9BmpNHi/SO7Vd0rLu0y57jg==
 
-"ts-math@.\\ts-math-v0.0.1-dev8.tgz":
-  version "0.0.1-dev8"
-  resolved ".\\ts-math-v0.0.1-dev8.tgz#814ec542a429b205996b4d20848fd37c262ba434"
+"ts-math@.\\ts-math-v0.0.2.tgz":
+  version "0.0.2"
+  resolved ".\\ts-math-v0.0.2.tgz#171208fd2e53d9bc90ea2f8d8f363d9e48fb58bb"
   dependencies:
     "@types/mathjs" "^6.0.2"
     jest "^24.9.0"
@@ -10788,9 +10788,9 @@ ts-dedent@^1.1.0:
     mathjs "^6.2.5"
     typescript "^3.7.3"
 
-"ts-math@.\\ts-math-v0.0.2.tgz":
-  version "0.0.2"
-  resolved ".\\ts-math-v0.0.2.tgz#171208fd2e53d9bc90ea2f8d8f363d9e48fb58bb"
+"ts-math@.\\ts-math-v0.0.3.tgz":
+  version "0.0.3"
+  resolved ".\\ts-math-v0.0.3.tgz#82b39e44db5ef4a0ffc2200b745bb142afee3914"
   dependencies:
     "@types/mathjs" "^6.0.2"
     jest "^24.9.0"
