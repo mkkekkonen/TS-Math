@@ -32,7 +32,7 @@ export class MathNav extends React.Component<Props, State> {
           <Fragment>
             <Card>
               <Card.Header>
-                <h4>{category.name}</h4>
+                <h5>{category.name}</h5>
               </Card.Header>
             </Card>
             {this.renderSubcategories(category.id)}

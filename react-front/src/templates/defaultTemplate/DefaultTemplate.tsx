@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { Header } from '../../components/header';
 import { MathNav } from '../../components/nav';
 
 import { categories, subcategories, pages } from '../../data';
@@ -19,7 +20,10 @@ interface State {}
 
 export class DefaultTemplate extends React.Component<Props, State> {
   static defaultProps = {
-
+    header: <Header headerText="Math Visualized" />,
+    nav: <MathNav />,
+    content: <div>Hello world</div>,
+    footer: <div>By: Maija Kekkonen 2020</div>
   }
 
   render() {
@@ -27,12 +31,16 @@ export class DefaultTemplate extends React.Component<Props, State> {
 
     return (
       <Container>
-        <Row>{header}</Row>
+        {header}
         <Row>
-          <Col xs={2}>{nav}</Col>
+          <Col xs={3}>{nav}</Col>
           <Col>{content}</Col>
         </Row>
-        <Row>{footer}</Row>
+        <Row>
+          <Col>
+            {footer}
+          </Col>
+        </Row>
       </Container>
     );
   }
