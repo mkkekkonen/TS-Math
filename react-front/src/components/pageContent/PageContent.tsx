@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
 import ReactMarkdown from 'react-markdown';
 
 import { last } from 'lodash';

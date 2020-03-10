@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import styled from 'styled-components';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,6 +9,10 @@ import { Header } from '../../components/header';
 import { MathNav } from '../../components/nav';
 
 import { categories, subcategories, pages } from '../../data';
+
+const PaddedCol = styled(Col)`
+  padding-top: 1rem;
+`
 
 interface Props {
   header: ReactNode
@@ -34,7 +39,7 @@ export class DefaultTemplate extends React.Component<Props, State> {
         {header}
         <Row>
           <Col xs={3}>{nav}</Col>
-          <Col>{content}</Col>
+          <PaddedCol>{content}</PaddedCol>
         </Row>
         <Row>
           <Col>
