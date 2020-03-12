@@ -1,1 +1,3 @@
-export { HomePageContainer as HomePage } from './HomeContainer';
+import HomePage from './HomePageContainer';
+
+export { HomePage };

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { HomePage } from './pages';
+import { App } from './App';
 
 import './css/bootstrap.css';
 import './css/bootstrap-reboot.css';
 import './css/bootstrap-grid.css';
 
-ReactDOM.render(<HomePage />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
