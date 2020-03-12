@@ -7,22 +7,27 @@ import Immutable from 'immutable';
 import { HomePage } from './Home';
 import { categoryApi } from '../../services/api';
 import { Category, ICategory } from '../../models';
-import { mergeCategories } from '../../store/actions/categories';
+import { loadCatgories, mergeCategories } from '../../store/actions/categories';
 
 interface Props {
   mergeCategories: Function
+  loadCategories: Function
 }
 
 interface State {}
 
 class HomePageContainer extends React.Component<Props, State> {
   async componentDidMount() {
-    const { mergeCategories } = this.props;
+    // const { mergeCategories } = this.props;
 
-    const categoryData = await categoryApi.getAllCategories();
-    const categoryArr = categoryData.map((dataItem: ICategory) => new Category(dataItem.id, dataItem.name));
-    const categoryList = Immutable.fromJS(categoryArr);
-    mergeCategories(categoryList);
+    // const categoryData = await categoryApi.getAllCategories();
+    // const categoryArr = categoryData.map((dataItem: ICategory) => new Category(dataItem.id, dataItem.name));
+    // const categoryList = Immutable.fromJS(categoryArr);
+    // mergeCategories(categoryList);
+
+    const { loadCategories } = this.props;
+
+    loadCategories();
   }
 
   render() {
@@ -33,6 +38,7 @@ class HomePageContainer extends React.Component<Props, State> {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
+  loadCategories: () => dispatch(loadCatgories()),
   mergeCategories: (categories: Immutable.List<Category>) => dispatch(mergeCategories(categories)),
 });
 

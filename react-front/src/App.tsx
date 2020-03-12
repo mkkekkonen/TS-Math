@@ -1,15 +1,26 @@
 import React from 'react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 import rootReducer from './store/reducers';
+import sagas from './store/sagas';
+import categorySagas from './store/sagas/categories';
 
 import { HomePage } from './pages';
 
+const sagaMiddleware = createSagaMiddleware();
+
 const store = createStore(
   rootReducer,
-  (window as any).devToolsExtension ? (window as any).devToolsExtension() : f => f,
+  composeWithDevTools(
+    applyMiddleware(sagaMiddleware),
+  ),
 );
+
+sagaMiddleware.run(categorySagas);
 
 export const App = () => {
   return (
