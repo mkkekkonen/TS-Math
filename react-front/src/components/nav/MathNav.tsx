@@ -29,7 +29,7 @@ export class MathNav extends React.Component<Props, State> {
     return (
       <Accordion defaultActiveKey={defaultActiveKey || `${firstSubcategory.id}`}>
         {categories.map(category => (
-          <Fragment>
+          <Fragment key={category.id}>
             <Card>
               <Card.Header>
                 <h5>{category.name}</h5>
@@ -53,7 +53,7 @@ export class MathNav extends React.Component<Props, State> {
       <Fragment>
         {subcategories.filter(subcategory => subcategory.categoryId === categoryId)
           .map(subcategory => (
-            <Card>
+            <Card key={subcategory.id}>
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey={`${subcategory.id}`}>
                   {subcategory.name}
@@ -81,7 +81,7 @@ export class MathNav extends React.Component<Props, State> {
       <ListGroup>
         {pages.filter(page => page.subcategoryId === subcategory.id)
           .map(page => (
-            <ListGroup.Item>
+            <ListGroup.Item key={page.id}>
               <a href={`#${page.urlTitle}`}>
                 {page.name}
               </a>
