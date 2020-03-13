@@ -6,12 +6,17 @@ import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 import rootReducer from './store/reducers';
-import sagas from './store/sagas';
-import categorySagas from './store/sagas/categories';
+import { categorySagas, subcategorySagas, pageSagas } from './store/sagas';
 
 import { HomePage } from './pages';
 
 const sagaMiddleware = createSagaMiddleware();
+
+const sagas = [
+  categorySagas,
+  subcategorySagas,
+  pageSagas,
+];
 
 const store = createStore(
   rootReducer,
@@ -20,7 +25,7 @@ const store = createStore(
   ),
 );
 
-sagaMiddleware.run(categorySagas);
+sagas.forEach(sagasItem => sagaMiddleware.run(sagasItem));
 
 export const App = () => {
   return (

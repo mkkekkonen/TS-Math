@@ -1,9 +1,5 @@
-import { all } from 'redux-saga/effects';
-
 import categorySagas from './categories';
+import subcategorySagas from './subcategories';
+import pageSagas from './pages';
 
-export default function* root() {
-  yield all([
-    categorySagas,
-  ]);
-};
+export { categorySagas, subcategorySagas, pageSagas };

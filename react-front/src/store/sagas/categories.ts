@@ -7,10 +7,14 @@ import { categoryApi } from '../../services/api';
 import { Category, ICategory } from '../../models';
 
 function* loadCategories() {
-  const categoryData = yield categoryApi.getAllCategories();
-  const categoryArr = categoryData.map((dataItem: ICategory) => new Category(dataItem.id, dataItem.name));
-  const categoryList = Immutable.fromJS(categoryArr);
-  yield put(mergeCategories(categoryList));
+  try {
+    const categoryData = yield categoryApi.getAllCategories();
+    const categoryArr = categoryData.map((dataItem: ICategory) => new Category(dataItem.id, dataItem.name));
+    const categoryList = Immutable.fromJS(categoryArr);
+    yield put(mergeCategories(categoryList));
+  } catch(e) {
+    console.error(`Error fetching categories: ${e.message}`);
+  }
 }
 
 export default function* root() {

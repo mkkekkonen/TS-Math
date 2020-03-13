@@ -1,3 +1,3 @@
 export { Category, ICategory } from './category';
-export { Subcategory } from './subcategory';
-export { Page } from './page';
+export { Subcategory, ISubcategory } from './subcategory';
+export { Page, IPage } from './page';

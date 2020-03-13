@@ -5,29 +5,26 @@ import { bindActionCreators } from 'redux';
 import Immutable from 'immutable';
 
 import { HomePage } from './Home';
-import { categoryApi } from '../../services/api';
 import { Category, ICategory } from '../../models';
-import { loadCatgories, mergeCategories } from '../../store/actions/categories';
+import { loadCatgories } from '../../store/actions/categories';
+import { loadSubcategories } from '../../store/actions/subcategories';
+import { loadPages } from '../../store/actions/pages';
 
 interface Props {
-  mergeCategories: Function
   loadCategories: Function
+  loadSubcategories: Function
+  loadPages: Function
 }
 
 interface State {}
 
 class HomePageContainer extends React.Component<Props, State> {
-  async componentDidMount() {
-    // const { mergeCategories } = this.props;
-
-    // const categoryData = await categoryApi.getAllCategories();
-    // const categoryArr = categoryData.map((dataItem: ICategory) => new Category(dataItem.id, dataItem.name));
-    // const categoryList = Immutable.fromJS(categoryArr);
-    // mergeCategories(categoryList);
-
-    const { loadCategories } = this.props;
+  componentDidMount() {
+    const { loadCategories, loadSubcategories, loadPages } = this.props;
 
     loadCategories();
+    loadSubcategories();
+    loadPages();
   }
 
   render() {
@@ -39,7 +36,8 @@ class HomePageContainer extends React.Component<Props, State> {
 
 const mapDispatchToProps = (dispatch: any) => ({
   loadCategories: () => dispatch(loadCatgories()),
-  mergeCategories: (categories: Immutable.List<Category>) => dispatch(mergeCategories(categories)),
+  loadSubcategories: () => dispatch(loadSubcategories()),
+  loadPages: () => dispatch(loadPages()),
 });
 
 export default connect(undefined, mapDispatchToProps)(HomePageContainer);
