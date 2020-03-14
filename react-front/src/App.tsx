@@ -8,7 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import rootReducer from './store/reducers';
 import { categorySagas, subcategorySagas, pageSagas } from './store/sagas';
 
-import { HomePage } from './pages';
+import { MathRouter } from './components/router';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -30,7 +30,7 @@ sagas.forEach(sagasItem => sagaMiddleware.run(sagasItem));
 export const App = () => {
   return (
     <Provider store={store}>
-      <HomePage />
+      <MathRouter />
     </Provider>
   );
 };

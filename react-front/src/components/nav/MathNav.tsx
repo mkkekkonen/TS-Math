@@ -5,12 +5,15 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
+import Immutable from 'immutable';
+import { Link } from 'react-router-dom';
+
 import { Category, Subcategory, Page } from '../../models';
 
 interface Props {
-  categories?: Category[]
-  subcategories?: Subcategory[]
-  pages?: Page[]
+  categories?: Immutable.List<Category>
+  subcategories?: Immutable.List<Subcategory>
+  pages?: Immutable.List<Page>
   defaultActiveKey?: string;
 }
 
@@ -82,9 +85,9 @@ export class MathNav extends React.Component<Props, State> {
         {pages.filter(page => page.subcategoryId === subcategory.id)
           .map(page => (
             <ListGroup.Item key={page.id}>
-              <a href={`#${page.urlTitle}`}>
+              <Link to={`/pages/${page.urlTitle}`}>
                 {page.name}
-              </a>
+              </Link>
             </ListGroup.Item>
           ))}
       </ListGroup>

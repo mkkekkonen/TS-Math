@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Immutable from 'immutable';
-
 import { HomePage } from './Home';
-import { Category, ICategory } from '../../models';
 import { loadCatgories } from '../../store/actions/categories';
 import { loadSubcategories } from '../../store/actions/subcategories';
 import { loadPages } from '../../store/actions/pages';

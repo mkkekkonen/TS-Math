@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Immutable from 'immutable';
+
 import { MathNav } from './MathNav';
 
 import { Category, Subcategory, Page } from '../../models';
@@ -9,9 +11,9 @@ import { getSubcategories } from '../../store/selectors/subcategories';
 import { getPages } from '../../store/selectors/pages';
 
 interface Props {
-  categories: Category[],
-  subcategories: Subcategory[],
-  pages: Page[],
+  categories: Immutable.List<Category>,
+  subcategories: Immutable.List<Subcategory>,
+  pages: Immutable.List<Page>,
 };
 
 const MathNavContainer = ({
