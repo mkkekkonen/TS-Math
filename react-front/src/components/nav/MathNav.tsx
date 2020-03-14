@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import styled from 'styled-components';
 
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
@@ -9,6 +10,10 @@ import Immutable from 'immutable';
 import { Link } from 'react-router-dom';
 
 import { Category, Subcategory, Page } from '../../models';
+
+const StyledButton = styled(Button)`
+  text-align: left !important;
+`;
 
 interface Props {
   categories?: Immutable.List<Category>
@@ -58,7 +63,7 @@ export class MathNav extends React.Component<Props, State> {
           .map(subcategory => (
             <Card key={subcategory.id}>
               <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey={`${subcategory.id}`}>
+                <Accordion.Toggle as={StyledButton} variant="link" eventKey={`${subcategory.id}`}>
                   {subcategory.name}
                 </Accordion.Toggle>
               </Card.Header>
