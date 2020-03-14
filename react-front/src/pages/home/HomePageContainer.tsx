@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { HomePage } from './Home';
-import { loadCatgories } from '../../store/actions/categories';
+import { loadCategories } from '../../store/actions/categories';
 import { loadSubcategories } from '../../store/actions/subcategories';
 import { loadPages } from '../../store/actions/pages';
 
@@ -31,7 +31,7 @@ class HomePageContainer extends React.Component<Props, State> {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loadCategories: () => dispatch(loadCatgories()),
+  loadCategories: () => dispatch(loadCategories()),
   loadSubcategories: () => dispatch(loadSubcategories()),
   loadPages: () => dispatch(loadPages()),
 });

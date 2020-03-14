@@ -7,7 +7,7 @@ import { Action } from '.';
 export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 export const MERGE_CATEGORIES = 'MERGE_CATEGORIES';
 
-export const loadCatgories = (): Action => ({
+export const loadCategories = (): Action => ({
   type: LOAD_CATEGORIES,
 });
 
