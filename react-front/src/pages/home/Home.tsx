@@ -15,7 +15,7 @@ interface State {}
 export class HomePage extends React.Component<Props, State> {
   renderContent = () => {
     return (
-      <Container>
+      <Container fluid>
         <Row>
           <Col>
             <h1>Math Visualized</h1>

@@ -42,7 +42,7 @@ export class PageContent extends React.Component<Props, State> {
 
     return (
       <Fragment>
-        <Container>
+        <Container fluid>
           <Row>
             <Col>
               <ReactMarkdown source={markdown} />

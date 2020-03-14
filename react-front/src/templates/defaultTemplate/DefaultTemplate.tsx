@@ -35,10 +35,10 @@ export class DefaultTemplate extends React.Component<Props, State> {
     const { header, nav, content, footer } = this.props;
 
     return (
-      <Container>
+      <Container fluid>
         {header}
         <Row>
-          <Col xs={3}>{nav}</Col>
+          <Col xs={2}>{nav}</Col>
           <PaddedCol>{content}</PaddedCol>
         </Row>
         <Row>
