@@ -27,7 +27,7 @@ export class MathNav extends React.Component<Props, State> {
     const [firstSubcategory] = subcategories;
 
     return (
-      <Accordion defaultActiveKey={defaultActiveKey || `${firstSubcategory.id}`}>
+      <Accordion defaultActiveKey={defaultActiveKey || (firstSubcategory && `${firstSubcategory.id}`)}>
         {categories.map(category => (
           <Fragment key={category.id}>
             <Card>

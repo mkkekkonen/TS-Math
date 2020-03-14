@@ -1,1 +1,3 @@
-export { MathNavContainer as MathNav } from './MathNavContainer';
+import MathNav from './MathNavContainer';
+
+export { MathNav };

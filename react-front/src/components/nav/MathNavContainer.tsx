@@ -1,14 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { MathNav } from './MathNav';
 
 import { Category, Subcategory, Page } from '../../models';
-
-import {
-  categories as defaultCategories,
-  subcategories as defaultSubcategories,
-  pages as defaultPages,
-} from '../../data';
+import { getCategories } from '../../store/selectors/categories';
+import { getSubcategories } from '../../store/selectors/subcategories';
+import { getPages } from '../../store/selectors/pages';
 
 interface Props {
   categories: Category[],
@@ -16,7 +14,7 @@ interface Props {
   pages: Page[],
 };
 
-export const MathNavContainer = ({
+const MathNavContainer = ({
   categories,
   subcategories,
   pages,
@@ -31,8 +29,10 @@ export const MathNavContainer = ({
   );
 }
 
-MathNavContainer.defaultProps = {
-  categories: defaultCategories,
-  subcategories: defaultSubcategories,
-  pages: defaultPages,
-};
+const mapStateToProps = (state: any) => ({
+  categories: getCategories(state).toList(),
+  subcategories: getSubcategories(state).toList(),
+  pages: getPages(state).toList(),
+});
+
+export default connect(mapStateToProps)(MathNavContainer);
