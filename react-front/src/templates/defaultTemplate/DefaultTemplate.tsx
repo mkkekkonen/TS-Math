@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 
 import { Header } from '../../components/header';
 import { MathNav } from '../../components/nav';
+import { Footer } from '../../components/footer';
 
 import { categories, subcategories, pages } from '../../data';
 
@@ -28,7 +29,7 @@ export class DefaultTemplate extends React.Component<Props, State> {
     header: <Header headerText="Math Visualized" />,
     nav: <MathNav />,
     content: <div>Hello world</div>,
-    footer: <div>By: Maija Kekkonen 2020</div>
+    footer: <Footer />,
   }
 
   render() {

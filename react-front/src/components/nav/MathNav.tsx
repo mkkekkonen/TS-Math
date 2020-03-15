@@ -8,6 +8,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 import Immutable from 'immutable';
 import { Link } from 'react-router-dom';
+import { last } from 'lodash';
 
 import { Category, Subcategory, Page } from '../../models';
 
@@ -25,17 +26,40 @@ interface Props {
 interface State {}
 
 export class MathNav extends React.Component<Props, State> {
+  getSelectedSubcategoryKey = () => {
+    const { subcategories, pages, defaultActiveKey } = this.props;
+
+    if (window.location.hash && window.location.hash.includes('pages')) {
+      const splitHash = window.location.hash.split('/');
+      const urlTitle = last(splitHash);
+
+      const page = pages && pages.find(p => p.urlTitle === urlTitle);
+
+      if (page) {
+        return `${page.subcategoryId}`;
+      }
+
+      // invalid page title
+      return undefined;
+    }
+
+    if (subcategories) {
+      const [firstSubcategory] = subcategories;
+      return firstSubcategory && `${firstSubcategory.id}`;
+    }
+
+    return defaultActiveKey;
+  }
+
   renderCategories = () => {
-    const { categories, subcategories, defaultActiveKey } = this.props;
+    const { categories, subcategories } = this.props;
 
     if (!categories || !subcategories) {
       return undefined;
     }
 
-    const [firstSubcategory] = subcategories;
-
     return (
-      <Accordion defaultActiveKey={defaultActiveKey || (firstSubcategory && `${firstSubcategory.id}`)}>
+      <Accordion defaultActiveKey={this.getSelectedSubcategoryKey()}>
         {categories.map(category => (
           <Fragment key={category.id}>
             <Card>
@@ -61,7 +85,7 @@ export class MathNav extends React.Component<Props, State> {
       <Fragment>
         {subcategories.filter(subcategory => subcategory.categoryId === categoryId)
           .map(subcategory => (
-            <Card key={subcategory.id}>
+            <Card key={`${subcategory.id}`}>
               <Card.Header>
                 <Accordion.Toggle as={StyledButton} variant="link" eventKey={`${subcategory.id}`}>
                   {subcategory.name}
