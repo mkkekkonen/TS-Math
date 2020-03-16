@@ -16,7 +16,7 @@ export const run = () => {
     util.updateLineSegmentOnClick(line, stage);
 
     if (line.startPoint && line.endPoint) {
-      util.logToDiv(line.toString());
+      util.logToDiv(line.toString({ midpoint: true }));
       line.konvaRender(layer, { renderMidpoint: true });
       layer.draw();
     }
