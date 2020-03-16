@@ -24,9 +24,9 @@ const MathNavContainer = ({
 }: Props) => {
   return (
     <MathNav
-      categories={categories}
-      subcategories={subcategories}
-      pages={pages}
+      categories={categories && categories.sortBy(cat => cat.index)}
+      subcategories={subcategories && subcategories.sortBy(subc => subc.index)}
+      pages={pages && pages.sortBy(p => p.index)}
     />
   );
 }
