@@ -51,6 +51,7 @@ export class PageContent extends React.Component<Props, State> {
             <Col>
               <ReactMarkdown
                 source={markdown}
+                escapeHtml={false}
                 plugins={[
                   RemarkMathPlugin,
                 ]}

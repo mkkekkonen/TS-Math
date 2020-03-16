@@ -31,9 +31,10 @@ export class MathPage extends React.Component<Props, State> {
       const subcategory = subcategoryId && subcategories.get(`${subcategoryId}`);
 
       const categoryId = subcategory && subcategory.categoryId;
+      const category = categoryId && categories.get(`${categoryId}`);
 
-      if (page && subcategory && categoryId) {
-        return `${categoryId}_${subcategory.id}_${page.id}_${urlTitle}`;
+      if (page && subcategory && category) {
+        return `${category.index}_${subcategory.index}_${page.index}_${urlTitle}`;
       }
     }
 
