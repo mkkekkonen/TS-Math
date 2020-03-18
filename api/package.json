@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev --inspect --respawn src/index.ts",
     "test": "jest",
-    "sequelize": "sequelize-cli"
+    "sequelize": "sequelize-cli",
+    "build": "tsc --outDir ./dist"
   },
   "author": "Maija Kekkonen",
   "license": "CC-BY-4.0",
