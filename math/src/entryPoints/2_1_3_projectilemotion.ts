@@ -8,35 +8,14 @@ import { Vector3 } from '../math';
 import { axis2DRenderer } from '../renderers';
 import { inputManager } from '../input';
 
-const { stage, layer } = util.getDefaultKonvaStage2();
-axis2DRenderer.addAxesToLayer(layer);
-
-layer.draw();
-
-let running = false;
-
-const initialPosition = new Vector3(-constants.worldWidth / 2, 0);
-const lineSegment = new LineSegment2D(initialPosition, new Vector3());
-
-const projectile = new ProjectileDot(initialPosition);
-
-const displacement = new Vector3(5, 0);
-
-const start = () => {
-  const mouseVector = inputManager.getMouseWorldPosition(stage);
-  const initialVelocity = mouseVector.add(displacement);
-
-  projectile.reset(initialPosition, initialVelocity);
-
-  running = true;
-};
-
-const reset = () => {
-  running = false;
-  projectile.reset(initialPosition);
-};
-
-const update = (time: number) => {
+const update = (
+  stage: Konva.Stage,
+  time: number,
+  running: boolean,
+  projectile: ProjectileDot,
+  lineSegment: LineSegment2D,
+  initialPosition: Vector3,
+) => {
   if (running) {
     projectile.update(time);
   }
@@ -45,7 +24,7 @@ const update = (time: number) => {
   lineSegment.update(initialPosition, mouseVector);
 };
 
-const render = () => {
+const render = (layer: Konva.Layer, lineSegment: LineSegment2D, projectile: ProjectileDot) => {
   layer.removeChildren();
   axis2DRenderer.addAxesToLayer(layer);
 
@@ -56,24 +35,54 @@ const render = () => {
   util.logToDiv(projectile.kinematics.toString());
 };
 
-const clickTapHandler = () => {
+const clickTapHandler = (running: boolean, reset: Function, start: Function) => {
   if (running) {
     reset();
   }
   start();
 };
 
-document.getElementById('resetButton')?.addEventListener('click', reset);
+export const run = () => {
+  const { stage, layer } = util.getDefaultKonvaStage2();
+  axis2DRenderer.addAxesToLayer(layer);
 
-stage.on('click', clickTapHandler);
-stage.on('tap', clickTapHandler);
+  layer.draw();
 
-const animation = new Konva.Animation((frame) => {
-  if (frame) {
-    const timeDeltaSeconds = frame.timeDiff / 1000;
-    update(timeDeltaSeconds);
-    render();
-  }
-});
+  let running = false;
 
-animation.start();
+  const initialPosition = new Vector3(-constants.worldWidth / 2, 0);
+  const lineSegment = new LineSegment2D(initialPosition, new Vector3());
+
+  const projectile = new ProjectileDot(initialPosition);
+
+  const displacement = new Vector3(5, 0);
+
+  const start = () => {
+    const mouseVector = inputManager.getMouseWorldPosition(stage);
+    const initialVelocity = mouseVector.add(displacement);
+
+    projectile.reset(initialPosition, initialVelocity);
+
+    running = true;
+  };
+
+  const reset = () => {
+    running = false;
+    projectile.reset(initialPosition);
+  };
+
+  document.getElementById('resetButton')?.addEventListener('click', reset);
+
+  stage.on('click', () => clickTapHandler(running, reset, start));
+  stage.on('tap', () => clickTapHandler(running, reset, start));
+
+  const animation = new Konva.Animation((frame) => {
+    if (frame) {
+      const timeDeltaSeconds = frame.timeDiff / 1000;
+      update(stage, timeDeltaSeconds, running, projectile, lineSegment, initialPosition);
+      render(layer, lineSegment, projectile);
+    }
+  });
+
+  animation.start();
+};
