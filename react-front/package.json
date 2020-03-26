@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --port 8000",
     "test": "jest",
+    "build": "webpack",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook"
   },
