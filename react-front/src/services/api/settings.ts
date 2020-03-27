@@ -7,7 +7,7 @@ export const getBaseUrl = () => {
     case 'development':
       return 'http://localhost:3100';
     case 'production':
-      return 'https://mkkekkonen.com/math-api'
+      return 'https://www.mkkekkonen.com/math-api'
   }
 }
 
