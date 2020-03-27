@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --port 8000",
     "test": "jest",
-    "build": "webpack --env.NODE_OPTIONS=\"--max_old_space_size=4096\"",
+    "build": "webpack --env.NODE_ENV=production",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook"
   },
