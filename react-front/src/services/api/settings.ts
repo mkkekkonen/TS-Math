@@ -6,6 +6,8 @@ export const getBaseUrl = () => {
   switch (process.env.NODE_ENV) {
     case 'development':
       return 'http://localhost:3100';
+    case 'production':
+      return 'https://mkkekkonen.com/math-api'
   }
 }
 
