@@ -8,8 +8,9 @@ The method of the `Vector3` class that calculates the distance
 between the two points is as follows:
 
 ```typescript
-distanceFrom = (vector: Vector3) => Math.sqrt(((vector.x - this.x) ** 2)
-  + ((vector.y - this.y) ** 2));
+distanceFrom = (vector: Vector3) => Math.sqrt(
+  ((vector.x - this.x) ** 2) + ((vector.y - this.y) ** 2)
+);
 ```
 
 I.e. it's a simple Pythagorean theorem:

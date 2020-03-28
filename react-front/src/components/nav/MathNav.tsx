@@ -12,6 +12,11 @@ import { last } from 'lodash';
 
 import { Category, Subcategory, Page } from '../../models';
 
+const NavContainer = styled.div`
+  max-height: 100vh;
+  overflow-y: scroll;
+`
+
 const StyledButton = styled(Button)`
   text-align: left !important;
 `;
@@ -125,9 +130,9 @@ export class MathNav extends React.Component<Props, State> {
 
   render() {
     return (
-      <Fragment>
+      <NavContainer>
         {this.renderCategories()}
-      </Fragment>
+      </NavContainer>
     );
   }
 }

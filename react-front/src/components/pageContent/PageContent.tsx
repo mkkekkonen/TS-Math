@@ -28,7 +28,17 @@ export class PageContent extends React.Component<Props, State> {
     this.state = { markdown: '' };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.loadContent();
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.baseFileName !== prevProps.baseFileName) {
+      this.loadContent();
+    }
+  }
+
+  loadContent = async () => {
     const { baseFileName } = this.props;
 
     await import(`../../md/${baseFileName}.md`);
