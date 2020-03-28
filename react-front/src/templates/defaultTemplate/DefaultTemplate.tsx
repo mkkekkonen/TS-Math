@@ -39,7 +39,7 @@ export class DefaultTemplate extends React.Component<Props, State> {
       <Container fluid>
         {header}
         <Row>
-          <Col sm={2}>{nav}</Col>
+          <Col md={4} lg={2}>{nav}</Col>
           <PaddedCol>{content}</PaddedCol>
         </Row>
         <Row>

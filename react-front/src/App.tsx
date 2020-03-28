@@ -10,6 +10,8 @@ import { categorySagas, subcategorySagas, pageSagas } from './store/sagas';
 
 import { MathRouter } from './components/router';
 
+import './global.css';
+
 const sagaMiddleware = createSagaMiddleware();
 
 const sagas = [
