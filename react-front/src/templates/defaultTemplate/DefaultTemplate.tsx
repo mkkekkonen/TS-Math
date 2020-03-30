@@ -9,7 +9,10 @@ import { Header } from '../../components/header';
 import { MathNav } from '../../components/nav';
 import { Footer } from '../../components/footer';
 
-import { categories, subcategories, pages } from '../../data';
+const FixedNavCol = styled.div`
+  padding-left: 15px;
+  width: 15rem;
+`;
 
 const PaddedCol = styled(Col)`
   padding-top: 1rem;
@@ -39,7 +42,7 @@ export class DefaultTemplate extends React.Component<Props, State> {
       <Container fluid>
         {header}
         <Row>
-          <Col md={4} lg={2}>{nav}</Col>
+          <FixedNavCol>{nav}</FixedNavCol>
           <PaddedCol>{content}</PaddedCol>
         </Row>
         <Row>
