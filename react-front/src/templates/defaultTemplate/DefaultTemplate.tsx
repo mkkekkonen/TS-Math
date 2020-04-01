@@ -9,14 +9,29 @@ import { Header } from '../../components/header';
 import { MathNav } from '../../components/nav';
 import { Footer } from '../../components/footer';
 
-const FixedNavCol = styled.div`
-  padding-left: 15px;
-  width: 15rem;
+const FlexRow = styled.div`
+  display: flex;
+  @media only screen and (max-width: 913px) {
+    flex-wrap: wrap;
+  }
 `;
 
-const PaddedCol = styled(Col)`
-  padding-top: 1rem;
-`
+const FixedNavCol = styled.div`
+  padding-left: 15px;
+  @media only screen and (min-width: 914px) {
+    width: 15rem;
+  }
+  @media only screen and (max-width: 913px) {
+    max-height: 300px;
+    overflow-y: scroll;
+    padding-right: 15px;
+    width: 100%;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  padding: 1rem;
+`;
 
 interface Props {
   header: ReactNode
@@ -41,10 +56,10 @@ export class DefaultTemplate extends React.Component<Props, State> {
     return (
       <Container fluid>
         {header}
-        <Row>
+        <FlexRow>
           <FixedNavCol>{nav}</FixedNavCol>
-          <PaddedCol>{content}</PaddedCol>
-        </Row>
+          <ContentWrapper>{content}</ContentWrapper>
+        </FlexRow>
         <Row>
           <Col>
             {footer}

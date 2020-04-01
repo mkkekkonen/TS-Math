@@ -73,3 +73,5 @@ You can input the constants below:
 <div>
   <button id="drawButton" type="button" class="btn btn-dark">Draw line</button>
 </div>
+
+[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_2_5_slopeintercept.ts)
