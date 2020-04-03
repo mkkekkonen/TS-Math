@@ -20,7 +20,31 @@ case, the angle is 90 degrees.
 Also, if at least one of the lines is vertical, the formula cannot be
 used either.
 
-The parameters can be inputted below:
+<hr />
+
+The calculation code is currently found only in the `SlopeInterceptEquation`
+class:
+
+```typescript
+angleBetween = (otherLine: LineEquation) => {
+  if (!(otherLine instanceof SlopeInterceptEquation)) {
+    return 0;
+  }
+
+  const otherSlopeIntercept = otherLine as SlopeInterceptEquation;
+
+  const tangent = Math.abs(
+    (this.slope - otherSlopeIntercept.slope)
+      / (1 - (this.slope * otherSlopeIntercept.slope)),
+  );
+
+  return Math.atan(tangent);
+}
+```
+
+<hr />
+
+The parameters of the slope-intercept line can be inputted below:
 
 <div class="form-group">
   <label for="k">Slope</label>
