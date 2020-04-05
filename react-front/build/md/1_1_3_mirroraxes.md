@@ -72,8 +72,12 @@ const drawMirroredLine = (
 
   if (mirroredStartPoint && mirroredEndPoint) {
     // a method for updating a LineSegment2D
-    mirroredLine.update(mirroredStartPoint, mirroredEndPoint);
-    // a method for rendering a LineSegment2D onto the canvas
+    mirroredLine.update(
+      mirroredStartPoint,
+      mirroredEndPoint
+    );
+    // a method for rendering
+    // a LineSegment2D onto the canvas
     mirroredLine.konvaRender(layer);
   }
 };
