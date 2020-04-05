@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import styled from 'styled-components';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -13,6 +14,12 @@ import { last } from 'lodash';
 import { entryPoints } from 'ts-math';
 
 import { CodeBlock } from './CodeBlock';
+
+const ContentContainer = styled.div`
+  @media only screen and (min-width: 1570px) {
+    max-width: 700px;
+  }
+`;
 
 interface Props {
   baseFileName: string
@@ -59,22 +66,24 @@ export class PageContent extends React.Component<Props, State> {
         <Container fluid>
           <Row>
             <Col>
-              <ReactMarkdown
-                source={markdown}
-                escapeHtml={false}
-                plugins={[
-                  RemarkMathPlugin,
-                ]}
-                renderers={{
-                  inlineMath: (props: { value: string }) => (
-                    <InlineMath>{props.value}</InlineMath>
-                  ),
-                  math: (props: { value: string}) => (
-                    <BlockMath>{props.value}</BlockMath>
-                  ),
-                  code: CodeBlock,
-                }}
-              />
+              <ContentContainer>
+                <ReactMarkdown
+                  source={markdown}
+                  escapeHtml={false}
+                  plugins={[
+                    RemarkMathPlugin,
+                  ]}
+                  renderers={{
+                    inlineMath: (props: { value: string }) => (
+                      <InlineMath>{props.value}</InlineMath>
+                    ),
+                    math: (props: { value: string}) => (
+                      <BlockMath>{props.value}</BlockMath>
+                    ),
+                    code: CodeBlock,
+                  }}
+                />
+              </ContentContainer>
             </Col>
             <Col>
               <div id="canvasContainer" />

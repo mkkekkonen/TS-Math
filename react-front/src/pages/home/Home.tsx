@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,6 +8,10 @@ import Col from 'react-bootstrap/Col';
 import { DefaultTemplate } from '../../templates';
 
 import imgUrl from '../../images/graph.png';
+
+const StyledImg = styled.img`
+  width: 50vw;
+`
 
 interface Props {}
 
@@ -22,7 +27,7 @@ export class HomePage extends React.Component<Props, State> {
             <p>This is a web app I wrote as an attempt to teach myself math. Work in progress.</p>
           </Col>
           <Col>
-            <img src={imgUrl} />
+            <StyledImg src={imgUrl} />
           </Col>
         </Row>
       </Container>

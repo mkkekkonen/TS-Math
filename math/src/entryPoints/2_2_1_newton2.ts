@@ -17,13 +17,6 @@ const getForceVector = (forceStartPoint?: Vector3, forceEndPoint?: Vector3) => {
   return undefined;
 };
 
-const resetForce = (forceStartPoint?: Vector3, forceEndPoint?: Vector3) => {
-  if (forceStartPoint && forceEndPoint) {
-    forceStartPoint = undefined;
-    forceEndPoint = undefined;
-  }
-};
-
 const reset = (dot: DynamicsDot) => {
   const massKg = util.parseFloatById('mass') || 10;
 
@@ -71,6 +64,13 @@ export const run = () => {
   let forceStartPoint: Vector3 | undefined;
   let forceEndPoint: Vector3 | undefined;
   const dot = new DynamicsDot(new Vector3(), 10, { bounce: true });
+
+  const resetForce = () => {
+    if (forceStartPoint && forceEndPoint) {
+      forceStartPoint = undefined;
+      forceEndPoint = undefined;
+    }
+  };
 
   const forceLineSegment = new LineSegment2D();
 
