@@ -18,10 +18,10 @@ class HeaderComponent extends React.Component<Props, State> {
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand>{t(headerText)}</Navbar.Brand>
-        {subheaderText && <Navbar.Text>{subheaderText}</Navbar.Text>}
+        {subheaderText && <Navbar.Text>{t(subheaderText)}</Navbar.Text>}
       </Navbar>
     );
   }
 }
 
-export const Header = withTranslation()(HeaderComponent);
+export const Header = withTranslation('header')(HeaderComponent);

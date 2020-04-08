@@ -9,6 +9,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Immutable from 'immutable';
 import { Link } from 'react-router-dom';
 import { last } from 'lodash';
+import { withTranslation, WithTranslation } from 'react-i18next';
 
 import { Category, Subcategory, Page } from '../../models';
 
@@ -21,7 +22,7 @@ const StyledButton = styled(Button)`
   text-align: left !important;
 `;
 
-interface Props {
+interface Props extends WithTranslation {
   categories?: Immutable.List<Category>
   subcategories?: Immutable.List<Subcategory>
   pages?: Immutable.List<Page>
@@ -30,7 +31,7 @@ interface Props {
 
 interface State {}
 
-export class MathNav extends React.Component<Props, State> {
+class MathNavComponent extends React.Component<Props, State> {
   getSelectedSubcategoryKey = () => {
     const { subcategories, pages, defaultActiveKey } = this.props;
 
@@ -57,7 +58,7 @@ export class MathNav extends React.Component<Props, State> {
   }
 
   renderCategories = () => {
-    const { categories, subcategories } = this.props;
+    const { categories, subcategories, t } = this.props;
 
     if (!categories || !subcategories) {
       return undefined;
@@ -69,7 +70,7 @@ export class MathNav extends React.Component<Props, State> {
           <Fragment key={category.id}>
             <Card>
               <Card.Header>
-                <h5>{category.name}</h5>
+                <h5>{t(category.name)}</h5>
               </Card.Header>
             </Card>
             {this.renderSubcategories(category.id)}
@@ -80,7 +81,7 @@ export class MathNav extends React.Component<Props, State> {
   }
 
   renderSubcategories = (categoryId: number) => {
-    const { subcategories } = this.props;
+    const { subcategories, t } = this.props;
 
     if (!subcategories) {
       return undefined;
@@ -93,7 +94,7 @@ export class MathNav extends React.Component<Props, State> {
             <Card key={`${subcategory.id}`}>
               <Card.Header>
                 <Accordion.Toggle as={StyledButton} variant="link" eventKey={`${subcategory.id}`}>
-                  {subcategory.name}
+                  {t(subcategory.name)}
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={`${subcategory.id}`}>
@@ -108,7 +109,7 @@ export class MathNav extends React.Component<Props, State> {
   }
 
   renderPages = (subcategory: Subcategory) => {
-    const { pages } = this.props;
+    const { pages, t } = this.props;
 
     if (!pages) {
       return undefined;
@@ -120,7 +121,7 @@ export class MathNav extends React.Component<Props, State> {
           .map(page => (
             <ListGroup.Item key={page.id}>
               <Link to={`/pages/${page.urlTitle}`}>
-                {page.name}
+                {t(page.name)}
               </Link>
             </ListGroup.Item>
           ))}
@@ -136,3 +137,5 @@ export class MathNav extends React.Component<Props, State> {
     );
   }
 }
+
+export const MathNav = withTranslation('nav')(MathNavComponent);
