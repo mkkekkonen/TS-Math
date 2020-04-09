@@ -6,9 +6,7 @@ import Immutable from 'immutable';
 
 import { MathPage } from './MathPage';
 
-import { loadCategories } from '../../store/actions/categories';
-import { loadSubcategories } from '../../store/actions/subcategories';
-import { loadPages } from '../../store/actions/pages';
+import { loadData } from '../../store/actions/data';
 
 import { getCategories } from '../../store/selectors/categories';
 import { getSubcategories } from '../../store/selectors/subcategories';
@@ -20,9 +18,7 @@ interface Props {
   categories?: Immutable.Map<string, Category>
   subcategories?: Immutable.Map<string, Subcategory>
   pages: Immutable.Map<string, Page>
-  loadCategories: Function
-  loadSubcategories: Function
-  loadPages: Function
+  loadData: Function
 }
 
 interface State {}
@@ -31,14 +27,10 @@ const MathPageContainer = ({
   categories,
   subcategories,
   pages,
-  loadCategories,
-  loadSubcategories,
-  loadPages,
+  loadData,
 }: Props) => {
   useEffect(() => {
-    loadCategories();
-    loadSubcategories();
-    loadPages();
+    loadData();
   }, []);
 
   const { urlTitle } = useParams();
@@ -60,9 +52,7 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loadCategories: () => dispatch(loadCategories()),
-  loadSubcategories: () => dispatch(loadSubcategories()),
-  loadPages: () => dispatch(loadPages()),
+  loadData: () => dispatch(loadData()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MathPageContainer);

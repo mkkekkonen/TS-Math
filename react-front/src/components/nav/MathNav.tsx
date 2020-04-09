@@ -130,9 +130,23 @@ class MathNavComponent extends React.Component<Props, State> {
   }
 
   render() {
+    const { t } = this.props;
+
     return (
       <NavContainer>
         {this.renderCategories()}
+        <Card>
+          <Card.Header>
+            <h5>{t('Sources')}</h5>
+          </Card.Header>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Link to="/sources">
+              <StyledButton variant="link">{t('Sources')}</StyledButton>
+            </Link>
+          </Card.Header>
+        </Card>
       </NavContainer>
     );
   }

@@ -7,7 +7,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-import { HomePage, MathPage } from '../../pages';
+import { HomePage, MathPage, SourcesPage } from '../../pages';
 
 interface Props {}
 
@@ -20,6 +20,9 @@ export class MathRouter extends React.Component<Props, State> {
         <Switch>
           <Route path="/pages/:urlTitle">
             <MathPage />
+          </Route>
+          <Route path="/sources">
+            <SourcesPage />
           </Route>
           <Route path="/">
             <HomePage />

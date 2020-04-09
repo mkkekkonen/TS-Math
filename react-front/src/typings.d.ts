@@ -5,6 +5,8 @@ declare module "*.png" {
   export = value;
 }
 
+declare module "*.md";
+
 declare module 'remark-math';
 
 declare module 'react-katex' {

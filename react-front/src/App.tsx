@@ -8,7 +8,12 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import rootReducer from './store/reducers';
-import { categorySagas, subcategorySagas, pageSagas } from './store/sagas';
+import {
+  categorySagas,
+  subcategorySagas,
+  pageSagas,
+  dataSagas,
+} from './store/sagas';
 
 import { MathRouter } from './components/router';
 
@@ -22,6 +27,7 @@ const sagas = [
   categorySagas,
   subcategorySagas,
   pageSagas,
+  dataSagas,
 ];
 
 const store = createStore(

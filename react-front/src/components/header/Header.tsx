@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 
 import { withTranslation, WithTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 interface Props extends WithTranslation {
   headerText: string
@@ -17,7 +18,9 @@ class HeaderComponent extends React.Component<Props, State> {
 
     return (
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand>{t(headerText)}</Navbar.Brand>
+        <Link to="/">
+          <Navbar.Brand>{t(headerText)}</Navbar.Brand>
+        </Link>
         {subheaderText && <Navbar.Text>{t(subheaderText)}</Navbar.Text>}
       </Navbar>
     );
