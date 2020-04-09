@@ -4,6 +4,8 @@ export default {
       'Math Visualized': 'Math Visualized',
     },
     nav: {
+      'Sources': 'Sources',
+
       // categories
 
       'Analytic Geometry': 'Analytic Geometry',
@@ -46,6 +48,8 @@ export default {
       'Math Visualized': 'Matematiikan visualisointia',
     },
     nav: {
+      'Sources': 'Lähteet',
+
       // categories
 
       'Analytic Geometry': 'Analyyttinen geometria',
