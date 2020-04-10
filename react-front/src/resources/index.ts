@@ -3,6 +3,10 @@ export default {
     header: {
       'Math Visualized': 'Math Visualized',
     },
+    footer: {
+      'By Maija Kekkonen 2020': 'By Maija Kekkonen 2020',
+      'View source in GitHub': 'View source in GitHub',
+    },
     nav: {
       'Sources': 'Sources',
 
@@ -46,6 +50,10 @@ export default {
   fi: {
     header: {
       'Math Visualized': 'Matematiikan visualisointia',
+    },
+    footer: {
+      'By Maija Kekkonen 2020': 'Maija Kekkonen 2020',
+      'View source in GitHub': 'Lähdekoodi GitHubissa',
     },
     nav: {
       'Sources': 'Lähteet',
