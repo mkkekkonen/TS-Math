@@ -5,5 +5,9 @@ import { PageContent } from './PageContent';
 
 storiesOf('PageContent', module)
   .add('distancepoints', () => (
-    <PageContent baseFileName="1_1_1_distancepoints" />
+    <PageContent
+      baseFileName="1_1_1_distancepoints"
+      t={(key: string) => key}
+      language="en"
+    />
   ));

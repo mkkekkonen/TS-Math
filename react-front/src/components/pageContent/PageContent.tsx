@@ -23,6 +23,8 @@ const ContentContainer = styled.div`
 
 interface Props {
   baseFileName: string
+  t: Function
+  language: string
 }
 
 interface State {
@@ -40,16 +42,17 @@ export class PageContent extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props) {
-    if (this.props.baseFileName !== prevProps.baseFileName) {
+    if (this.props.baseFileName !== prevProps.baseFileName
+        || this.props.language !== prevProps.language) {
       this.loadContent();
     }
   }
 
   loadContent = async () => {
-    const { baseFileName } = this.props;
+    const { baseFileName, language } = this.props;
 
-    await import(`../../md/${baseFileName}.md`);
-    const res = await fetch(`md/${baseFileName}.md`);
+    await import(`../../md/${baseFileName}_${language}.md`);
+    const res = await fetch(`md/${baseFileName}_${language}.md`);
     const markdown = await res.text();
 
     this.setState({ markdown: markdown });

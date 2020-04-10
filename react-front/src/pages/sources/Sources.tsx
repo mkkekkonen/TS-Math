@@ -8,7 +8,10 @@ import ReactMarkdown from 'react-markdown';
 
 import { DefaultTemplate } from '../../templates';
 
-interface Props {}
+interface Props {
+  t: Function
+  language: string
+}
 
 interface State {
   markdown: string
@@ -24,9 +27,17 @@ export class SourcesPage extends React.Component<Props, State> {
     this.loadContent();
   }
 
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.language !== prevProps.language) {
+      this.loadContent();
+    }
+  }
+
   loadContent = async () => {
-    await import('../../md/sources.md');
-    const res = await fetch('md/sources.md');
+    const { language } = this.props;
+
+    await import(`../../md/sources_${language}.md`);
+    const res = await fetch(`md/sources_${language}.md`);
     const markdown = await res.text();
 
     this.setState({ markdown });
