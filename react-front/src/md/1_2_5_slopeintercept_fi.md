@@ -1,18 +1,18 @@
-# Slope-Intercept Equation
+# Suoran yhtälön ratkaistu muoto
 
-Here you can plot a line based on the slope-intercept equation.
+Tällä sivulla piirretään suora suoran yhtälön ratkaistun
+muodon avulla.
 
-The formula:
+Kaava on seuraavanlainen:
 
-$y = mx + b$
+$y = kx + b$
 
-$m$ is the slope, and $b$ is the $y$ coordinate where the line crosses
-the $y$ axis.
+$k$ on kulmakerroin, ja $b$ on se $y$-koordinaatti, jossa suora
+leikkaa $y$-akselin.
 
 <hr />
 
-The method responsible for initiating the draw is found in the class
-`SlopeInterceptEquation`:
+Piirron aloittaa metodi, joka sijaitsee `SlopeInterceptEquation`-luokassa.
 
 ```typescript
 renderLine = (
@@ -29,7 +29,7 @@ renderLine = (
 }
 ```
 
-The `plotLine` method is found in the `LineEquation` base class:
+`plotLine`-metodi sijaitsee `LineEquation`-kantaluokassa:
 
 ```typescript
 plotLine = (
@@ -56,22 +56,22 @@ plotLine = (
 }
 ```
 
-You can input the constants below:
+Voit syöttää vakiot alla olevalla lomakkeella:
 
 <hr />
 
 <div class="form-group">
-  <label for="k">Slope</label>
+  <label for="k">Kulmakerroin</label>
   <input type="number" step="0.1" id="k" class="form-control" />
 </div>
 
 <div class="form-group">
-  <label for="b">Y intercept</label>
+  <label for="b">Y-akselin leikkauspisteen y-koordinaatti</label>
   <input type="number" step="0.1" id="b" class="form-control" />
 </div>
 
 <div>
-  <button id="drawButton" type="button" class="btn btn-dark">Draw line</button>
+  <button id="drawButton" type="button" class="btn btn-dark">Piirrä suora</button>
 </div>
 
-[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_2_5_slopeintercept.ts)
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_2_5_slopeintercept.ts)

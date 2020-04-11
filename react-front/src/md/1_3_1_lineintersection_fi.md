@@ -1,24 +1,27 @@
-# Line Intersection
+# Suorien leikkauspiste
 
-Line intersection is tested on this page. There's a fixed line,
-and you can input the parameters of the other line manually.
+Tällä sivulla lasketaan kahden suoran välinen leikkauspiste. 
+Sivulla on kiinteästi paikallaan oleva suora. Toisen suoran
+parametrit voi syöttää lomakkeella.
 
-The intersection point is calculated by solving a system of
-equations containing the equations of each line. The result
-is the $x$ and $y$ coordinates of the intersection point.
+Leikkauspiste lasketaan ratkaisemalla yhtälöpari, joka sisältää
+kummankin suoran yhtälöt. Tuloksena on leikkauspisteen $x$- ja
+$y$-koordinaatit.
 
-Lines can have
+Suorilla voi olla
 
-- one point in common, if they intersect
+- yksi yhteinen piste, jos ne leikkaavat,
 
-- no common points, if they are parallel
+- ei yhtään yhteistä pistettä, jos ne ovat yhdensuuntaiset mutta
+eivät yhdy, ja
 
-- and an infinite number of common points, if they are equal.
+- ääretön määrä yhteisiä pisteitä, jos ne yhtyvät (eli ovat täsmälleen
+samat).
 
 <hr />
 
-The code that calculates the intersection is currently found only
-in the `SlopeInterceptEquation` class.
+Koodi, joka laskee leikkauspisteen, löytyy tällä hetkellä vain
+`SlopeInterceptEquation`-luokasta.
 
 ```typescript
 lineIntersects = (otherLine: LineEquation) => {
@@ -50,20 +53,21 @@ lineIntersects = (otherLine: LineEquation) => {
 
 <hr />
 
-You can input the slope and the y-intercept below.
+Voit syöttää kulmakertoimen ja y-akselin leikkauspisteen y-koordinaatin
+alla olevalla lomakkeella.
 
 <div class="form-group">
-  <label for="k">Slope (m)</label>
+  <label for="k">Kulmakerroin (k)</label>
   <input type="number" step="0.1" id="k" class="form-control" />
 </div>
 
 <div class="form-group">
-  <label for="b">Y intercept (b)</label>
+  <label for="b">Y-akselin leikkauspisteen y-koordinaatti (b)</label>
   <input type="number" step="0.1" id="b" class="form-control" />
 </div>
 
 <div>
-  <button id="drawButton" type="button" class="btn btn-dark">Draw line</button>
+  <button id="drawButton" type="button" class="btn btn-dark">Piirrä suora</button>
 </div>
 
-[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_3_1_lineintersection.ts)
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_3_1_lineintersection.ts)

@@ -1,43 +1,43 @@
-# Mirroring a Line Across X and Y Axes and the Origin
+# Janan peilaus X- tai Y-akselin tai origon yli
 
-**Click on the canvas to set line start and end points. Depending
-on selection, the line is mirrored across either the $x$ or $y$ axis or
-the origin.**
+**Klikkaa näkymää asettaaksesi janan alku- ja loppupisteet.** Jana
+peilataan joko $x$- tai $y$-akselin tai origon yli valinnasta
+riippuen.
 
 <div>
   <div class="custom-control custom-radio">
     <input type="radio" id="x" name="mirroracross" class="custom-control-input" />
-    <label class="custom-control-label" for="x">X axis</label>
+    <label class="custom-control-label" for="x">X-akseli</label>
   </div>
 </div>
 
 <div>
   <div class="custom-control custom-radio">
     <input type="radio" id="y" name="mirroracross" class="custom-control-input" />
-    <label class="custom-control-label" for="y">Y axis</label>
+    <label class="custom-control-label" for="y">Y-akseli</label>
   </div>
 </div>
 
 <div>
   <div class="custom-control custom-radio">
     <input type="radio" id="o" name="mirroracross" class="custom-control-input" />
-    <label class="custom-control-label" for="o">Origin</label>
+    <label class="custom-control-label" for="o">Origo</label>
   </div>
 </div>
 
 <hr />
 
-The point $(x, y)$ becomes...
+Pisteestä $(x, y)$ tulee...
 
-- $(x, -y)$ when mirrored across the $x$ axis
+- $(x, -y)$, kun se peilataan $x$-akselin yli,
 
-- $(-x, y)$ when mirrored across the $y$ axis, and
+- $(-x, y)$, kun se peilataan $y$-akselin yli, ja
 
-- $(-x, -y)$ when mirrored across the origin.
+- $(-x, -y)$, kun se peilataan origon yli.
 
 <hr />
 
-The code that creates the mirrored line is located in the entry point file:
+Koodi, joka luo peilatun janan, sijaitsee entry point -tiedostossa:
 
 ```typescript
 const drawMirroredLine = (
@@ -83,4 +83,4 @@ const drawMirroredLine = (
 };
 ```
 
-[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_1_3_mirroraxes.ts)
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_1_3_mirroraxes.ts)

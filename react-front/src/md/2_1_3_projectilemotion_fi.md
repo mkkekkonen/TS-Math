@@ -1,25 +1,24 @@
-# Projectile Motion
+# Vino heittoliike
 
-Projectile motion is demonstrated on this page. **You can "throw
-a ball" by clicking on the canvas.** The initial velocity vector
-is drawn as a line segment.
+Tällä sivulla havainnollistetaan vinoa heittoliikettä. **Voit
+"heittää pallon" klikkaamalla näkymää.** Alkunopeusvektori
+visualisoidaan janan avulla.
 
-The initial $x$ and $y$ components of the velocity are calculated
-as follows:
+Alkunopeuden $x$- ja $y$-komponentit lasketaan seuraavasti:
 
 $$v_{0x} = v_0 cos \alpha_0$$
 
 $$v_{0y} = v_0 sin \alpha_0$$
 
-The formulas for calculating the velocity of the thrown
-object at a given time are the following:
+Kaavat heitetyn kappaleen nopeuden laskemiseen tietyllä ajan
+hetkellä ovat seuraavat:
 
 $$v_x = v_{0x}$$
 
 $$v_y = v_{0y} - gt$$
 
-The location coordinates of the thrown object at a given time
-can be calculated with the formulas below:
+Heitetyn kappaleen sijainnin koordinaatit tietyllä ajan
+hetkellä voidaan laskea alla olevilla kaavoilla:
 
 $$x = v_{0x} t$$
 
@@ -27,8 +26,8 @@ $$y = v_{0y} t - \frac{1}{2} g t^2$$
 
 <hr />
 
-The logic that calculates the location of the projectile can be
-found in the `ProjectileKinematics2D` class:
+Koodi, jolla lasketaan heitetyn kappaleen sijainti, löytyy
+`ProjectileKinematics2D`-luokasta:
 
 ```typescript
 update = (time: number) => {
@@ -44,3 +43,5 @@ update = (time: number) => {
   this.position = new Vector3(x, y);
 }
 ```
+
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/2_1_3_projectilemotion.ts)

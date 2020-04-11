@@ -1,29 +1,28 @@
-# Angle Between Lines
+# Suorien välinen kulma
 
-You can calculate the angle between two lines on this page.
-One of the lines is fixed, the other is plotted according to
-the parameters inputted.
+Tällä sivulla lasketaan suorien välinen kulma. Sivulla on
+kiinteästi paikallaan oleva suora. Toinen suora piirretään
+annettujen parametrien perusteella.
 
-The angle between lines is always greater than zero degrees and
-smaller than 90 degrees.
+Suorien välinen kulma on aina suurempi kuin nolla astetta ja
+pienempi kuin 90 astetta.
 
 $0^\circ < \angle (l_1, l_2) < 90^\circ$
 
-The angle between lines is calculated either with the directional
-angles or with the following formula:
+Suorien välinen kulma lasketaan joko suuntakulmien tai seuraavan
+kaavan avulla:
 
 $tan \alpha = |\frac{k_1 - k_2}{1 + k_1 k_2}|$
 
-If the denominator is zero, the formula cannot be used. In that
-case, the angle is 90 degrees.
+Jos nimittäjä on nolla, kaavaa ei voida käyttää. Tällöin kulma
+on 90 astetta.
 
-Also, if at least one of the lines is vertical, the formula cannot be
-used either.
+Lisäksi jos ainakin toinen suorista on pystysuora, kaavaa ei
+voida käyttää.
 
 <hr />
 
-The calculation code is currently found only in the `SlopeInterceptEquation`
-class:
+Kulman laskentakoodi löytyy tällä hetkellä vain `SlopeInterceptEquation`-luokasta:
 
 ```typescript
 angleBetween = (otherLine: LineEquation) => {
@@ -44,20 +43,21 @@ angleBetween = (otherLine: LineEquation) => {
 
 <hr />
 
-The parameters of the slope-intercept line can be inputted below:
+Suoran yhtälön ratkaistun muodon parametrit voi syöttää alla
+olevalla lomakkeella:
 
 <div class="form-group">
-  <label for="k">Slope</label>
+  <label for="k">Kulmakerroin</label>
   <input type="number" step="0.1" id="k" class="form-control" />
 </div>
 
 <div class="form-group">
-  <label for="b">Y intercept</label>
+  <label for="b">Y-akselin leikkauspisteen y-koordinaatti</label>
   <input type="number" step="0.1" id="b" class="form-control" />
 </div>
 
 <div>
-  <button id="drawButton" type="button" class="btn btn-dark">Draw line</button>
+  <button id="drawButton" type="button" class="btn btn-dark">Piirrä suora</button>
 </div>
 
-[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_3_2_anglelines.ts)
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_3_2_anglelines.ts)

@@ -1,26 +1,29 @@
-# Constant Acceleration and Location
+# Tasaisesti kiihtyvä liike
 
-Constant acceleration and the location relative to it is
-demonstrated on this page.
+Tällä sivulla käsitellään tasaisesti kiihtyvää liikettä ja
+sen suhdetta sijaintiin.
 
-Acceleration is constant when it does not change over time.
-The velocity changes, however.
+Kiihtyvyys on tasaista, kun se ei muutu ajan kuluessa. Nopeus
+kuitenkin muuttuu tällöin.
 
-The formulas for calculating velocity over time are presented
-below. We use the $x$ and $y$ components of the initial velocity and
-the acceleration in calculating the velocity.
+Kaavat, joissa nopeus lasketaan ajan kuluessa, esitetään alla.
+Kaavoissa käytetään kiihtyvyyttä ja alkunopeuden $x$- ja
+$y$-komponentteja nopeuden laskemiseen.
 
 $$v_x = v_{0 x} + a_x t$$
 
 $$v_y = v_{0 y} + a_y t$$
 
-The locations are calculated in a similar manner.
+Sijainnit lasketaan samalla tavalla.
 
 $x = v_{0 x} t + \frac{1}{2} a_x t^2$
 
 $y = v_{0 y} t + \frac{1}{2} a_y t^2$
 
 <hr />
+
+Koodi, joka päivittää pisteen sijainnin, löytyy
+`TimeKinematics2D`-luokasta.
 
 The logic that updates the location of the dot can be found in
 the `TimeKinematics2D` class.
@@ -45,29 +48,31 @@ update = (time: number) => {
 
 <hr />
 
-Here you can input the data and start the simulation:
+Voit syöttää datan alla olevalla lomakkeella ja aloittaa simulaation:
 
 <div class="form-group">
-  <label for="v0x">Initial velocity x</label>
+  <label for="v0x">Alkunopeus x</label>
   <input type="number" step="0.1" id="v0x" class="form-control" />
 </div>
 
 <div class="form-group">
-  <label for="v0y">Initial velocity y</label>
+  <label for="v0y">Alkunopeus y</label>
   <input type="number" step="0.1" id="v0y" class="form-control" />
 </div>
 
 <div class="form-group">
-  <label for="ax">Acceleration x</label>
+  <label for="ax">Kiihtyvyys x</label>
   <input type="number" step="0.1" id="ax" class="form-control" />
 </div>
 
 <div class="form-group">
-  <label for="ax">Acceleration y</label>
+  <label for="ax">Kiihtyvyys y</label>
   <input type="number" step="0.1" id="ay" class="form-control" />
 </div>
 
 <div>
-  <button id="startButton" type="button" class="btn btn-dark">Start</button>
-  <button id="resetButton" type="button" class="btn btn-dark">Reset</button>
+  <button id="startButton" type="button" class="btn btn-dark">Aloita</button>
+  <button id="resetButton" type="button" class="btn btn-dark">Palauta</button>
 </div>
+
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/2_1_2_constaccel.ts)

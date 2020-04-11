@@ -1,28 +1,26 @@
-# Directional Angle and Slope
+# Kulmakerroin ja suuntakulma
 
-**You can set the start and end points of a line segment by
-clicking on the canvas.** The directional angle, among other data,
-is outputted.
+** Voit asettaa janan alku- ja loppupisteen klikkaamalla näkymää.**
+Mm. janan suuntakulma tulostetaan näytölle.
 
-*The directional angle $\alpha$ is the angle of a line relative to the
-positive $x$ axis.*
+*Suoran suuntakulma on sen ja positiivisen $x$-akselin välinen kulma.**
 
 <hr />
 
-The directional angle depends on the slope in the following ways:
+Suuntakulma riippuu kulmakertoimesta seuraavilla tavoilla:
 
-If the slope is positive $\rightarrow 0^{\circ} < \alpha < 90^{\circ}$
+Jos kulmakerroin on positiivinen, $\rightarrow 0^{\circ} < \alpha < 90^{\circ}$
 
-If the slope is negative $\rightarrow -90^{\circ} < \alpha < 0^{\circ}$
+Jos kulmakerroin on negatiivinen, $\rightarrow -90^{\circ} < \alpha < 0^{\circ}$
 
-If the line is horizontal $\rightarrow \alpha = 0^{\circ}$
+Jos suora on vaakasuora, $\rightarrow \alpha = 0^{\circ}$
 
-If the line is vertical $\rightarrow \alpha = 90^{\circ}$
+Jos suora on pystysuora, $\rightarrow \alpha = 90^{\circ}$
 
 <hr />
 
-The relationship between the slope and the directional angle can be
-expressed with the following formulas:
+Kulmakertoimen ja suuntakulman suhde voidaan ilmaista seuraavilla
+kaavoilla:
 
 $$k = tan(\alpha), \alpha \neq 90^{\circ}$$
 
@@ -30,8 +28,7 @@ $$\alpha = arctan(k)$$
 
 <hr />
 
-The directional angle is calculated in the `LineSegment2D` class as
-follows:
+Suuntakulma lasketaan `LineSegment2D`-luokassa seuraavasti:
 
 ```typescript
 get directionalAngle() {
@@ -44,4 +41,4 @@ get directionalAngle() {
 }
 ```
 
-[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_2_2_angleslope.ts)
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_2_2_angleslope.ts)

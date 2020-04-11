@@ -1,19 +1,21 @@
-# General-Form Equation
+# Suoran yhtälön yleinen muoto
 
-Here you can plot a line based on the general-form equation.
+Tällä sivulla piirretään suora suoran yhtälön yleisen muodon
+avulla.
 
-The formula is:
+Kaava on seuraava:
 
 $ax + by + c = 0$
 
-$a$, $b$ and $c$ are constants.
+$a$, $b$ ja $c$ ovat vakioita (eli numeroarvoja).
 
-Note that either $a$, $b$ or both have to be non-zero.
+Huomaa, ettö joko $a$:n, $b$:n tai molempien tulee olla eri
+suuria kuin nolla.
 
 <hr />
 
-The method responsible for initiating the draw is found in the
-class `GeneralFormEquation`:
+Metodi, jolla piirto aloitetaan, sijaitsee `GeneralFormEquation`
+-luokassa:
 
 ```typescript
 renderLine = (
@@ -30,7 +32,7 @@ renderLine = (
 }
 ```
 
-The `plotLine` method is found in the `LineEquation` base class:
+`plotLine`-metodi sijaitsee `LineEquation`-kantaluokassa:
 
 ```typescript
 plotLine = (
@@ -59,7 +61,7 @@ plotLine = (
 
 <hr />
 
-You can input the constants below.
+Voit syöttää vakiot alla olevalla lomakkeella.
 
 <div class="form-group">
   <label for="a">a</label>
@@ -77,7 +79,7 @@ You can input the constants below.
 </div>
 
 <div>
-  <button id="drawButton" type="button" class="btn btn-dark">Draw line</button>
+  <button id="drawButton" type="button" class="btn btn-dark">Piirrä suora</button>
 </div>
 
-[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_2_4_generalequation.ts)
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_2_4_generalequation.ts)

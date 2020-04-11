@@ -1,21 +1,22 @@
-# Slope
+# Kulmakerroin
 
-**Click on the canvas to set line segment start and end points.** The slope
-of the line segment is outputted.
+**Klikkaa näkymää asettaaksesi janan alku- ja loppupisteen.** Janan
+kulmakerroin tulostetaan sivulle.
 
-The slope of a line can be calculated with the following formula:
+Janan (tai suoran) kulmakerroin lasketaan seuraavalla kaavalla:
 
-$$slope = \frac{y_2 - y_1}{x_2 - x_1}$$
+$$k = \frac{y_2 - y_1}{x_2 - x_1}$$
 
-It is equivalent to the following:
+Se vastaa tätä kaavaa:
 
-$$slope = \frac{\Delta y}{\Delta x}$$
+$$k = \frac{\Delta y}{\Delta x}$$
 
-If $\Delta x$ is zero, the line is vertical and has no slope, as
-the calculation would result in division by zero.
+Jos $\Delta x$ on 0, jana (tai suora) on pystysuora, eikä sillä
+ole kulmakerrointa, koska laskutoimituksessa yritettäisiin jakaa
+nollalla.
 
-In the code, slope is calculated with the following method of the `LineSegment2D`
-class:
+Koodissa kulmakerroin lasketaan `LineSegment2D`-luokan seuraavalla
+metodilla:
 
 ```typescript
 get slope() {
@@ -35,4 +36,4 @@ get slope() {
 }
 ```
 
-[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_2_1_slope.ts)
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_2_1_slope.ts)

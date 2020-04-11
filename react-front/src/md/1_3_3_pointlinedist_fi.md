@@ -1,27 +1,25 @@
-# Distance Between a Point and a Line
+# Suoran ja pisteen välinen etäisyys
 
-The distance between a point and a line is calculated here.
-**You can set the location of the point by clicking on the canvas.**
-The distance will always be the shortest one, and a line
-drawn in that direction will be perpendicular to the original
-line.
+Tällä sivulla lasketaan pisteen ja suoran välinen etäisyys.
+**Voit asettaa pisteen klikkamalla näkymää.** Etäisyys on
+aina lyhin mahdollinen, ja etäisyyttä kuvaava suora on aina
+kohtisuorassa toista suoraa vastaan.
 
-The formula for calculating the distance is presented below:
+Alapuolella on kaava, jolla etäisyys lasketaan:
 
 $$d = \frac{|ax_0 + by_0 + c|}{\sqrt{a^2 + b^2}}$$
 
-The linear equation is of the form $ax + by + c = 0$. The point
-is $(x_0, y_0)$, and $d$ is the distance.
+Suoran yhtälö on muotoa $ax + by + c = 0$. Piste on $(x_0, y_0)$,
+ja $d$ on etäisyys.
 
-There's a fixed line on the stage, to which the distance is
-calculated.
+Näkymässä on kiinteästi paikallaan oleva suora. Laskettu etäisyys
+on pisteen etäisyys tähän suoraan.
 
-In code the distance is calculated as follows in the `GeneralFormEquation`
-class:
+Koodissa etäisyys lasketaan seuraavasti `GeneralFormEquation`-luokassa:
 
 ```typescript
 distanceTo = (v: Vector3) => Math.abs(((this.a * v.x) + (this.b * v.y) + this.c))
   / Math.sqrt((this.a * this.a) + (this.b * this.b));
 ```
 
-[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_3_3_pointlinedist.ts)
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/1_3_3_pointlinedist.ts)

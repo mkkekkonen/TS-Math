@@ -15,7 +15,7 @@ form:
 $$\bar r = x \bar i + y \bar j$$
 
 The $\bar i$ and $\bar j$ vectors are unit vectors pointing to the
-directions of the $x$ and $y$ axes, respectively. The $x$ nad $y$
+directions of the $x$ and $y$ axes, respectively. The $x$ and $y$
 values are scalars representing the objects's distance from the
 origin.
 

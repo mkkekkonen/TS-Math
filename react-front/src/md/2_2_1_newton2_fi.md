@@ -1,20 +1,22 @@
-# Newton's Second Law
+# Newtonin toinen laki
 
-Newton's second law can be stated as:
+Newtonin toinen laki voidaan ilmaista alla olevalla kaavalla:
 
 $$\bar F = m \bar a$$
 
-where $m$ is the mass of an object, $\bar F$ is the force
-applied to it, and $\bar a$ is the acceleration of the object.
+missä $m$ on kappaleen massa, $\bar F$ on kappaleeseen
+vaikuttava voima, ja $\bar a$ on kappaleen kiihtyvyys.
 
-This means that the force $\bar F$ gives an object with the
-mass $m$ an acceleration $\bar a$-
+Tämä tarkoittaa sitä, että voima $\bar F$ antaa kappaleelle,
+jolla on massa $m$, kiihtyvyyden $\bar a$.
 
-**You can "draw" force vectors by clicking on the canvas and
-dragging.** The force vectors are visualized as line segments.
+**Voit "piirtää" voimavektoreita klikkaamalla ja vetämällä
+näkymää.** Voimavektorit visualisoidaan janoina.
 
 <hr />
 
 <div>
-  <button id="resetButton" type="button" class="btn btn-dark">Reset</button>
+  <button id="resetButton" type="button" class="btn btn-dark">Palauta</button>
 </div>
+
+[Entry pointin lähdekoodi GitHubissa](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/2_2_1_newton2.ts)

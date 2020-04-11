@@ -1,8 +1,8 @@
 # Mirroring a Line Across X and Y Axes and the Origin
 
-**Click on the canvas to set line start and end points. Depending
-on selection, the line is mirrored across either the $x$ or $y$ axis or
-the origin.**
+**Click on the canvas to set line segment start and end points.** Depending
+on selection, the line segment is mirrored across either the $x$ or $y$ axis or
+the origin.
 
 <div>
   <div class="custom-control custom-radio">

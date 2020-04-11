@@ -44,3 +44,5 @@ update = (time: number) => {
   this.position = new Vector3(x, y);
 }
 ```
+
+[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/2_1_3_projectilemotion.ts)

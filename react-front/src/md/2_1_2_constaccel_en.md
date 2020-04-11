@@ -71,3 +71,5 @@ Here you can input the data and start the simulation:
   <button id="startButton" type="button" class="btn btn-dark">Start</button>
   <button id="resetButton" type="button" class="btn btn-dark">Reset</button>
 </div>
+
+[View entry point source in GitHub](https://github.com/mkkekkonen/TS-Math/blob/master/math/src/entryPoints/2_1_2_constaccel.ts)
