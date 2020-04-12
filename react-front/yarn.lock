@@ -11161,6 +11161,16 @@ ts-dedent@^1.1.0:
     mathjs "^6.2.5"
     typescript "^3.7.3"
 
+"ts-math@.\\ts-math-v0.0.7.tgz":
+  version "0.0.7"
+  resolved ".\\ts-math-v0.0.7.tgz#cafa71fe4807b3803809ef30fcf75659a938c92f"
+  dependencies:
+    "@types/mathjs" "^6.0.2"
+    jest "^24.9.0"
+    konva "^4.0.18"
+    mathjs "^6.2.5"
+    typescript "^3.7.3"
+
 ts-pnp@^1.1.2:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.1.6.tgz#389a24396d425a0d3162e96d2b4638900fdc289a"
