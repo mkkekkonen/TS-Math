@@ -31,6 +31,9 @@ const FixedNavCol = styled.div`
 
 const ContentWrapper = styled.div`
   padding: 1rem;
+  @media only screen and (min-width: 914px) {
+    max-width: calc(100% - 15rem);
+  }
 `;
 
 interface Props {
