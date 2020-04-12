@@ -74,7 +74,7 @@ export const run = () => {
   document.getElementById('resetButton')?.addEventListener('click', reset);
 
   stage.on('click', () => clickTapHandler(running, reset, start));
-  stage.on('tap', () => clickTapHandler(running, reset, start));
+  // stage.on('tap', () => clickTapHandler(running, reset, start));
 
   const animation = new Konva.Animation((frame) => {
     if (frame) {

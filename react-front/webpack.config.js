@@ -1,6 +1,7 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports = ({
   entry: './src/index.tsx',
   output: {
     filename: "bundle.js",
@@ -62,5 +63,9 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html',
     }),
+
+    new webpack.DefinePlugin({
+      'process.env.MOBILE': JSON.stringify(process.env.mobile),
+    }),
   ],
-};
+});

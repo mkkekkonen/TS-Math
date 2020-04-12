@@ -78,7 +78,7 @@ export const run = () => {
   const mirroredLine = new LineSegment2D(undefined, undefined, { strokeColor: constants.darkGrey });
 
   stage.on('click', () => clickTapHandler(stage, layer, line, mirroredLine));
-  stage.on('tap', () => clickTapHandler(stage, layer, line, mirroredLine));
+  // stage.on('tap', () => clickTapHandler(stage, layer, line, mirroredLine));
 
   const x = document.getElementById('x');
   if (x) x.addEventListener('click', () => drawLines(layer, line, mirroredLine));
