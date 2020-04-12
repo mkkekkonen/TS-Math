@@ -25,5 +25,5 @@ export const run = () => {
   const line = new LineSegment2D();
 
   stage.on('click', () => clickTapHandler(stage, layer, line));
-  stage.on('tap', () => clickTapHandler(stage, layer, line));
+  // stage.on('tap', () => clickTapHandler(stage, layer, line));
 };

@@ -23,5 +23,5 @@ export const run = () => {
   };
 
   stage.on('click', clickTapHandler);
-  stage.on('tap', clickTapHandler);
+  // stage.on('tap', clickTapHandler);
 };

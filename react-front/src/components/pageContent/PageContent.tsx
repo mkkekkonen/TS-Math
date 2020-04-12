@@ -45,6 +45,7 @@ export class PageContent extends React.Component<Props, State> {
     if (this.props.baseFileName !== prevProps.baseFileName
         || this.props.language !== prevProps.language) {
       this.loadContent();
+      document.getElementById('output').innerText = '';
     }
   }
 

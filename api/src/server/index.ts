@@ -7,6 +7,11 @@ import * as auth from '../auth';
 import { loginRouter, entityRouters } from '../routers';
 import { getConn } from '../dbInterface';
 
+const allowedOrigins = [
+  'http://localhost:8000',
+  'http://192.168.1.66:8000',
+];
+
 const initApp = async () => {
   const dbConnection = await getConn();
   await dbConnection.synchronize();
@@ -20,8 +25,10 @@ const initApp = async () => {
   app.use(cookieParser());
 
   app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:8000");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    if (allowedOrigins.includes(req.get('origin')!)) {
+      res.header("Access-Control-Allow-Origin", req.get('origin'));
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    }
     next();
   });
 

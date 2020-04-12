@@ -73,5 +73,5 @@ export const run = () => {
   );
 
   stage.on('click', handleClick);
-  stage.on('tap', handleClick);
+  // stage.on('tap', handleClick);
 };
