@@ -1,0 +1,43 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb-base"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "jest"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts"]
+      }
+    }
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "lines-between-class-members": "off",
+    "linebreak-style": "off",
+    "no-unused-vars": "off",
+    "no-useless-constructor": "off",
+    "no-empty-function": "off",
+    "no-unused-expressions": "off",
+    "no-cond-assign": ["error", "except-parens"],
+    "no-param-reassign": "off",
+    "semi": "error"
+  }
+}
