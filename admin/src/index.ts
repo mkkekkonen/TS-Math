@@ -1,6 +1,8 @@
 import express from 'express';
 import expressHandlebars from 'express-handlebars';
 
+import { authRouter } from './routers';
+
 const run = async () => {
   const app = express();
 
@@ -16,6 +18,8 @@ const run = async () => {
   app.get('/', async (req, res) => {
     res.render('home');
   });
+
+  app.use('/auth', authRouter);
 
   app.use((req, res) => {
     res.render('notFound');

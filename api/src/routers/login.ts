@@ -4,9 +4,9 @@ import {
   Response,
   NextFunction,
 } from 'express';
+
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
-
 import bcrypt from 'bcrypt';
 
 import secrets from '../assets/json/secrets.json';
