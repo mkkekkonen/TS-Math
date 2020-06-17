@@ -15,6 +15,8 @@ import { User } from '../entities';
 
 const router = Router();
 
+const authMiddleware = passport.authenticate('jwt', { session: false });
+
 router.post('/login',
   (req: Request, res: Response, next: NextFunction) => {
     const middleware = passport.authenticate('local', { session: false }, (err, user, info) => {
@@ -29,7 +31,7 @@ router.post('/login',
         });
       }
 
-      req.login(user, { session: false }, loginErr => {
+      return req.login(user, { session: false }, loginErr => {
         if (loginErr) {
           return res.status(loginErr.status || 500).send(loginErr.message);
         }
@@ -40,7 +42,7 @@ router.post('/login',
       });
     });
 
-    middleware(req, res, next);
+    return middleware(req, res, next);
   },
   (err: any, req: Request, res: Response, next: NextFunction) => (
     res.status(err.status || 500).send(err.message)
@@ -61,6 +63,10 @@ router.post('/register', async (req, res, next) => {
       res.status(500).send(e.message);
     }
   }
+});
+
+router.get('/loggedin', authMiddleware, (req, res, next) => {
+  return res.status(200).send();
 });
 
 export default router;

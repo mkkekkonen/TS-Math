@@ -32,6 +32,11 @@ const initApp = async () => {
     next();
   });
 
+  app.use((req, res, next) => {
+    console.log(req.body);
+    next();
+  });
+
   app.use('/auth', loginRouter);
 
   app.use('/category', entityRouters.categoryRouter);

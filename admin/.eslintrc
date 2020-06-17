@@ -38,6 +38,8 @@
     "no-unused-expressions": "off",
     "no-cond-assign": ["error", "except-parens"],
     "no-param-reassign": "off",
+    "no-console": "off",
+    "quote-props": "off",
     "semi": "error"
   }
 }

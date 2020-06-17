@@ -1,12 +1,20 @@
 import express from 'express';
 import expressHandlebars from 'express-handlebars';
+import logger from 'morgan';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 
 import { authRouter } from './routers';
+import { authApi } from './services/api';
 
 const run = async () => {
   const app = express();
 
   const handlebars = expressHandlebars.create();
+
+  app.use(logger('dev'));
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(cookieParser());
 
   app.use(express.static('src/assets'));
   app.use(express.static('src/content'));
@@ -16,7 +24,12 @@ const run = async () => {
   app.set('views', 'src/views');
 
   app.get('/', async (req, res) => {
-    res.render('home');
+    try {
+      await authApi.loggedIn(req.cookies.access_token);
+    } catch (e) {
+      return res.redirect('/auth/login');
+    }
+    return res.render('home');
   });
 
   app.use('/auth', authRouter);
