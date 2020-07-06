@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-sm">
+    <h1>Pages</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>URL Title</th>
+          <th>Index</th>
+          <th>Subcategory</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each entities}}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{urlTitle}}</td>
+            <td>{{index}}</td>
+            <td>{{subcategory.name}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

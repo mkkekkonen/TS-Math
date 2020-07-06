@@ -4,7 +4,7 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
-import { authRouter } from './routers';
+import { authRouter, entityRouters } from './routers';
 import { authApi } from './services/api';
 
 const run = async () => {
@@ -33,6 +33,17 @@ const run = async () => {
   });
 
   app.use('/auth', authRouter);
+
+  app.use(async (req, res, next) => {
+    try {
+      await authApi.loggedIn(req.cookies.access_token);
+    } catch (e) {
+      return res.redirect('/auth/login');
+    }
+    return next();
+  });
+
+  app.use('/categories', entityRouters.categoryRouter);
 
   app.use((req, res) => {
     res.render('notFound');
