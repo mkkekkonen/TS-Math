@@ -25,7 +25,11 @@
 
         <div class="collapse navbar-collapse" id="collapsible">
           <ul class="navbar-nav">
-
+            {{#each pages}}
+              <li class="nav-item">
+                <a class="nav-link" href="{{url}}">{{linkText}}</a>
+              </li>
+            {{/each}}
           </ul>
         </div>
       </nav>
