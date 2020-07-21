@@ -4,7 +4,7 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
-import { authRouter, entityRouters } from './routers';
+import { authRouter, entityRouters, commonData } from './routers';
 import { authApi } from './services/api';
 
 const run = async () => {
@@ -29,7 +29,7 @@ const run = async () => {
     } catch (e) {
       return res.redirect('/auth/login');
     }
-    return res.render('home');
+    return res.render('home', { ...commonData });
   });
 
   app.use('/auth', authRouter);
