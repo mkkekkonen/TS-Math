@@ -1,0 +1,1 @@
+export { CategoryRouterGenerator } from './categoryRouterGenerator';
