@@ -12,16 +12,22 @@
         </tr>
       </thead>
       <tbody>
-        {{#each entities}}
+        {{#each subcategories}}
           <tr>
             <td>{{id}}</td>
             <td>{{name}}</td>
             <td>{{index}}</td>
-            <td>{{categoryId}}</td>
+            <td>
+              {{#with (getById ../categories categoryId)}}
+                {{name}}
+              {{/with}}
+            </td>
           </tr>
         {{/each}}
       </tbody>
     </table>
+
+    <a class="btn btn-dark" href="/subcategories/create">Create new</a>
   </div>
 </div>
 

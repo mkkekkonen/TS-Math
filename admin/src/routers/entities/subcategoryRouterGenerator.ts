@@ -5,23 +5,34 @@ import { BaseEntityRouterGenerator } from './baseEntityRouterGenerator';
 
 import { commonData } from '../data';
 
-import { ICategory } from '../../entities';
+import { ICategory, ISubcategory } from '../../entities';
+import { GenericEntityApi } from '../../services/api';
 
-export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory> {
+export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubcategory> {
+  categoryApi: GenericEntityApi<ICategory>;
+
   constructor() {
     super(
-      '/category/',
-      'categories',
-      [body('name').isString()],
+      '/subcategory/',
+      'subcategories',
+      [
+        body('name').isString(),
+        body('category').isInt(),
+      ],
     );
+
+    this.categoryApi = new GenericEntityApi<ICategory>('/category/');
   }
 
   renderList = async (req: Request, res: Response) => {
-    const categories = await this.api.getAll();
+    const categories = await this.categoryApi.getAll();
+    const subcategories = await this.api.getAll();
+
     return res.render(
       this.listView,
       {
         categories,
+        subcategories,
         ...commonData,
       },
     );
@@ -39,7 +50,7 @@ export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory
     }
 
     try {
-      const entity = await this.api.create(req.body, req.cookies.access_token);
+      const entiry = await this.api.create(req.body, req.cookies.access_token);
     } catch (e) {
       return res.render(
         this.createEditView,

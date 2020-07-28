@@ -6,11 +6,12 @@ import cookieParser from 'cookie-parser';
 
 import { authRouter, entityRouters, commonData } from './routers';
 import { authApi } from './services/api';
+import helpers from './helpers';
 
 const run = async () => {
   const app = express();
 
-  const handlebars = expressHandlebars.create();
+  const handlebars = expressHandlebars.create({ helpers });
 
   app.use(logger('dev'));
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -44,7 +45,7 @@ const run = async () => {
   });
 
   app.use('/categories', entityRouters.categoryRouter);
-  // app.use('/subcategories', entityRouters.subcategoryRouter);
+  app.use('/subcategories', entityRouters.subcategoryRouter);
   // app.use('/pages', entityRouters.pageRouter);
 
   app.use((req, res) => {
