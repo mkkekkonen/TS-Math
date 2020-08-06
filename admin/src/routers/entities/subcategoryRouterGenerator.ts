@@ -17,7 +17,7 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
       'subcategories',
       [
         body('name').isString(),
-        body('category').isInt(),
+        body('categoryId').isInt(),
       ],
     );
 
@@ -38,9 +38,17 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
     );
   }
 
-  renderCreate = async (req: Request, res: Response) => (
-    res.render(this.createEditView, { ...commonData })
-  )
+  renderCreate = async (req: Request, res: Response) => {
+    const categories = await this.categoryApi.getAll();
+
+    return res.render(
+      this.createEditView,
+      {
+        categories,
+        ...commonData,
+      },
+    );
+  }
 
   createNew = async (req: Request, res: Response) => {
     const errorMessage = this.getError(req);
@@ -50,11 +58,17 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
     }
 
     try {
-      const entiry = await this.api.create(req.body, req.cookies.access_token);
+      const entity = await this.api.create(req.body, req.cookies.access_token);
     } catch (e) {
+      const categories = await this.categoryApi.getAll();
+
       return res.render(
         this.createEditView,
-        { flashMessage: e.message, ...commonData },
+        {
+          flashMessage: e.message,
+          categories,
+          ...commonData,
+        },
       );
     }
 
