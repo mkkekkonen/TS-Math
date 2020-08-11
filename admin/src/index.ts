@@ -46,7 +46,7 @@ const run = async () => {
 
   app.use('/categories', entityRouters.categoryRouter);
   app.use('/subcategories', entityRouters.subcategoryRouter);
-  // app.use('/pages', entityRouters.pageRouter);
+  app.use('/pages', entityRouters.pageRouter);
 
   app.use((req, res) => {
     res.render('notFound');
