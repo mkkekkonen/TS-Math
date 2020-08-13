@@ -32,6 +32,8 @@ export abstract class BaseEntityRouterGenerator<T> {
 
     this.router.get('/create', this.renderCreate);
 
+    this.router.get('/edit/:id', this.renderEdit);
+
     this.router.post('/create', this.validationRules, this.createNew);
 
     return this.router;
@@ -51,6 +53,8 @@ export abstract class BaseEntityRouterGenerator<T> {
   abstract renderList(req: Request, res: Response): Promise<void>;
 
   abstract renderCreate(req: Request, res: Response): Promise<void>;
+
+  abstract renderEdit(req: Request, res: Response): Promise<void>;
 
   abstract createNew(req: Request, res: Response): Promise<void>;
 

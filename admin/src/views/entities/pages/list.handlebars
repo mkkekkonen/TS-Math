@@ -10,6 +10,7 @@
           <th>URL Title</th>
           <th>Index</th>
           <th>Subcategory</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -20,6 +21,9 @@
             <td>{{urlTitle}}</td>
             <td>{{index}}</td>
             <td>{{subcategoryId}}</td>
+            <td>
+              <a class="btn btn-dark" href="/pages/edit/{{id}}">Edit</a>
+            </td>
           </tr>
         {{/each}}
       </tbody>

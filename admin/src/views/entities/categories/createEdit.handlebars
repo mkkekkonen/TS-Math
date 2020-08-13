@@ -4,15 +4,44 @@
       <div class="alert alert-danger" role="alert">{{flashMessage}}</div>
     {{/if}}
 
-    <h1>Create a New Category</h1>
+    {{#unless category}}
+      <h1>Create a New Category</h1>
+    {{else}}
+      <h1>Edit Category #{{category.id}}</h1>
+    {{/unless}}
 
-    <form action="/categories/create" method="POST">
+    <form
+      {{#unless category}}
+        action="/categories/create"
+      {{else}}
+        action="/categories/edit"
+      {{/unless}}
+      method="POST"
+    >
+      {{#if category}}
+        <input name="id" type="hidden" value="{{category.id}}" />
+      {{/if}}
+
       <div class="form-group">
         <label for="name">Name</label>
-        <input name="name" type="text" class="form-control" id="name" />
+        <input
+          name="name"
+          type="text"
+          class="form-control"
+          id="name"
+          {{#if category}}
+            value="{{category.name}}"
+          {{/if}}
+        />
       </div>
 
-      <button class="btn btn-dark">Create</button>
+      <button class="btn btn-dark">
+        {{#unless category}}
+          Create
+        {{else}}
+          Save
+        {{/unless}}
+      </button>
     </form>
   </div>
 </div>

@@ -50,6 +50,20 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
     );
   }
 
+  renderEdit = async (req: Request, res: Response) => {
+    const subcategory = await this.api.getById(+req.params.id);
+    const categories = await this.categoryApi.getAll();
+
+    return res.render(
+      this.createEditView,
+      {
+        subcategory,
+        categories,
+        ...commonData,
+      },
+    );
+  }
+
   createNew = async (req: Request, res: Response) => {
     const errorMessage = this.getError(req);
 

@@ -9,6 +9,7 @@
           <th>Name</th>
           <th>Index</th>
           <th>Category</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -22,6 +23,9 @@
                 {{name}}
               {{/with}}
             </td>
+            <td>
+              <a class="btn btn-dark" href="/subcategories/edit/{{id}}">Edit</a>
+            </td>
           </tr>
         {{/each}}
       </tbody>
@@ -30,4 +34,3 @@
     <a class="btn btn-dark" href="/subcategories/create">Create new</a>
   </div>
 </div>
-

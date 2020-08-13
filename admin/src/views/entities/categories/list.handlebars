@@ -8,6 +8,7 @@
           <th>#</th>
           <th>Name</th>
           <th>Index</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +17,9 @@
             <td>{{id}}</td>
             <td>{{name}}</td>
             <td>{{index}}</td>
+            <td>
+              <a class="btn btn-dark" href="/categories/edit/{{id}}">Edit</a>
+            </td>
           </tr>
         {{/each}}
       </tbody>
