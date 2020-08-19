@@ -44,11 +44,45 @@ export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory
     }
 
     try {
-      const entity = await this.api.create(req.body, req.cookies.access_token);
+      const category = await this.api.create(req.body, req.cookies.access_token);
     } catch (e) {
       return res.render(
         this.createEditView,
         { flashMessage: e.message, ...commonData },
+      );
+    }
+
+    return res.redirect(`/${this.viewDirectoryName}`);
+  }
+
+  edit = async (req: Request, res: Response) => {
+    const id = +req.params.id;
+    const category = await this.api.getById(id);
+
+    const errorMessage = this.getError(req);
+
+    if (errorMessage) {
+      return res.render(
+        this.createEditView,
+        {
+          category,
+          flashMessage: errorMessage,
+          ...commonData,
+        },
+      );
+    }
+
+    try {
+      const newCategory = await this.api.edit(id, req.body, req.cookies.access_token);
+    } catch (e) {
+      return res.render(
+        this.createEditView,
+        {
+          id,
+          category,
+          flashMessage: e.message,
+          ...commonData,
+        },
       );
     }
 

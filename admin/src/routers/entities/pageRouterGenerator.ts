@@ -89,4 +89,40 @@ export class PageRouterGenerator extends BaseEntityRouterGenerator<IPage> {
 
     return res.redirect(`/${this.viewDirectoryName}`);
   }
+
+  edit = async (req: Request, res: Response) => {
+    const id = +req.params.id;
+    const page = await this.api.getById(id);
+    const subcategories = await this.subcategoryApi.getAll();
+
+    const errorMessage = this.getError(req);
+
+    if (errorMessage) {
+      return res.render(
+        this.createEditView,
+        {
+          page,
+          subcategories,
+          flashMessage: errorMessage,
+          ...commonData,
+        },
+      );
+    }
+
+    try {
+      const newPage = await this.api.edit(id, req.body, req.cookies.access_token);
+    } catch (e) {
+      return res.render(
+        this.createEditView,
+        {
+          page,
+          subcategories,
+          flashMessage: e.message,
+          ...commonData,
+        },
+      );
+    }
+
+    return res.redirect(`/${this.viewDirectoryName}`);
+  }
 }

@@ -36,6 +36,10 @@ export abstract class BaseEntityRouterGenerator<T> {
 
     this.router.post('/create', this.validationRules, this.createNew);
 
+    this.router.post('/edit/:id', this.validationRules, this.edit);
+
+    // this.router.post('/delete/:id', this.delete);
+
     return this.router;
   };
 
@@ -57,6 +61,10 @@ export abstract class BaseEntityRouterGenerator<T> {
   abstract renderEdit(req: Request, res: Response): Promise<void>;
 
   abstract createNew(req: Request, res: Response): Promise<void>;
+
+  abstract edit(req: Request, res: Response): Promise<void>;
+
+  // abstract delete(req: Request, res: Response): Promise<void>;
 
   get listView() {
     return `entities/${this.viewDirectoryName}/list`;

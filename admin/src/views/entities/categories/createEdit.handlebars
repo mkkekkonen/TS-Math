@@ -14,14 +14,10 @@
       {{#unless category}}
         action="/categories/create"
       {{else}}
-        action="/categories/edit"
+        action="/categories/edit/{{category.id}}"
       {{/unless}}
       method="POST"
     >
-      {{#if category}}
-        <input name="id" type="hidden" value="{{category.id}}" />
-      {{/if}}
-
       <div class="form-group">
         <label for="name">Name</label>
         <input

@@ -11,17 +11,13 @@
     {{/unless}}
 
     <form
-      {{#unless category}}
+      {{#unless subcategory}}
         action="/subcategories/create"
       {{else}}
-        action="/subcategories/edit"
+        action="/subcategories/edit/{{subcategory.id}}"
       {{/unless}}
       method="POST"
     >
-      {{#if subcategory}}
-        <input name="id" type="hidden" value="{{subcategory.id}}" />
-      {{/if}}
-
       <div class="form-group">
         <label for="name">Name</label>
         <input

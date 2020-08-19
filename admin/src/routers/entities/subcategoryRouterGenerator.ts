@@ -88,4 +88,40 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
 
     return res.redirect(`/${this.viewDirectoryName}`);
   }
+
+  edit = async (req: Request, res: Response) => {
+    const id = +req.params.id;
+    const subcategory = await this.api.getById(id);
+    const categories = await this.categoryApi.getAll();
+
+    const errorMessage = this.getError(req);
+
+    if (errorMessage) {
+      return res.render(
+        this.createEditView,
+        {
+          subcategory,
+          categories,
+          flashMessage: errorMessage,
+          ...commonData,
+        },
+      );
+    }
+
+    try {
+      const newSubcategory = await this.api.edit(id, req.body, req.cookies.access_token);
+    } catch (e) {
+      return res.render(
+        this.createEditView,
+        {
+          subcategory,
+          categories,
+          flashMessage: e.message,
+          ...commonData,
+        },
+      );
+    }
+
+    return res.redirect(`/${this.viewDirectoryName}`);
+  }
 }
