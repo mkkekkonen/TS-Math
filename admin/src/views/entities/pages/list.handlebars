@@ -22,7 +22,13 @@
             <td>{{index}}</td>
             <td>{{subcategoryId}}</td>
             <td>
-              <a class="btn btn-dark" href="/pages/edit/{{id}}">Edit</a>
+              <div class="list-button-container">
+                <a class="btn btn-dark" href="/pages/edit/{{id}}">Edit</a>
+                &nbsp;
+                <form action="/pages/delete/{{id}}" method="POST" onsubmit="return confirm('Are you sure?');">
+                  <button class="btn btn-danger">Delete</button>
+                </form>
+              </div>
             </td>
           </tr>
         {{/each}}

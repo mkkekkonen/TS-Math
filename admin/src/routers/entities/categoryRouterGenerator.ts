@@ -18,10 +18,12 @@ export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory
 
   renderList = async (req: Request, res: Response) => {
     const categories = await this.api.getAll();
+
     return res.render(
       this.listView,
       {
         categories,
+        flashMessage: req.query.errmsg && decodeURIComponent(req.query.errmsg as string),
         ...commonData,
       },
     );
@@ -84,6 +86,26 @@ export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory
           ...commonData,
         },
       );
+    }
+
+    return res.redirect(`/${this.viewDirectoryName}`);
+  }
+
+  delete = async (req: Request, res: Response) => {
+    const id = +req.params.id;
+
+    const errorMessage = this.getError(req);
+
+    if (errorMessage) {
+      const encodedMessage = encodeURIComponent(errorMessage);
+      return res.redirect(`/${this.viewDirectoryName}?errmsg=${encodedMessage}`);
+    }
+
+    try {
+      await this.api.delete(id, req.cookies.access_token);
+    } catch (e) {
+      const encodedMessage = encodeURIComponent(e.message);
+      return res.redirect(`/${this.viewDirectoryName}?errmsg=${encodedMessage}`);
     }
 
     return res.redirect(`/${this.viewDirectoryName}`);

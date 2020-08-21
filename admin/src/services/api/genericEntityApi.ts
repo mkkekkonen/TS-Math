@@ -2,6 +2,14 @@ import querystring from 'querystring';
 
 import * as settings from './settings';
 
+const getAuthorizationHeader = (accessToken: string) => ({
+  Authorization: `Bearer ${accessToken}`,
+});
+
+const contentTypeHeader = {
+  'Content-Type': 'application/x-www-form-urlencoded',
+};
+
 export class GenericEntityApi<T> {
   constructor(private baseUrl: string) {}
 
@@ -21,8 +29,8 @@ export class GenericEntityApi<T> {
       querystring.stringify(data),
       {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/x-www-form-urlencoded',
+          ...getAuthorizationHeader(accessToken),
+          ...contentTypeHeader,
         },
       },
     );
@@ -35,11 +43,20 @@ export class GenericEntityApi<T> {
       querystring.stringify(data),
       {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/x-www-form-urlencoded',
+          ...getAuthorizationHeader(accessToken),
+          ...contentTypeHeader,
         },
       },
     );
     return response.data as T;
+  }
+
+  delete = async (id: number, accessToken: string) => {
+    const response = await settings.getInstance().delete(
+      `${this.baseUrl}${id}`,
+      {
+        headers: getAuthorizationHeader(accessToken),
+      },
+    );
   }
 }

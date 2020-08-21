@@ -1,5 +1,9 @@
 <div class="row">
   <div class="col-sm">
+    {{#if flashMessage}}
+      <div class="alert alert-danger" role="alert">{{flashMessage}}</div>
+    {{/if}}
+
     <h1>Categories</h1>
 
     <table class="table">
@@ -18,7 +22,13 @@
             <td>{{name}}</td>
             <td>{{index}}</td>
             <td>
-              <a class="btn btn-dark" href="/categories/edit/{{id}}">Edit</a>
+              <div class="list-button-container">
+                <a class="btn btn-dark" href="/categories/edit/{{id}}">Edit</a>
+                &nbsp;
+                <form action="/categories/delete/{{id}}" method="POST" onsubmit="return confirm('Are you sure?');">
+                  <button class="btn btn-danger">Delete</button>
+                </form>
+              </div>
             </td>
           </tr>
         {{/each}}
