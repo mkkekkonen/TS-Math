@@ -65,8 +65,9 @@ router.post('/register', async (req, res, next) => {
   }
 });
 
-router.get('/loggedin', authMiddleware, (req, res, next) => {
-  return res.status(200).send();
+router.get('/loggedin', authMiddleware, async (req, res, next) => {
+  const user = await req.user;
+  return res.status(200).json({ user });
 });
 
 export default router;
