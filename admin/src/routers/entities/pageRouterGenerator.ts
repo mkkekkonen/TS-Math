@@ -53,7 +53,13 @@ export class PageRouterGenerator extends BaseEntityRouterGenerator<IPage> {
   }
 
   renderEdit = async (req: Request, res: Response) => {
-    const page = await this.api.getById(+req.params.id);
+    let page;
+    try {
+      page = await this.api.getById(+req.params.id);
+    } catch (e) {
+      return res.render('notFound', { ...commonData });
+    }
+
     const subcategories = await this.subcategoryApi.getAll();
 
     return res.render(
@@ -93,7 +99,14 @@ export class PageRouterGenerator extends BaseEntityRouterGenerator<IPage> {
 
   edit = async (req: Request, res: Response) => {
     const id = +req.params.id;
-    const page = await this.api.getById(id);
+
+    let page;
+    try {
+      page = await this.api.getById(id);
+    } catch (e) {
+      return res.render('notFound', { ...commonData });
+    }
+
     const subcategories = await this.subcategoryApi.getAll();
 
     const errorMessage = this.getError(req);

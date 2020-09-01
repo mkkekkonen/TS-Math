@@ -20,7 +20,11 @@
             <td>{{name}}</td>
             <td>{{urlTitle}}</td>
             <td>{{index}}</td>
-            <td>{{subcategoryId}}</td>
+            <td>
+              {{#with (getById ../subcategories subcategoryId)}}
+                {{name}}
+              {{/with}}
+            </td>
             <td>
               <div class="list-button-container">
                 <a class="btn btn-dark" href="/pages/edit/{{id}}">Edit</a>

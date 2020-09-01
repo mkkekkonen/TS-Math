@@ -34,8 +34,12 @@ export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory
   )
 
   renderEdit = async (req: Request, res: Response) => {
-    const category = await this.api.getById(+req.params.id);
-    return res.render(this.createEditView, { category, ...commonData });
+    try {
+      const category = await this.api.getById(+req.params.id);
+      return res.render(this.createEditView, { category, ...commonData });
+    } catch (e) {
+      return res.render('notFound', { ...commonData });
+    }
   }
 
   createNew = async (req: Request, res: Response) => {
@@ -59,7 +63,13 @@ export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory
 
   edit = async (req: Request, res: Response) => {
     const id = +req.params.id;
-    const category = await this.api.getById(id);
+    let category;
+
+    try {
+      category = await this.api.getById(id);
+    } catch (e) {
+      return res.render('notFound', { ...commonData });
+    }
 
     const errorMessage = this.getError(req);
 

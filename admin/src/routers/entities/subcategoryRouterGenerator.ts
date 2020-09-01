@@ -52,7 +52,13 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
   }
 
   renderEdit = async (req: Request, res: Response) => {
-    const subcategory = await this.api.getById(+req.params.id);
+    let subcategory;
+    try {
+      subcategory = await this.api.getById(+req.params.id);
+    } catch (e) {
+      return res.render('notFound', { ...commonData });
+    }
+
     const categories = await this.categoryApi.getAll();
 
     return res.render(
@@ -92,7 +98,14 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
 
   edit = async (req: Request, res: Response) => {
     const id = +req.params.id;
-    const subcategory = await this.api.getById(id);
+
+    let subcategory;
+    try {
+      subcategory = await this.api.getById(id);
+    } catch (e) {
+      return res.render('notFound', { ...commonData });
+    }
+
     const categories = await this.categoryApi.getAll();
 
     const errorMessage = this.getError(req);
