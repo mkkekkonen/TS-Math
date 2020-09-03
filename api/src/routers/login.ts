@@ -4,9 +4,9 @@ import {
   Response,
   NextFunction,
 } from 'express';
+
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
-
 import bcrypt from 'bcrypt';
 
 import secrets from '../assets/json/secrets.json';
@@ -14,6 +14,8 @@ import { userInterface } from '../dbInterface/interfaces';
 import { User } from '../entities';
 
 const router = Router();
+
+const authMiddleware = passport.authenticate('jwt', { session: false });
 
 router.post('/login',
   (req: Request, res: Response, next: NextFunction) => {
@@ -29,7 +31,7 @@ router.post('/login',
         });
       }
 
-      req.login(user, { session: false }, loginErr => {
+      return req.login(user, { session: false }, loginErr => {
         if (loginErr) {
           return res.status(loginErr.status || 500).send(loginErr.message);
         }
@@ -40,7 +42,7 @@ router.post('/login',
       });
     });
 
-    middleware(req, res, next);
+    return middleware(req, res, next);
   },
   (err: any, req: Request, res: Response, next: NextFunction) => (
     res.status(err.status || 500).send(err.message)
@@ -61,6 +63,11 @@ router.post('/register', async (req, res, next) => {
       res.status(500).send(e.message);
     }
   }
+});
+
+router.get('/loggedin', authMiddleware, async (req, res, next) => {
+  const user = await req.user;
+  return res.status(200).json({ user });
 });
 
 export default router;

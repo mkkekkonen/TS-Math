@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-sm">
+    {{#if flashMessage}}
+      <div class="alert alert-danger" role="alert">{{flashMessage}}</div>
+    {{/if}}
+
+    {{#unless category}}
+      <h1>Create a New Category</h1>
+    {{else}}
+      <h1>Edit Category #{{category.id}}</h1>
+    {{/unless}}
+
+    <form
+      {{#unless category}}
+        action="/categories/create"
+      {{else}}
+        action="/categories/edit/{{category.id}}"
+      {{/unless}}
+      method="POST"
+    >
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          name="name"
+          type="text"
+          class="form-control"
+          id="name"
+          {{#if category}}
+            value="{{category.name}}"
+          {{/if}}
+        />
+      </div>
+
+      <button class="btn btn-dark">
+        {{#unless category}}
+          Create
+        {{else}}
+          Save
+        {{/unless}}
+      </button>
+    </form>
+  </div>
+</div>

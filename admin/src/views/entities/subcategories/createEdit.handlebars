@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-sm">
+    {{#if flashMessage}}
+      <div class="alert alert-danger" role="alert">{{flashMessage}}</div>
+    {{/if}}
+
+    {{#unless subcategory}}
+      <h1>Create a New Subcategory</h1>
+    {{else}}
+      <h1>Edit Subcategory #{{subcategory.id}}</h1>
+    {{/unless}}
+
+    <form
+      {{#unless subcategory}}
+        action="/subcategories/create"
+      {{else}}
+        action="/subcategories/edit/{{subcategory.id}}"
+      {{/unless}}
+      method="POST"
+    >
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          name="name"
+          type="text"
+          class="form-control"
+          id="name"
+          {{#if subcategory}}
+            value="{{subcategory.name}}"
+          {{/if}}
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="categoryId">Category</label>
+        <select name="categoryId" class="form-control" id="categoryId">
+          {{#each categories}}
+            <option
+              value="{{id}}"
+              {{#if (equals id ../subcategory.categoryId)}}
+                selected
+              {{/if}}
+            >
+              {{name}}
+            </option>
+          {{/each}}
+        </select>
+      </div>
+
+      <button class="btn btn-dark">
+        {{#unless subcategory}}
+          Create
+        {{else}}
+          Save
+        {{/unless}}
+      </button>
+    </form>
+  </div>
+</div>

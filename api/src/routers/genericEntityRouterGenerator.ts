@@ -26,6 +26,18 @@ export class GenericEntityRouterGenerator<T> {
       }
     });
 
+    router.get('/:id', async (req, res, next) => {
+      try {
+        const entity = await this.dbInterface.getOne(+req.params.id);
+        if (!entity) {
+          return res.status(404).send('Not found');
+        }
+        return res.json(entity);
+      } catch (e) {
+        return handleError(e, res);
+      }
+    });
+
     router.post('/', authMiddleware, async (req, res, next) => {
       try {
         const entity = await this.dbInterface.create(req.body);

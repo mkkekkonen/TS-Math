@@ -6,21 +6,21 @@
     <link rel="stylesheet" type="text/css" href="{{urlBase}}/css/bootstrap-reboot.css" />
     <link rel="stylesheet" type="text/css" href="{{urlBase}}/css/bootstrap-grid.css" />
   </head>
-</html>
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2">
-        {{#each files}}
-          <div>
-            <a href="/{{name}}">{{name}}</a>
-          </div>
-        {{/each}}
-      </div>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2">
+          {{#each files}}
+            <div>
+              <a href="/{{name}}">{{name}}</a>
+            </div>
+          {{/each}}
+        </div>
 
-      <div class="col-sm-10">
-        {{{body}}}
+        <div class="col-sm-10">
+          {{{body}}}
+        </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-sm">
+    <h1>Pages</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>URL Title</th>
+          <th>Index</th>
+          <th>Subcategory</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each pages}}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{urlTitle}}</td>
+            <td>{{index}}</td>
+            <td>
+              {{#with (getById ../subcategories subcategoryId)}}
+                {{name}}
+              {{/with}}
+            </td>
+            <td>
+              <div class="list-button-container">
+                <a class="btn btn-dark" href="/pages/edit/{{id}}">Edit</a>
+                &nbsp;
+                <form action="/pages/delete/{{id}}" method="POST" onsubmit="return confirm('Are you sure?');">
+                  <button class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <a class="btn btn-dark" href="/pages/create">Create new</a>
+  </div>
+</div>

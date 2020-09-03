@@ -1,0 +1,14 @@
+[
+  {
+    "linkText": "Categories",
+    "url": "/categories/"
+  },
+  {
+    "linkText": "Subcategories",
+    "url": "/subcategories/"
+  },
+  {
+    "linkText": "Pages",
+    "url": "/pages/"
+  }
+]
