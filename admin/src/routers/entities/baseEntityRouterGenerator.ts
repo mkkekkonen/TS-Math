@@ -8,8 +8,6 @@ import {
   validationResult,
 } from 'express-validator';
 
-import { commonData } from '../data';
-
 import { GenericEntityApi } from '../../services/api';
 
 export abstract class BaseEntityRouterGenerator<T> {
@@ -29,15 +27,11 @@ export abstract class BaseEntityRouterGenerator<T> {
     this.router = Router();
 
     this.router.get('/', this.renderList);
-
     this.router.get('/create', this.renderCreate);
-
     this.router.get('/edit/:id', this.renderEdit);
 
     this.router.post('/create', this.validationRules, this.createNew);
-
     this.router.post('/edit/:id', this.validationRules, this.edit);
-
     this.router.post('/delete/:id', this.delete);
 
     return this.router;
