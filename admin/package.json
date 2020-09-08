@@ -5,7 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "dev": "ts-node-dev --inspect=9230 --respawn src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc --outDir ./dist"
   },
   "author": "Maija Kekkonen",
   "license": "CC-BY-4.0",
