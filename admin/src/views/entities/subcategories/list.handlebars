@@ -29,9 +29,9 @@
             </td>
             <td>
               <div class="list-button-container">
-                <a class="btn btn-dark" href="/subcategories/edit/{{id}}">Edit</a>
+                <a class="btn btn-dark" href="{{../basePath}}/subcategories/edit/{{id}}">Edit</a>
                 &nbsp;
-                <form action="/subcategories/delete/{{id}}" method="POST" onsubmit="return confirm('Are you sure?');">
+                <form action="{{../basePath}}/subcategories/delete/{{id}}" method="POST" onsubmit="return confirm('Are you sure?');">
                   <button class="btn btn-danger">Delete</button>
                 </form>
               </div>
@@ -41,6 +41,6 @@
       </tbody>
     </table>
 
-    <a class="btn btn-dark" href="/subcategories/create">Create new</a>
+    <a class="btn btn-dark" href="{{basePath}}/subcategories/create">Create new</a>
   </div>
 </div>

@@ -3,6 +3,10 @@ import axios, { AxiosInstance } from 'axios';
 let instance: AxiosInstance;
 
 export const getApiBaseUrl = () => {
+  if (process.env.PROXY_TEST) {
+    return 'http://localhost/math-api';
+  }
+
   switch (process.env.NODE_ENV) {
     case 'production':
       return 'https://www.mkkekkonen.com/math-api';

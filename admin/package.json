@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "dev": "ts-node-dev --inspect=9230 --respawn src/index.ts",
+    "dev:proxy": "cross-env PROXY_TEST=true ts-node-dev --inspect=9230 --respawn src/index.ts",
     "test": "jest",
     "build": "tsc --outDir ./dist"
   },
@@ -31,6 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^3.1.0",
     "@typescript-eslint/parser": "^3.1.0",
     "babel-jest": "^26.0.1",
+    "cross-env": "^7.0.2",
     "eslint": "^7.1.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",

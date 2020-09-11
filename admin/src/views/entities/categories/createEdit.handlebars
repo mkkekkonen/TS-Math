@@ -12,9 +12,9 @@
 
     <form
       {{#unless category}}
-        action="/categories/create"
+        action="{{basePath}}/categories/create"
       {{else}}
-        action="/categories/edit/{{category.id}}"
+        action="{{basePath}}/categories/edit/{{category.id}}"
       {{/unless}}
       method="POST"
     >

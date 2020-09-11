@@ -12,9 +12,9 @@
 
     <form
       {{#unless page}}
-        action="/pages/create"
+        action="{{basePath}}/pages/create"
       {{else}}
-        action="/pages/edit/{{page.id}}"
+        action="{{basePath}}/pages/edit/{{page.id}}"
       {{/unless}}
       method="POST"
     >

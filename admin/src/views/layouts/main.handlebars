@@ -2,10 +2,10 @@
 <html>
   <head>
     <title>Math Visualized - Admin Interface</title>
-    <link rel="stylesheet" type="text/css" href="{{urlBase}}/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="{{urlBase}}/css/bootstrap-reboot.css" />
-    <link rel="stylesheet" type="text/css" href="{{urlBase}}/css/bootstrap-grid.css" />
-    <link rel="stylesheet" type="text/css" href="{{urlBase}}/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{{basePath}}/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="{{basePath}}/css/bootstrap-reboot.css" />
+    <link rel="stylesheet" type="text/css" href="{{basePath}}/css/bootstrap-grid.css" />
+    <link rel="stylesheet" type="text/css" href="{{basePath}}/css/style.css" />
   </head>
   <body>
     <div class="container">
@@ -28,7 +28,7 @@
           <ul class="navbar-nav">
             {{#each navPages}}
               <li class="nav-item">
-                <a class="nav-link" href="{{url}}">{{linkText}}</a>
+                <a class="nav-link" href="{{../basePath}}{{url}}">{{linkText}}</a>
               </li>
             {{/each}}
           </ul>
