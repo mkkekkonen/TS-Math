@@ -27,9 +27,9 @@
             </td>
             <td>
               <div class="list-button-container">
-                <a class="btn btn-dark" href="/pages/edit/{{id}}">Edit</a>
+                <a class="btn btn-dark" href="{{../basePath}}/pages/edit/{{id}}">Edit</a>
                 &nbsp;
-                <form action="/pages/delete/{{id}}" method="POST" onsubmit="return confirm('Are you sure?');">
+                <form action="{{../basePath}}/pages/delete/{{id}}" method="POST" onsubmit="return confirm('Are you sure?');">
                   <button class="btn btn-danger">Delete</button>
                 </form>
               </div>
@@ -39,6 +39,6 @@
       </tbody>
     </table>
 
-    <a class="btn btn-dark" href="/pages/create">Create new</a>
+    <a class="btn btn-dark" href="{{basePath}}/pages/create">Create new</a>
   </div>
 </div>

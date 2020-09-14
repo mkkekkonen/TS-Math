@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 
 import { authRouter, entityRouters, commonData } from './routers';
 import { authApi } from './services/api';
+import { getPath } from './services/util';
 import helpers from './helpers';
 
 const adminMiddleware = async (req: Request, res: Response, next: NextFunction) => {
@@ -15,7 +16,7 @@ const adminMiddleware = async (req: Request, res: Response, next: NextFunction) 
       return next();
     }
   } catch (e) {
-    return res.redirect('/auth/login');
+    return res.redirect(getPath('/auth/login'));
   }
 
   return res.send('Forbidden');
@@ -41,7 +42,7 @@ const run = async () => {
     try {
       await authApi.loggedIn(req.cookies.access_token);
     } catch (e) {
-      return res.redirect('/auth/login');
+      return res.redirect(getPath('/auth/login'));
     }
     return res.render('home', { ...commonData });
   });

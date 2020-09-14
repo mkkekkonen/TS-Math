@@ -5,6 +5,8 @@ import { BaseEntityRouterGenerator } from './baseEntityRouterGenerator';
 
 import { commonData } from '../data';
 
+import { getPath } from '../../services/util';
+
 import { ICategory } from '../../entities';
 
 export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory> {
@@ -58,7 +60,7 @@ export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory
       );
     }
 
-    return res.redirect(`/${this.viewDirectoryName}`);
+    return res.redirect(getPath(`/${this.viewDirectoryName}`));
   }
 
   edit = async (req: Request, res: Response) => {
@@ -98,7 +100,7 @@ export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory
       );
     }
 
-    return res.redirect(`/${this.viewDirectoryName}`);
+    return res.redirect(getPath(`/${this.viewDirectoryName}`));
   }
 
   delete = async (req: Request, res: Response) => {
@@ -108,16 +110,16 @@ export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory
 
     if (errorMessage) {
       const encodedMessage = encodeURIComponent(errorMessage);
-      return res.redirect(`/${this.viewDirectoryName}?errmsg=${encodedMessage}`);
+      return res.redirect(getPath(`/${this.viewDirectoryName}?errmsg=${encodedMessage}`));
     }
 
     try {
       await this.api.delete(id, req.cookies.access_token);
     } catch (e) {
       const encodedMessage = encodeURIComponent(e.message);
-      return res.redirect(`/${this.viewDirectoryName}?errmsg=${encodedMessage}`);
+      return res.redirect(getPath(`/${this.viewDirectoryName}?errmsg=${encodedMessage}`));
     }
 
-    return res.redirect(`/${this.viewDirectoryName}`);
+    return res.redirect(getPath(`/${this.viewDirectoryName}`));
   }
 }
