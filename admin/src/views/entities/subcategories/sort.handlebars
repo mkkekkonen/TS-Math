@@ -1,17 +1,17 @@
 <div class="row">
   <div class="col-sm">
-    <h1>Sort Categories</h1>
-    
-    <ol id="sortCategories" class="sort-container">
-      {{#each categories}}
+    <h1>Sort Subcategories</h1>
+
+    <ol id="sortSubcategories" class="sort-container">
+      {{#each subcategories}}
         <li class="sortable-item badge-secondary">
           <span>#{{id}} {{name}}</span>
         </li>
       {{/each}}
-    </ul>
+    </ol>
   </div>
 </div>
 
 <script>
-  makeSortable('#sortCategories');
+  makeSortable('#sortSubcategories');
 </script>

@@ -6,7 +6,3 @@ function makeSortable(id) {
   $(id).sortable();
   $(id).disableSelection();
 }
-
-function sortCategories() {
-  makeSortable('#sortCategories');
-}
