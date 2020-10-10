@@ -44,6 +44,18 @@ export class CategoryRouterGenerator extends BaseEntityRouterGenerator<ICategory
     }
   }
 
+  renderSort = async (req: Request, res: Response) => {
+    const categories = await this.api.getAll();
+
+    return res.render(
+      this.sortView,
+      {
+        categories,
+        ...commonData,
+      },
+    );
+  }
+
   createNew = async (req: Request, res: Response) => {
     const errorMessage = this.getError(req);
 

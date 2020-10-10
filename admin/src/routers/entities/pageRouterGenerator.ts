@@ -73,6 +73,18 @@ export class PageRouterGenerator extends BaseEntityRouterGenerator<IPage> {
     );
   }
 
+  renderSort = async (req: Request, res: Response) => {
+    const pages = await this.api.getAll();
+
+    return res.render(
+      this.sortView,
+      {
+        pages,
+        ...commonData,
+      },
+    );
+  }
+
   createNew = async (req: Request, res: Response) => {
     const errorMessage = this.getError(req);
 

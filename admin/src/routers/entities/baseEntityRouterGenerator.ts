@@ -29,6 +29,7 @@ export abstract class BaseEntityRouterGenerator<T> {
     this.router.get('/', this.renderList);
     this.router.get('/create', this.renderCreate);
     this.router.get('/edit/:id', this.renderEdit);
+    this.router.get('/sort', this.renderSort);
 
     this.router.post('/create', this.validationRules, this.createNew);
     this.router.post('/edit/:id', this.validationRules, this.edit);
@@ -54,6 +55,8 @@ export abstract class BaseEntityRouterGenerator<T> {
 
   abstract renderEdit(req: Request, res: Response): Promise<void>;
 
+  abstract renderSort(req: Request, res: Response): Promise<void>;
+
   abstract createNew(req: Request, res: Response): Promise<void>;
 
   abstract edit(req: Request, res: Response): Promise<void>;
@@ -66,5 +69,9 @@ export abstract class BaseEntityRouterGenerator<T> {
 
   get createEditView() {
     return `entities/${this.viewDirectoryName}/createEdit`;
+  }
+
+  get sortView() {
+    return `entities/${this.viewDirectoryName}/sort`;
   }
 }
