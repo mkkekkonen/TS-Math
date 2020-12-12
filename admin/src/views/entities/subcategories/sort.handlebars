@@ -2,16 +2,35 @@
   <div class="col-sm">
     <h1>Sort Subcategories</h1>
 
-    <ol id="sortSubcategories" class="sort-container">
-      {{#each subcategories}}
-        <li class="sortable-item badge-secondary">
-          <span>#{{id}} {{name}}</span>
-        </li>
+      {{#each categories}}
+        <h5 class="sort-header">{{name}}</h5>
+
+        <ol id="sortSubcategories{{id}}" class="sort-container" data-category-id="{{id}}">
+          {{#each ../subcategories}}
+            {{#if (equals categoryId ../id)}}
+              <li class="sortable-item badge-secondary">
+                <span>#{{id}} {{name}}</span>
+              </li>
+            {{/if}}
+          {{/each}}
+        </ol>
+
+        <hr />
       {{/each}}
-    </ol>
+
   </div>
 </div>
 
 <script>
-  makeSortable('#sortSubcategories');
+  $(function() {
+    $('[data-category-id]').each(function(i, element) {
+      var id = $(element).attr('data-category-id');
+
+      if (!id) {
+        return;
+      }
+
+      makeSortable('#sortSubcategories' + id);
+    });
+  });
 </script>

@@ -73,11 +73,13 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
   }
 
   renderSort = async (req: Request, res: Response) => {
+    const categories = await this.categoryApi.getAll();
     const subcategories = await this.api.getAll();
 
     return res.render(
       this.sortView,
       {
+        categories,
         subcategories,
         ...commonData,
       },

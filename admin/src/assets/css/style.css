@@ -44,3 +44,7 @@ h1 {
 .sortable-item span {
   color: #fff;
 }
+
+.sort-header {
+  padding-bottom: 1.5rem;
+}
