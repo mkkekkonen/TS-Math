@@ -2,16 +2,24 @@
   <div class="col-sm">
     <h1>Sort Pages</h1>
 
-    <ol id="sortPages" class="sort-container">
-      {{#each pages}}
-        <li class="sortable-item badge-secondary">
-          <span>#{{id}} {{name}}</span>
-        </li>
-      {{/each}}
-    </ol>
+    {{#each subcategories}}
+      <h5 class="sort-header">{{name}}</h5>
+
+      <ol id="sortPages{{id}}" class="sort-container">
+        {{#each ../pages}}
+          {{#if (equals subcategoryId ../id)}}
+            <li class="sortable-item badge-secondary">
+              <span>#{{id}} {{name}}</span>
+            </li>
+          {{/if}}
+        {{/each}}
+      </ol>
+    {{/each}}
   </div>
 </div>
 
 <script>
-  makeSortable('#sortPages');
+  $(function() {
+    makeSortable('.sort-container');
+  });
 </script>

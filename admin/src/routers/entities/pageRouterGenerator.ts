@@ -74,12 +74,14 @@ export class PageRouterGenerator extends BaseEntityRouterGenerator<IPage> {
   }
 
   renderSort = async (req: Request, res: Response) => {
+    const subcategories = await this.subcategoryApi.getAll();
     const pages = await this.api.getAll();
 
     return res.render(
       this.sortView,
       {
         pages,
+        subcategories,
         ...commonData,
       },
     );
