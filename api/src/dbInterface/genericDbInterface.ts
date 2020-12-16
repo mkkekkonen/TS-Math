@@ -118,6 +118,15 @@ export class GenericDbInterface<T> {
     }
   }
 
+  updateMulti = async (objs: any[]) => {
+    try {
+      const repository = await this.getRepository();
+      return repository.save(objs);
+    } catch (e) {
+      return handleError(e);
+    }
+  }
+
   remove = async (entity: any) => {
     try {
       const repository = await this.getRepository();

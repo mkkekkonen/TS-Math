@@ -38,6 +38,7 @@
         "no-empty-function": "off",
         "no-unused-expressions": "off",
         "no-cond-assign": ["error", "except-parens"],
+        "no-console": "off",
         "semi": "error"
     }
 }
