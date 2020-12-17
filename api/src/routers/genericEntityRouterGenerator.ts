@@ -21,10 +21,6 @@ interface ISortItem {
 export class GenericEntityRouterGenerator<T> {
   private dbInterface: GenericDbInterface<T>;
   private validationRules: ValidationChain[];
-  private sortValidationRules = [
-    body('*.id').isInt(),
-    body('*.index').isInt(),
-  ];
 
   constructor(
     entityClass: any,
@@ -94,12 +90,12 @@ export class GenericEntityRouterGenerator<T> {
 
     router.post('/sort',
       authMiddleware,
-      this.sortValidationRules,
       async (req: Request, res: Response, next: NextFunction) => {
         try {
-          req.body.map((item: ISortItem) => ({ id: item.id, index: item.index }));
-          const entities = await this.dbInterface.updateMulti(req.body);
-          return res.json(entities);
+          const entities = req.body.map(
+            (item: ISortItem) => this.dbInterface.update(item.id, item),
+          );
+          return res.json(await Promise.all(entities));
         } catch (e) {
           return handleError(e, res);
         }
