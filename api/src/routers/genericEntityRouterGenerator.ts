@@ -92,10 +92,10 @@ export class GenericEntityRouterGenerator<T> {
       authMiddleware,
       async (req: Request, res: Response, next: NextFunction) => {
         try {
-          const entities = req.body.map(
+          const entities = req.body.map((ary: ISortItem[]) => ary.map(
             (item: ISortItem) => this.dbInterface.update(item.id, item),
-          );
-          return res.json(await Promise.all(entities));
+          ));
+          return res.json(await Promise.all(entities.flat()));
         } catch (e) {
           return handleError(e, res);
         }
