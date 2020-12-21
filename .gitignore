@@ -5,3 +5,7 @@ storybook-static/
 secrets.json
 math/*.tgz
 react-front/yarn-error.log
+admin/yarn-error.log
+api/dev_bu.sqlite
+api/dev.sqlite
+api/test.sqlite

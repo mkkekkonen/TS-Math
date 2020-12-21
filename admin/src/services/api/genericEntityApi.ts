@@ -10,6 +10,11 @@ const contentTypeHeader = {
   'Content-Type': 'application/x-www-form-urlencoded',
 };
 
+interface ISortItem {
+  id: number
+  index: number
+}
+
 export class GenericEntityApi<T> {
   constructor(private baseUrl: string) {}
 
@@ -56,6 +61,18 @@ export class GenericEntityApi<T> {
       `${this.baseUrl}${id}`,
       {
         headers: getAuthorizationHeader(accessToken),
+      },
+    );
+  }
+
+  sort = async (data: ISortItem[][], accessToken: string) => {
+    const response = await settings.getInstance().post(
+      `${this.baseUrl}sort`,
+      data,
+      {
+        headers: {
+          ...getAuthorizationHeader(accessToken),
+        },
       },
     );
   }

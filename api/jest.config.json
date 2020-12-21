@@ -14,5 +14,9 @@
   "collectCoverageFrom": [
     "src/**/*.{ts,js}",
     "!src/**/*.d.ts"
+  ],
+  "testPathIgnorePatterns": [
+    "/node_modules/",
+    "/dist/"
   ]
 }

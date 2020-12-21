@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { body } from 'express-validator';
 
+import { sortBy } from 'lodash';
+
 import { BaseEntityRouterGenerator } from './baseEntityRouterGenerator';
 
 import { commonData } from '../data';
@@ -33,7 +35,7 @@ export class PageRouterGenerator extends BaseEntityRouterGenerator<IPage> {
     return res.render(
       this.listView,
       {
-        pages,
+        pages: sortBy(pages, ['subcategoryId', 'index']),
         subcategories,
         flashMessage: req.query.errmsg && decodeURIComponent(req.query.errmsg as string),
         ...commonData,
@@ -68,6 +70,20 @@ export class PageRouterGenerator extends BaseEntityRouterGenerator<IPage> {
       {
         page,
         subcategories,
+        ...commonData,
+      },
+    );
+  }
+
+  renderSort = async (req: Request, res: Response) => {
+    const subcategories = await this.subcategoryApi.getAll();
+    const pages = await this.api.getAll();
+
+    return res.render(
+      this.sortView,
+      {
+        pages: sortBy(pages, ['index']),
+        subcategories: sortBy(subcategories, ['id', 'index']),
         ...commonData,
       },
     );
@@ -159,5 +175,21 @@ export class PageRouterGenerator extends BaseEntityRouterGenerator<IPage> {
     }
 
     return res.redirect(getPath(`/${this.viewDirectoryName}`));
+  }
+
+  sort = async (req: Request, res: Response) => {
+    const errorMessage = this.getError(req);
+
+    if (errorMessage) {
+      return res.status(400).send(errorMessage);
+    }
+
+    try {
+      await this.api.sort(req.body, req.cookies.access_token);
+    } catch (e) {
+      return res.status(400).send(e.message);
+    }
+
+    return res.status(200).send('OK');
   }
 }

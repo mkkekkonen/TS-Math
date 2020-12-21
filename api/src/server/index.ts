@@ -22,6 +22,7 @@ const initApp = async () => {
 
   app.use(logger('dev'));
   app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
   app.use(cookieParser());
 
   app.use((req, res, next) => {

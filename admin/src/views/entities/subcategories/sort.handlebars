@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-sm">
+    <div id="flashMessage" class="alert alert-danger" style="display: none;"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm">
+    <h1>Sort Subcategories</h1>
+
+      {{#each categories}}
+        <h5 class="sort-header">{{name}}</h5>
+
+        <ol id="sortSubcategories{{id}}" class="sort-container">
+          {{#each ../subcategories}}
+            {{#if (equals categoryId ../id)}}
+              <li id="{{id}}" class="sortable-item badge-secondary">
+                <span>#{{id}} {{name}}</span>
+              </li>
+            {{/if}}
+          {{/each}}
+        </ol>
+
+        <hr />
+      {{/each}}
+
+      <button id="saveButton" class="btn btn-dark">Save</button>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    makeSortable('.sort-container');
+
+    $('#saveButton').click(function() {
+      var data = Array.from(document.getElementsByClassName('sort-container'))
+        .map(function(element) {
+          var subcategoryIds = $(element).sortable('toArray');
+
+          return subcategoryIds.map(function (subcategoryId, i) {
+            return { id: parseInt(subcategoryId, 10), index: i + 1 };
+          });
+        });
+
+      $.ajax({
+        url: '{{basePath}}/subcategories/sort',
+        data: JSON.stringify(data),
+        method: 'POST',
+        contentType: 'application/json',
+        processData: false,
+      }).done(function() {
+        $('#flashMessage')
+          .css('display', 'none');
+
+        location.href = '{{basePath}}/subcategories';
+      }).fail(function(jqXhr, textStatus, error) {
+        $('#flashMessage')
+          .css('display', 'block')
+          .text(textStatus);
+      });
+    })
+  });
+</script>
