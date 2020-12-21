@@ -97,6 +97,7 @@ export class GenericEntityRouterGenerator<T> {
           ));
           return res.json(await Promise.all(entities.flat()));
         } catch (e) {
+          console.log(e.message);
           return handleError(e, res);
         }
       });

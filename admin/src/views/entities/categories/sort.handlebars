@@ -1,19 +1,52 @@
 <div class="row">
   <div class="col-sm">
+    <div id="flashMessage" class="alert alert-danger" style="display: none;"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm">
     <h1>Sort Categories</h1>
     
     <ol id="sortCategories" class="sort-container">
       {{#each categories}}
-        <li class="sortable-item badge-secondary">
+        <li id="{{id}}" class="sortable-item badge-secondary">
           <span>#{{id}} {{name}}</span>
         </li>
       {{/each}}
-    </ul>
+    </ol>
+
+    <button id="saveButton" class="btn btn-dark">Save</button>
   </div>
 </div>
 
 <script>
   $(function() {
     makeSortable('#sortCategories');
+
+    $('#saveButton').click(function() {
+      var categoryIds = $('#sortCategories').sortable('toArray');
+
+      var data = categoryIds.map(function(categoryId, i) {
+        return { id: parseInt(categoryId, 10), index: i + 1 };
+      });
+
+      $.ajax({
+        url: '{{basePath}}/categories/sort',
+        data: JSON.stringify([data]),
+        method: 'POST',
+        contentType: 'application/json',
+        processData: false,
+      }).done(function() {
+        $('#flashMessage')
+          .css('display', 'none');
+
+        location.href = '{{basePath}}/categories';
+      }).fail(function(jqXhr, textStatus, error) {
+        $('#flashMessage')
+          .css('display', 'block')
+          .text(textStatus);
+      });
+    });
   });
 </script>

@@ -1,3 +1,9 @@
+<div class="row">
+  <div class="col-sm">
+    <div id="flashMessage" class="alert alert-danger" style="display: none;"></div>
+  </div>
+</div>
+
 <div class="col-sm">
   <div class="col-sm">
     <h1>Sort Pages</h1>
@@ -8,18 +14,48 @@
       <ol id="sortPages{{id}}" class="sort-container">
         {{#each ../pages}}
           {{#if (equals subcategoryId ../id)}}
-            <li class="sortable-item badge-secondary">
+            <li id="{{id}}" class="sortable-item badge-secondary">
               <span>#{{id}} {{name}}</span>
             </li>
           {{/if}}
         {{/each}}
       </ol>
     {{/each}}
+
+    <button id="saveButton" class="btn btn-dark">Save</button>
   </div>
 </div>
 
 <script>
   $(function() {
     makeSortable('.sort-container');
+
+    $('#saveButton').click(function() {
+      var data = Array.from(document.getElementsByClassName('sort-container'))
+        .map(function(element) {
+          var pageIds = $(element).sortable('toArray');
+
+          return pageIds.map(function(pageId, i) {
+            return { id: parseInt(pageId, 10), index: i + 1 };
+          });
+        });
+
+      $.ajax({
+        url: '{{basePath}}/pages/sort',
+        data: JSON.stringify(data),
+        method: 'POST',
+        contentType: 'application/json',
+        processData: false,
+      }).done(function() {
+        $('#flashMessage')
+          .css('display', 'none');
+
+        location.href = '{{basePath}}/pages';
+      }).fail(function(jqXhr, textStatus, error) {
+        $('#flashMessage')
+          .css('display', 'block')
+          .text(textStatus);
+      });
+    })
   });
 </script>

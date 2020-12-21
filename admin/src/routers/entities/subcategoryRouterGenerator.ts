@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { body } from 'express-validator';
 
+import { sortBy } from 'lodash';
+
 import { BaseEntityRouterGenerator } from './baseEntityRouterGenerator';
 
 import { commonData } from '../data';
@@ -33,7 +35,7 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
       this.listView,
       {
         categories,
-        subcategories,
+        subcategories: sortBy(subcategories, ['categoryId', 'index']),
         flashMessage: req.query.errmsg && decodeURIComponent(req.query.errmsg as string),
         ...commonData,
       },
@@ -79,8 +81,8 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
     return res.render(
       this.sortView,
       {
-        categories,
-        subcategories,
+        categories: sortBy(categories, ['index']),
+        subcategories: sortBy(subcategories, ['index']),
         ...commonData,
       },
     );
@@ -172,5 +174,21 @@ export class SubcategoryRouterGenerator extends BaseEntityRouterGenerator<ISubca
     }
 
     return res.redirect(getPath(`/${this.viewDirectoryName}`));
+  }
+
+  sort = async (req: Request, res: Response) => {
+    const errorMessage = this.getError(req);
+
+    if (errorMessage) {
+      return res.status(400).send(errorMessage);
+    }
+
+    try {
+      await this.api.sort(req.body, req.cookies.access_token);
+    } catch (e) {
+      return res.status(400).send(e.message);
+    }
+
+    return res.status(200).send();
   }
 }

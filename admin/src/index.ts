@@ -29,6 +29,7 @@ const run = async () => {
 
   app.use(logger('dev'));
   app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
   app.use(cookieParser());
 
   app.use(express.static('src/assets'));
