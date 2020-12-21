@@ -5,13 +5,24 @@ import {
   NextFunction,
 } from 'express';
 import passport from 'passport';
-import { ValidationChain, body } from 'express-validator';
+import { ValidationChain, validationResult } from 'express-validator';
 
 import { GenericDbInterface } from '../dbInterface';
 
+const authMiddleware = passport.authenticate('jwt', { session: false });
+
 const handleError = (e: Error, res: Response) => res.status(500).send(e.message);
 
-const authMiddleware = passport.authenticate('jwt', { session: false });
+const handleValidationError = (req: Request, res: Response) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const [firstError] = errors.array();
+    return res.status(400).send(`${firstError.param}: ${firstError.msg}`);
+  }
+
+  return null;
+};
 
 interface ISortItem {
   id: number
@@ -58,6 +69,11 @@ export class GenericEntityRouterGenerator<T> {
       authMiddleware,
       this.validationRules,
       async (req: Request, res: Response, next: NextFunction) => {
+        const validationResponse = handleValidationError(req, res);
+        if (validationResponse) {
+          return validationResponse;
+        }
+
         try {
           const entity = await this.dbInterface.create(req.body);
           return res.json(entity);
@@ -70,6 +86,11 @@ export class GenericEntityRouterGenerator<T> {
       authMiddleware,
       this.validationRules,
       async (req: Request, res: Response, next: NextFunction) => {
+        const validationResponse = handleValidationError(req, res);
+        if (validationResponse) {
+          return validationResponse;
+        }
+
         try {
           const entity = await this.dbInterface.update(+req.params.id, req.body);
           return res.json(entity);
@@ -93,7 +114,7 @@ export class GenericEntityRouterGenerator<T> {
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           const entities = req.body.map((ary: ISortItem[]) => ary.map(
-            (item: ISortItem) => this.dbInterface.update(item.id, item),
+            (item: ISortItem) => this.dbInterface.update(item.id, { index: item.index }),
           ));
           return res.json(await Promise.all(entities.flat()));
         } catch (e) {
