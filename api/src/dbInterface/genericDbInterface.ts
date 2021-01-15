@@ -13,6 +13,8 @@ import {
   User,
 } from '../entities';
 
+import secrets from '../assets/json/secrets.json';
+
 const getDbPath = () => {
   switch (process.env.NODE_ENV) {
     case 'production':
@@ -30,16 +32,35 @@ const handleError = (e: any) => {
   return Promise.reject(e.message);
 };
 
-export const createConn = () => createConnection({
-  type: 'sqlite',
-  database: getDbPath(),
-  entities: [
-    Page,
-    Category,
-    Subcategory,
-    User,
-  ],
-});
+export const createConn = () => {
+  if (process.env.DB === 'mysql') {
+    return createConnection({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'mathuser',
+      password: secrets.mysql,
+      database: 'math',
+      entities: [
+        Page,
+        Category,
+        Subcategory,
+        User,
+      ],
+    });
+  }
+
+  return createConnection({
+    type: 'sqlite',
+    database: getDbPath(),
+    entities: [
+      Page,
+      Category,
+      Subcategory,
+      User,
+    ],
+  });
+};
 
 export const getConn = async () => {
   try {
