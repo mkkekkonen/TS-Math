@@ -45,7 +45,7 @@ update = (time: number) => {
 
 <hr />
 
-Here you can input the data and start the simulation:
+You can input the data and start the simulation here:
 
 <div class="form-group">
   <label for="v0x">Initial velocity x</label>

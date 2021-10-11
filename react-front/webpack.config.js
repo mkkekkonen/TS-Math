@@ -58,6 +58,10 @@ module.exports = ({
     ]
   },
 
+  devServer: {
+    contentBase: './public',
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',

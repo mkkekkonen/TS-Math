@@ -6,6 +6,7 @@ import {
 } from 'express';
 import passport from 'passport';
 import { ValidationChain, validationResult } from 'express-validator';
+import { flatten } from 'lodash';
 
 import { GenericDbInterface } from '../dbInterface';
 
@@ -116,7 +117,7 @@ export class GenericEntityRouterGenerator<T> {
           const entities = req.body.map((ary: ISortItem[]) => ary.map(
             (item: ISortItem) => this.dbInterface.update(item.id, { index: item.index }),
           ));
-          return res.json(await Promise.all(entities.flat()));
+          return res.json(await Promise.all(flatten(entities)));
         } catch (e) {
           console.log(e.message);
           return handleError(e, res);

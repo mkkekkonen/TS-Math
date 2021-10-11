@@ -81,7 +81,7 @@ export class PageContent extends React.Component<Props, State> {
                     inlineMath: (props: { value: string }) => (
                       <InlineMath>{props.value}</InlineMath>
                     ),
-                    math: (props: { value: string}) => (
+                    math: (props: { value: string }) => (
                       <BlockMath>{props.value}</BlockMath>
                     ),
                     code: CodeBlock,
