@@ -14,6 +14,7 @@ import { run as constaccel } from './entryPoints/2_1_2_constaccel';
 import { run as projectilemotion } from './entryPoints/2_1_3_projectilemotion';
 import { run as newton2 } from './entryPoints/2_2_1_newton2';
 import { run as frictionhorizontal } from './entryPoints/2_2_2_frictionhorizontal';
+import { run as plotrational } from './entryPoints/3_1_1_plotrational';
 
 export const entryPoints: Record<string, Function> = {
   distancepoints,
@@ -32,4 +33,5 @@ export const entryPoints: Record<string, Function> = {
   projectilemotion,
   newton2,
   frictionhorizontal,
+  plotrational,
 };
