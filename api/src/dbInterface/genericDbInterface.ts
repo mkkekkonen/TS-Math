@@ -33,14 +33,14 @@ const handleError = (e: any) => {
 };
 
 export const createConn = () => {
-  if (process.env.DB === 'mysql') {
+  if (process.env.DB_ENGINE === 'mysql') {
     return createConnection({
       type: 'mysql',
-      host: 'localhost',
+      host: process.env.DB_HOST || 'localhost',
       port: 3306,
-      username: 'mathuser',
-      password: secrets.mysql,
-      database: 'math',
+      username: process.env.DB_USER || 'mathuser',
+      password: process.env.DB_PASSWORD || secrets.mysql,
+      database: process.env.DB || 'math',
       entities: [
         Page,
         Category,

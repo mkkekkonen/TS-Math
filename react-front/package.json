@@ -8,6 +8,7 @@
     "dev:public": "cross-env MOBILE=true webpack-dev-server --host 0.0.0.0 --port 8000",
     "test": "jest",
     "build": "webpack --env.NODE_ENV=production",
+    "build-heroku": "cross-env NODE_ENV=production HEROKU=true webpack",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook"
   },

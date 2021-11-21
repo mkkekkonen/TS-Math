@@ -5,7 +5,7 @@ module.exports = ({
   entry: './src/index.tsx',
   output: {
     filename: "bundle.js",
-    path: __dirname + "/build"
+    path: __dirname + (process.env.HEROKU ? '/build-heroku' : '/build')
   },
 
   devtool: "source-map",
@@ -66,6 +66,7 @@ module.exports = ({
 
     new webpack.DefinePlugin({
       'process.env.MOBILE': JSON.stringify(process.env.mobile),
+      'process.env.HEROKU': JSON.stringify(process.env.HEROKU),
     }),
   ],
 });
