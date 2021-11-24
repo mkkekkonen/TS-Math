@@ -7,10 +7,14 @@
     "dev": "cross-env DB=mysql ts-node-dev --inspect --respawn src/index.ts",
     "test": "jest",
     "sequelize": "sequelize-cli",
-    "build": "tsc --outDir ./dist"
+    "build": "tsc -p tsconfig-build.json --outDir ./dist",
+    "start": "cross-env DB_ENGINE=mysql node ./dist/index.js"
   },
   "author": "Maija Kekkonen",
   "license": "CC-BY-4.0",
+  "engines": {
+    "node": "10.x"
+  },
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
     "@types/body-parser": "^1.19.0",
@@ -22,6 +26,7 @@
     "bcrypt": "^3.0.8",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
+    "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "express-validator": "^6.8.0",
     "jsonwebtoken": "^8.5.1",
@@ -42,7 +47,6 @@
     "@typescript-eslint/eslint-plugin": "^2.19.2",
     "@typescript-eslint/parser": "^2.19.2",
     "babel-jest": "^25.1.0",
-    "cross-env": "^7.0.3",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",

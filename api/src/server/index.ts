@@ -8,8 +8,11 @@ import { loginRouter, entityRouters } from '../routers';
 import { getConn } from '../dbInterface';
 
 const allowedOrigins = [
+  'http://localhost:5000', // Heroku local
   'http://localhost:8000',
   'http://192.168.1.66:8000',
+  'https://floating-shelf-57592.herokuapp.com',
+  'http://math.mkkekkonen.fi',
 ];
 
 const initApp = async () => {
@@ -52,7 +55,7 @@ const initApp = async () => {
     res.status(err.status || 500).send(err.message);
   });
 
-  app.listen(3100);
+  app.listen(process.env.PORT || 3100);
 
   console.log('Listening in port 3100...');
 
