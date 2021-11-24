@@ -3,6 +3,10 @@ import axios, { AxiosInstance } from 'axios';
 let instance: AxiosInstance;
 
 export const getApiBaseUrl = () => {
+  if (process.env.HEROKU) {
+    return 'https://intense-beyond-45045.herokuapp.com';
+  }
+
   if (process.env.PROXY_TEST) {
     return 'http://localhost/math-api';
   }

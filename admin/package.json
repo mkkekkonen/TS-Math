@@ -7,7 +7,8 @@
     "dev": "ts-node-dev --inspect=9230 --respawn src/index.ts",
     "dev:proxy": "cross-env PROXY_TEST=true ts-node-dev --inspect=9230 --respawn src/index.ts",
     "test": "jest",
-    "build": "tsc --outDir ./dist"
+    "build": "tsc --outDir ./dist",
+    "start": "node ./dist/index.js"
   },
   "author": "Maija Kekkonen",
   "license": "CC-BY-4.0",
