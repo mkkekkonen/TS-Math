@@ -7,6 +7,9 @@ import i18n from 'i18next';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import fiImgUrl from '../../images/fi.png';
+import enImgUrl from '../../images/us.png';
+
 type Language = 'fi' | 'en';
 
 const StyledImg = styled.img`
@@ -38,14 +41,16 @@ class HeaderComponent extends React.Component<Props, State> {
 
         <Navbar.Text>
           <StyledImg
-            src="https://www.countryflags.io/us/shiny/32.png"
+            src={enImgUrl}
+            width="32"
             onClick={() => changeLanguage('en')}
           />
         </Navbar.Text>
 
         <Navbar.Text>
           <StyledImg
-            src="https://www.countryflags.io/fi/shiny/32.png"
+            src={fiImgUrl}
+            width="32"
             onClick={() => changeLanguage('fi')}
           />
         </Navbar.Text>

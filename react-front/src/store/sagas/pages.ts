@@ -8,7 +8,7 @@ import { Page, IPage } from '../../models';
 
 function* loadPages() {
   try {
-    const pageData = yield pageApi.getAllPages();
+    const pageData: IPage[] = yield pageApi.getAllPages();
     const pageArr = pageData.map((dataItem: IPage) => new Page(
       dataItem.id,
       dataItem.name,
@@ -16,7 +16,7 @@ function* loadPages() {
       dataItem.subcategoryId,
       dataItem.index,
     ));
-    const pageList = Immutable.fromJS(pageArr);
+    const pageList = Immutable.List(pageArr);
     yield put(mergePages(pageList));
   } catch(e) {
     console.error(`Error fetching pages: ${e.message}`);

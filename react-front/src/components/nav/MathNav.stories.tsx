@@ -10,8 +10,8 @@ import { categories, subcategories, pages } from '../../data';
 storiesOf('MathNav', module)
   .add('default', () => (
     <MathNav
-      categories={Immutable.fromJS(categories)}
-      subcategories={Immutable.fromJS(subcategories)}
-      pages={Immutable.fromJS(pages)}
+      categories={Immutable.List(categories)}
+      subcategories={Immutable.List(subcategories)}
+      pages={Immutable.List(pages)}
     />
   ));

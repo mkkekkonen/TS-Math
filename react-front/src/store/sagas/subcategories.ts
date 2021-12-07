@@ -8,14 +8,14 @@ import { Subcategory, ISubcategory } from '../../models';
 
 function* loadSubcategories() {
   try {
-    const subcategoryData = yield subcategoryApi.getAllSubcategories();
+    const subcategoryData: ISubcategory[] = yield subcategoryApi.getAllSubcategories();
     const subcategoryArr = subcategoryData.map((dataItem: ISubcategory) => new Subcategory(
       dataItem.id,
       dataItem.name,
       dataItem.categoryId,
       dataItem.index,
     ));
-    const subcategoryList = Immutable.fromJS(subcategoryArr);
+    const subcategoryList = Immutable.List(subcategoryArr);
     yield put(mergeSubcategories(subcategoryList));
   } catch(e) {
     console.error(`Error fetching subcategories: ${e.message}`);
