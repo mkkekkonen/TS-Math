@@ -1,5 +1,8 @@
 import { AbstractFunction } from './abstractFunction';
 
+/**
+ * f(x) = ax^2 + bx + c
+ */
 export class PolynomialFunction extends AbstractFunction {
   a = 0;
   b = 0;
@@ -13,7 +16,7 @@ export class PolynomialFunction extends AbstractFunction {
     this.c = c;
   }
 
-  getValue = (x: number) => {
-    return (this.a * (x ** 2)) + (this.b * x) + this.c;
-  }
+  getValue = (x: number) => (
+    (this.a * (x ** 2)) + (this.b * x) + this.c
+  )
 }

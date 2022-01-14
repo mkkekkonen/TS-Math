@@ -1,0 +1,1 @@
+# Raja-arvon laskusäännöt - polynomifunktio
