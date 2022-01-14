@@ -13,6 +13,7 @@ import { run as planarvelocity } from './entryPoints/2_1_1_planarvelocity';
 import { run as constaccel } from './entryPoints/2_1_2_constaccel';
 import { run as projectilemotion } from './entryPoints/2_1_3_projectilemotion';
 import { run as newton2 } from './entryPoints/2_2_1_newton2';
+import { run as frictionhorizontal } from './entryPoints/2_2_2_frictionhorizontal';
 
 export const entryPoints: Record<string, Function> = {
   distancepoints,
@@ -30,4 +31,5 @@ export const entryPoints: Record<string, Function> = {
   constaccel,
   projectilemotion,
   newton2,
+  frictionhorizontal,
 };

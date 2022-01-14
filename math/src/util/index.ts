@@ -42,19 +42,23 @@ export const parseFloatById = (id: string) => {
   return valueString ? parseFloat(valueString) : 0;
 };
 
-export const plotKonvaLineSegment = (
+export const plotKonvaLine = (
   layer: Konva.Layer,
-  segmentStartPoint: Vector3,
-  segmentEndPoint: Vector3,
+  startPoint: Vector3,
+  endPoint: Vector3,
   strokeColor = constants.black,
   strokeWidth = constants.strokeWidth,
+  viewportMatrix = defaultViewportMatrix,
 ) => {
+  const screenStartPoint = viewportMatrix.multiplyVector(startPoint);
+  const screenEndPoint = viewportMatrix.multiplyVector(endPoint);
+
   const konvaLine = new Konva.Line({
     points: [
-      segmentStartPoint.x,
-      segmentStartPoint.y,
-      segmentEndPoint.x,
-      segmentEndPoint.y,
+      screenStartPoint.x,
+      screenStartPoint.y,
+      screenEndPoint.x,
+      screenEndPoint.y,
     ],
     stroke: strokeColor,
     strokeWidth,

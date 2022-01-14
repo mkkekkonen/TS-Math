@@ -23,13 +23,13 @@ export abstract class LineEquation {
     worldHeight: number,
     viewportMatrix: Matrix4x4,
   ) => {}
-  abstract getX = (): number | undefined => 0;
-  abstract calculateY = (x: number) => 0;
-  abstract toString = () => '';
-  abstract lineIntersects = (otherLine: LineEquation): Vector3 | boolean => new Vector3();
-  abstract angleBetween = (otherLine: LineEquation) => 0;
-  abstract convertToSlopeIntercept = (): SlopeInterceptEquation => new SlopeInterceptEquation();
-  abstract distanceTo = (v: Vector3) => 0;
+  abstract getX(): number | undefined;
+  abstract calculateY(x: number): number;
+  abstract toString(): string;
+  abstract lineIntersects(otherLine: LineEquation): Vector3 | boolean;
+  abstract angleBetween(otherLine: LineEquation): number;
+  abstract convertToSlopeIntercept(): SlopeInterceptEquation;
+  abstract distanceTo(v: Vector3): number;
 
   plotVerticalLine = (
     layer: Konva.Layer,
@@ -41,15 +41,16 @@ export abstract class LineEquation {
     const startYCoordinate = -(worldHeight / 2);
     const endYCoordinate = worldHeight / 2;
 
-    const segmentStartPoint = viewportMatrix.multiplyVector(
-      new Vector3(x, startYCoordinate),
-    );
-    const segmentEndPoint = viewportMatrix.multiplyVector(
-      new Vector3(x, endYCoordinate),
-    );
+    const segmentStartPoint = new Vector3(x, startYCoordinate);
+    const segmentEndPoint = new Vector3(x, endYCoordinate);
 
-    this.konvaLine = util.plotKonvaLineSegment(
-      layer, segmentStartPoint, segmentEndPoint, this.strokeColor, this.strokeWidth,
+    this.konvaLine = util.plotKonvaLine(
+      layer,
+      segmentStartPoint,
+      segmentEndPoint,
+      this.strokeColor,
+      this.strokeWidth,
+      viewportMatrix,
     );
   }
 
@@ -62,17 +63,18 @@ export abstract class LineEquation {
     const endXCoordinate = worldWidth / 2;
 
     const startYCoordinate = this.calculateY(startXCoordinate);
-    const segmentStartPoint = viewportMatrix.multiplyVector(
-      new Vector3(startXCoordinate, startYCoordinate),
-    );
+    const segmentStartPoint = new Vector3(startXCoordinate, startYCoordinate);
 
     const endYCoordinate = this.calculateY(endXCoordinate);
-    const segmentEndPoint = viewportMatrix.multiplyVector(
-      new Vector3(endXCoordinate, endYCoordinate),
-    );
+    const segmentEndPoint = new Vector3(endXCoordinate, endYCoordinate);
 
-    this.konvaLine = util.plotKonvaLineSegment(
-      layer, segmentStartPoint, segmentEndPoint, this.strokeColor, this.strokeWidth,
+    this.konvaLine = util.plotKonvaLine(
+      layer,
+      segmentStartPoint,
+      segmentEndPoint,
+      this.strokeColor,
+      this.strokeWidth,
+      viewportMatrix,
     );
   }
 }
