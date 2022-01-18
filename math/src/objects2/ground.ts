@@ -5,15 +5,15 @@ import * as constants from '../constants';
 import { Vector3 } from '../math';
 
 export class Ground {
-  konvaLine?: Konva.Line;
+  konvaRect?: Konva.Rect;
 
-  startX: number;
-  endX: number;
+  worldWidth: number;
+  worldHeight: number;
   y: number;
 
-  constructor(startX: number, endX: number, y: number) {
-    this.startX = startX;
-    this.endX = endX;
+  constructor(worldWidth: number, worldHeight: number, y: number) {
+    this.worldWidth = worldWidth;
+    this.worldHeight = worldHeight;
     this.y = y;
   }
 
@@ -21,16 +21,28 @@ export class Ground {
     layer: Konva.Layer,
     { viewportMatrix = util.defaultViewportMatrix } = {},
   ) => {
-    const startPoint = new Vector3(this.startX, this.y, 0);
-    const endPoint = new Vector3(this.endX, this.y, 0);
+    const widthHalved = this.worldWidth / 2;
+    const heightHalved = this.worldHeight / 2;
 
-    util.plotKonvaLine(
-      layer,
-      startPoint,
-      endPoint,
-      constants.black,
-      constants.strokeWidth,
-      viewportMatrix,
-    );
+    const topLeft = new Vector3(-widthHalved, this.y, 0);
+    const topRight = new Vector3(widthHalved, this.y, 0);
+    const bottomRight = new Vector3(widthHalved, -heightHalved, 0);
+    const bottomLeft = new Vector3(-widthHalved, -heightHalved, 0);
+
+    const screenTopLeft = viewportMatrix.multiplyVector(topLeft);
+    const screenTopRight = viewportMatrix.multiplyVector(topRight);
+    const screenBottomRight = viewportMatrix.multiplyVector(bottomRight);
+    const screenBottomLeft = viewportMatrix.multiplyVector(bottomLeft);
+
+    this.konvaRect = new Konva.Rect({
+      x: screenTopLeft.x,
+      y: screenTopLeft.y,
+      width: screenTopRight.x - screenTopLeft.x,
+      height: screenBottomLeft.y - screenTopLeft.y,
+      fill: 'green',
+      stroke: constants.black,
+      strokeWidth: constants.strokeWidth,
+    });
+    layer.add(this.konvaRect);
   }
 }
