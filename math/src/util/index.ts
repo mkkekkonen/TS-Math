@@ -66,3 +66,28 @@ export const plotKonvaLine = (
   layer.add(konvaLine);
   return konvaLine;
 };
+
+export const drawKonvaRectangle = (
+  layer: Konva.Layer,
+  topLeft: Vector3,
+  bottomRight: Vector3,
+  fillColor: string,
+  strokeColor = constants.black,
+  strokeWidth = constants.strokeWidth,
+  viewportMatrix = defaultViewportMatrix,
+) => {
+  const screenTopLeft = viewportMatrix.multiplyVector(topLeft);
+  const screenBottomRight = viewportMatrix.multiplyVector(bottomRight);
+
+  const konvaRect = new Konva.Rect({
+    x: screenTopLeft.x,
+    y: screenTopLeft.y,
+    width: screenBottomRight.x - screenTopLeft.x,
+    height: screenBottomRight.y - screenTopLeft.y,
+    fill: fillColor,
+    stroke: strokeColor,
+    strokeWidth,
+  });
+  layer.add(konvaRect);
+  return konvaRect;
+};

@@ -25,24 +25,14 @@ export class Ground {
     const heightHalved = this.worldHeight / 2;
 
     const topLeft = new Vector3(-widthHalved, this.y, 0);
-    const topRight = new Vector3(widthHalved, this.y, 0);
     const bottomRight = new Vector3(widthHalved, -heightHalved, 0);
-    const bottomLeft = new Vector3(-widthHalved, -heightHalved, 0);
 
-    const screenTopLeft = viewportMatrix.multiplyVector(topLeft);
-    const screenTopRight = viewportMatrix.multiplyVector(topRight);
-    const screenBottomRight = viewportMatrix.multiplyVector(bottomRight);
-    const screenBottomLeft = viewportMatrix.multiplyVector(bottomLeft);
-
-    this.konvaRect = new Konva.Rect({
-      x: screenTopLeft.x,
-      y: screenTopLeft.y,
-      width: screenTopRight.x - screenTopLeft.x,
-      height: screenBottomLeft.y - screenTopLeft.y,
-      fill: 'green',
-      stroke: constants.black,
-      strokeWidth: constants.strokeWidth,
-    });
+    this.konvaRect = util.drawKonvaRectangle(
+      layer,
+      topLeft,
+      bottomRight,
+      'green',
+    );
     layer.add(this.konvaRect);
   }
 }

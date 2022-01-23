@@ -28,3 +28,7 @@ start the simulation.
   <label for="m">Mass</label>
   <input type="number" step="0.1" id="m" class="form-control" />
 </div>
+
+<div>
+  <button id="startButton" type="button" class="btn btn-dark">Start</button>
+</div>
