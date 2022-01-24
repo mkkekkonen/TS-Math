@@ -1,10 +1,11 @@
 import Konva from 'konva';
 
 import * as util from '../util';
-import { Ground, Block } from '../objects2';
+import { AbstractObject, Ground, Block } from '../objects2';
 import { Vector3 } from '../math';
+import { Dynamics } from '../physics';
 
-const getAcceleration = (block: Block) => new Vector3(0.1, 0, 0);
+const getAcceleration = () => new Vector3(0.1, 0, 0);
 
 export const run = () => {
   const { layer } = util.getDefaultKonvaStage2();
@@ -19,7 +20,7 @@ export const run = () => {
   const block = new Block(
     new Vector3(0, 0, 0),
     2,
-    getAcceleration,
+    new Dynamics(getAcceleration),
   );
   block.konvaDraw(layer);
   layer.draw();

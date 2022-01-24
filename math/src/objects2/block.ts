@@ -3,8 +3,9 @@ import Konva from 'konva';
 import * as constants from '../constants';
 import * as utils from '../util';
 import { Vector3 } from '../math';
+import { Dynamics } from '../physics';
 
-type VectorFn = (self: Block) => Vector3;
+import { AbstractObject } from './abstractObject';
 
 interface IRectOptions {
   width?: number
@@ -12,10 +13,10 @@ interface IRectOptions {
   initialVelocity?: Vector3
   color?: string
   strokeWidth?: number
-  handleCollision?: VectorFn
+  handleCollision?: Function
 }
 
-export class Block {
+export class Block extends AbstractObject {
   konvaRect?: Konva.Rect;
 
   width: number;
@@ -25,8 +26,7 @@ export class Block {
   velocity: Vector3;
   massKg: number;
 
-  getAcceleration: VectorFn;
-  handleCollision?: VectorFn;
+  dynamics?: Dynamics;
 
   color: string;
   stroke = constants.black;
@@ -35,9 +35,16 @@ export class Block {
   constructor(
     position: Vector3,
     mass: number,
-    getAcceleration: VectorFn,
+    dynamics?: Dynamics,
     options: IRectOptions = {},
   ) {
+    super(
+      {
+        startPosition: position,
+        mass,
+      },
+    );
+
     this.width = options.width || 1;
     this.height = options.height || 1;
 
@@ -45,25 +52,10 @@ export class Block {
     this.velocity = options.initialVelocity || new Vector3(0, 0, 0);
     this.massKg = mass;
 
-    this.getAcceleration = getAcceleration;
-    this.handleCollision = options.handleCollision;
+    this.dynamics = dynamics;
 
     this.color = options.color || 'red';
     this.strokeWidth = options.strokeWidth || constants.strokeWidth;
-  }
-
-  update = (timeDelta: number) => {
-    const acceleration = this.getAcceleration(this);
-
-    const velocityDelta = acceleration.multiplyScalar(timeDelta);
-    this.velocity = this.velocity.add(velocityDelta);
-
-    const positionDelta = this.velocity.multiplyScalar(timeDelta);
-    this.position = this.position.add(positionDelta);
-
-    if (this.handleCollision) {
-      this.position = this.handleCollision(this);
-    }
   }
 
   konvaDraw = (layer: Konva.Layer, viewportMatrix = utils.defaultViewportMatrix) => {
