@@ -26,15 +26,10 @@ export abstract class AbstractObject {
 
   abstract konvaDraw: (layer: Konva.Layer, viewportMatrix: Matrix4x4) => void;
 
-  update = (
+  public update(
     timeDelta: number,
-    updateCallback?: (self: AbstractObject, timeDelta: number) => void,
-  ) => {
-    if (updateCallback) {
-      updateCallback(this, timeDelta);
-      return;
-    }
-
+    options: any = {},
+  ) {
     if (this.dynamics && this.velocity) {
       const { velocity, position } = this.dynamics.update(
         timeDelta,

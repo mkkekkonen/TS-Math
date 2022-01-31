@@ -22,7 +22,6 @@ export class Block extends AbstractObject {
   width: number;
   height: number;
 
-  position: Vector3;
   velocity: Vector3;
   massKg: number;
 
@@ -48,7 +47,6 @@ export class Block extends AbstractObject {
     this.width = options.width || 1;
     this.height = options.height || 1;
 
-    this.position = position;
     this.velocity = options.initialVelocity || new Vector3(0, 0, 0);
     this.massKg = mass;
 
