@@ -34,25 +34,44 @@ export const run = () => {
     startPoint: new Vector3(0, 0, 0),
   });
 
-  const getAcceleration = () => {
+  const getSlowDownForce = (velocity: Vector3, kineticFriction: number) => {
+    const velocityRight = velocity.x > 0;
+    const velocityLeft = velocity.x < 0;
+
+    if (velocityRight) {
+      return new Vector3(-kineticFriction, 0, 0);
+    }
+    if (velocityLeft) {
+      return new Vector3(kineticFriction, 0, 0);
+    }
+    return new Vector3(0, 0, 0);
+  };
+
+  const getAcceleration = (velocity: Vector3) => {
+    const forceXAbs = Math.abs(forceVector.force.x);
+
     const perpendicularForce = accelerationOfGravity.multiplyScalar(mass);
     const kineticFriction = -perpendicularForce.multiplyScalar(frictionCoefficient).y;
 
-    const forceXAbs = Math.abs(forceVector.force.x);
-    const pullX = kineticFriction > forceXAbs
-      ? 0
-      : forceXAbs - kineticFriction;
+    if (forceXAbs) {
+      const pullX = kineticFriction > forceXAbs
+        ? 0
+        : forceXAbs - kineticFriction;
 
-    const pullingForce = new Vector3(
-      forceVector.force.x >= 0 ? pullX : -pullX,
-      0,
-      0,
-    );
-    return pullingForce.divideScalar(mass);
+      const pullingForce = new Vector3(
+        forceVector.force.x >= 0 ? pullX : -pullX,
+        0,
+        0,
+      );
+      return pullingForce.divideScalar(mass);
+    }
+
+    return getSlowDownForce(velocity, kineticFriction)
+      .divideScalar(mass);
   };
 
   const block = new Block(
-    new Vector3(0, 0, 0),
+    new Vector3(0, -3.5, 0),
     2,
     new Dynamics(getAcceleration),
   );
@@ -83,7 +102,7 @@ export const run = () => {
           }
 
           util.logToDiv(`force x: ${forceVector.force.x}
-block accel: ${block.dynamics!.getAcceleration()}
+block accel: ${block.dynamics?.acceleration?.x || 0}
 block velocity: ${block.velocity.x}`);
 
           forceVector.konvaDraw(layer);
