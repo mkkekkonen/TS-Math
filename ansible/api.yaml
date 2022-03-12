@@ -1,0 +1,81 @@
+---
+- hosts: all
+  name: Math API
+
+  tasks:
+  - name: Create ts-math directory
+    ansible.builtin.file:
+      path: /home/maija/ts-math
+      state: directory
+      mode: '0755'
+
+  - name: Create app directory
+    ansible.builtin.file:
+      path: /home/maija/apps/math-api
+      state: directory
+      mode: '0755'
+
+  - name: Create log directory
+    ansible.builtin.file:
+      path: /home/maija/log
+      state: directory
+      mode: '0755'
+  
+  - name: Checkout code from git repo
+    ansible.builtin.git:
+      repo: 'https://github.com/mkkekkonen/TS-Math.git'
+      dest: /home/maija/ts-math
+
+  - name: Upload secrets file
+    ansible.builtin.copy:
+      src: /mnt/c/Users/mkkek/Documents/koodi/js/TS-Math/ansible/secrets.json
+      dest: /home/maija/ts-math/api/src/assets/json/secrets.json
+      owner: maija
+      group: maija
+      mode: '0644'
+
+  # - name: Install packages
+  #   ansible.builtin.shell:
+  #     chdir: /home/maija/ts-math/api
+  #     cmd: npm install > /home/maija/log/api-install-log.txt
+
+  # - name: Delete dist directory
+  #   ansible.builtin.file:
+  #     path: /home/maija/ts-math/api/dist
+  #     state: absent
+
+  # - name: Build project
+  #   ansible.builtin.shell:
+  #     chdir: /home/maija/ts-math/api
+  #     cmd: npm run build > /home/maija/log/api-build-log.txt
+
+  - name: Copy built files
+    ansible.builtin.copy:
+      src: /home/maija/ts-math/api/dist/
+      dest: /home/maija/apps/math-api
+      remote_src: yes
+
+  - name: Copy package.json
+    ansible.builtin.copy:
+      src: /home/maija/ts-math/api/package.json
+      dest: /home/maija/apps/math-api/package.json
+      remote_src: yes
+
+  - name: Link node_modules
+    ansible.builtin.file:
+      src: /home/maija/ts-math/api/node_modules
+      dest: /home/maija/apps/math-api/node_modules
+      owner: maija
+      group: maija
+      state: link
+
+  - name: Upload pm2 ecosystem file
+    ansible.builtin.copy:
+      src: /mnt/c/Users/mkkek/Documents/koodi/js/TS-Math/ansible/mysqlApi.ecosystem.config.js
+      dest: /home/maija/apps/math-api/ecosystem.config.js
+
+  - name: Restart app
+    ansible.builtin.shell:
+      executable: /bin/bash
+      chdir: /home/maija/apps/math-api
+      cmd: pm2 restart ecosystem.config.js
