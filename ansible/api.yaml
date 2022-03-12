@@ -25,6 +25,7 @@
     ansible.builtin.git:
       repo: 'https://github.com/mkkekkonen/TS-Math.git'
       dest: /home/maija/ts-math
+      force: yes
 
   - name: Upload secrets file
     ansible.builtin.copy:
@@ -34,20 +35,20 @@
       group: maija
       mode: '0644'
 
-  # - name: Install packages
-  #   ansible.builtin.shell:
-  #     chdir: /home/maija/ts-math/api
-  #     cmd: npm install > /home/maija/log/api-install-log.txt
+  - name: Install packages
+    ansible.builtin.shell:
+      chdir: /home/maija/ts-math/api
+      cmd: npm install > /home/maija/log/api-install-log.txt
 
-  # - name: Delete dist directory
-  #   ansible.builtin.file:
-  #     path: /home/maija/ts-math/api/dist
-  #     state: absent
+  - name: Delete dist directory
+    ansible.builtin.file:
+      path: /home/maija/ts-math/api/dist
+      state: absent
 
-  # - name: Build project
-  #   ansible.builtin.shell:
-  #     chdir: /home/maija/ts-math/api
-  #     cmd: npm run build > /home/maija/log/api-build-log.txt
+  - name: Build project
+    ansible.builtin.shell:
+      chdir: /home/maija/ts-math/api
+      cmd: npm run build > /home/maija/log/api-build-log.txt
 
   - name: Copy built files
     ansible.builtin.copy:

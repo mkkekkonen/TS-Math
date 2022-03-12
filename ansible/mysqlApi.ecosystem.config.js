@@ -9,6 +9,7 @@ module.exports = {
       env: {
         NODE_ENV: 'production',
         DB_ENGINE: 'mysql',
+        DB: 'math',
       },
       env_dev: {
         NODE_ENV: 'development',
