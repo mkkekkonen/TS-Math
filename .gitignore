@@ -10,3 +10,4 @@ api/dev_bu.sqlite
 api/dev.sqlite
 api/test.sqlite
 react-front/build-heroku/
+react-front/build/
