@@ -1,0 +1,86 @@
+---
+- hosts: all
+  name: Math Admin
+
+  tasks:
+  - name: Create ts-math directory
+    ansible.builtin.file:
+      path: /home/maija/ts-math
+      state: directory
+      mode: '0755'
+
+  - name: Create app src directory
+    ansible.builtin.file:
+      path: /home/maija/apps/math-admin/src
+      state: directory
+      mode: '0755'
+
+  - name: Create log directory
+    ansible.builtin.file:
+      path: /home/maija/log
+      state: directory
+      mode: '0755'
+  
+  - name: Checkout code from git repo
+    ansible.builtin.git:
+      repo: 'https://github.com/mkkekkonen/TS-Math.git'
+      dest: /home/maija/ts-math
+      force: yes
+
+  - name: Install packages
+    ansible.builtin.shell:
+      chdir: /home/maija/ts-math/admin
+      cmd: npm install > /home/maija/log/admin-install-log.txt
+
+  - name: Delete dist directory
+    ansible.builtin.file:
+      path: /home/maija/ts-math/admin/dist
+      state: absent
+
+  - name: Build project
+    ansible.builtin.shell:
+      chdir: /home/maija/ts-math/admin
+      cmd: npm run build > /home/maija/log/admin-build-log.txt
+
+  - name: Copy built files
+    ansible.builtin.copy:
+      src: /home/maija/ts-math/admin/dist/
+      dest: /home/maija/apps/math-admin
+      remote_src: yes
+
+  - name: Copy views
+    ansible.builtin.copy:
+      src: /home/maija/ts-math/admin/src/views
+      dest: /home/maija/apps/math-admin/src
+      remote_src: yes
+  
+  - name: Copy assets
+    ansible.builtin.copy:
+      src: /home/maija/ts-math/admin/src/assets
+      dest: /home/maija/apps/math-admin/src
+      remote_src: yes
+
+  - name: Copy package.json
+    ansible.builtin.copy:
+      src: /home/maija/ts-math/admin/package.json
+      dest: /home/maija/apps/math-admin/package.json
+      remote_src: yes
+
+  - name: Link node_modules
+    ansible.builtin.file:
+      src: /home/maija/ts-math/admin/node_modules
+      dest: /home/maija/apps/math-admin/node_modules
+      owner: maija
+      group: maija
+      state: link
+
+  - name: Upload pm2 ecosystem file
+    ansible.builtin.copy:
+      src: /mnt/c/Users/mkkek/Documents/koodi/js/TS-Math/ansible/admin.ecosystem.config.js
+      dest: /home/maija/apps/math-admin/ecosystem.config.js
+
+  - name: Restart app
+    ansible.builtin.shell:
+      executable: /bin/bash
+      chdir: /home/maija/apps/math-admin
+      cmd: pm2 restart ecosystem.config.js
