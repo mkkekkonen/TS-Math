@@ -22,7 +22,7 @@ class FooterComponent extends React.Component<Props, State> {
 
     return (
       <FooterContainer>
-        <p>{t('By Maija Kekkonen 2020')}</p>
+        <p>{t('By Maija Kekkonen 2022')}</p>
 
         <a href="https://github.com/mkkekkonen/TS-Math" target="_blank">
           <Button variant="dark">

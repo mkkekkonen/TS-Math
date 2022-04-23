@@ -18,3 +18,5 @@ export enum Sides {
   BOTTOM,
   LEFT,
 }
+
+export const epsilon = 0.01;

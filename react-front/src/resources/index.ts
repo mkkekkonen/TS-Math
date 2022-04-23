@@ -45,6 +45,7 @@ export default {
       'Projectile Motion': 'Projectile Motion',
 
       'Newton\'s 2nd Law': 'Newton\'s 2nd Law',
+      'Friction - Horizontal Force on a Horizontal Surface': 'Friction - Horizontal Force on a Horizontal Surface',
     }
   },
   fi: {
@@ -93,6 +94,7 @@ export default {
       'Projectile Motion': 'Vino heittoliike',
 
       'Newton\'s 2nd Law': 'Newtonin 2. pääsääntö',
+      'Friction - Horizontal Force on a Horizontal Surface': 'Kitka - vaakasuora pinta ja voima',
     }
   },
 };

@@ -42,23 +42,52 @@ export const parseFloatById = (id: string) => {
   return valueString ? parseFloat(valueString) : 0;
 };
 
-export const plotKonvaLineSegment = (
+export const plotKonvaLine = (
   layer: Konva.Layer,
-  segmentStartPoint: Vector3,
-  segmentEndPoint: Vector3,
+  startPoint: Vector3,
+  endPoint: Vector3,
   strokeColor = constants.black,
   strokeWidth = constants.strokeWidth,
+  viewportMatrix = defaultViewportMatrix,
 ) => {
+  const screenStartPoint = viewportMatrix.multiplyVector(startPoint);
+  const screenEndPoint = viewportMatrix.multiplyVector(endPoint);
+
   const konvaLine = new Konva.Line({
     points: [
-      segmentStartPoint.x,
-      segmentStartPoint.y,
-      segmentEndPoint.x,
-      segmentEndPoint.y,
+      screenStartPoint.x,
+      screenStartPoint.y,
+      screenEndPoint.x,
+      screenEndPoint.y,
     ],
     stroke: strokeColor,
     strokeWidth,
   });
   layer.add(konvaLine);
   return konvaLine;
+};
+
+export const drawKonvaRectangle = (
+  layer: Konva.Layer,
+  topLeft: Vector3,
+  bottomRight: Vector3,
+  fillColor: string,
+  strokeColor = constants.black,
+  strokeWidth = constants.strokeWidth,
+  viewportMatrix = defaultViewportMatrix,
+) => {
+  const screenTopLeft = viewportMatrix.multiplyVector(topLeft);
+  const screenBottomRight = viewportMatrix.multiplyVector(bottomRight);
+
+  const konvaRect = new Konva.Rect({
+    x: screenTopLeft.x,
+    y: screenTopLeft.y,
+    width: screenBottomRight.x - screenTopLeft.x,
+    height: screenBottomRight.y - screenTopLeft.y,
+    fill: fillColor,
+    stroke: strokeColor,
+    strokeWidth,
+  });
+  layer.add(konvaRect);
+  return konvaRect;
 };
