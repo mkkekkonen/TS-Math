@@ -1,0 +1,44 @@
+---
+- hosts: all
+  name: Math React Frontend
+
+  tasks:
+  - name: Create ts-math directory
+    ansible.builtin.file:
+      path: /home/maija/ts-math
+      state: directory
+      mode: '0755'
+
+  - name: Create log directory
+    ansible.builtin.file:
+      path: /home/maija/log
+      state: directory
+      mode: '0755'
+
+  - name: Checkout code from git repo
+    ansible.builtin.git:
+      repo: 'https://github.com/mkkekkonen/TS-Math.git'
+      dest: /home/maija/ts-math
+      force: yes
+
+  - name: Install packages
+    ansible.builtin.shell:
+      chdir: /home/maija/ts-math/react-front
+      cmd: npm install > /home/maija/log/frontend-install-log.txt
+
+  - name: Build project
+    ansible.builtin.shell:
+      chdir: /home/maija/ts-math/react-front
+      cmd: npm run build > /home/maija/log/frontend-build-log.txt
+
+  - name: Create web server directory
+    ansible.builtin.file:
+      path: /var/www/html/math
+      state: directory
+      mode: '0755'
+
+  - name: Copy built files
+    ansible.builtin.copy:
+      src: /home/maija/ts-math/react-front/build/
+      dest: /var/www/html/math
+      remote_src: yes
