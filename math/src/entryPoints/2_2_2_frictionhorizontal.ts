@@ -94,7 +94,8 @@ export const run = () => {
 
           if (dragging) {
             const worldMousePosition = inputManager.getMouseWorldPosition(stage);
-            const force = worldMousePosition.subtract(block.position);
+            const subtracted = worldMousePosition.subtract(block.position);
+            const force = new Vector3(subtracted.x, 0, 0);
 
             forceVector.update(0, { newPosition: block.position, newForce: force });
           } else {

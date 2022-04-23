@@ -13,7 +13,7 @@ is:
 $N = mg$
 
 where $m$ is the mass of the moving object, and $g$ is the acceleration of
-gravity.
+gravity ($9.81 \frac{m}{s^2}$).
 
 You can input the mass of the object and the friction coefficient below.
 Then you can pull the object by clicking on the canvas. Click "Start" to
@@ -25,7 +25,7 @@ start the simulation.
 </div>
 
 <div class="form-group">
-  <label for="m">Mass</label>
+  <label for="m">Mass kg</label>
   <input type="number" step="0.1" id="m" class="form-control" />
 </div>
 
