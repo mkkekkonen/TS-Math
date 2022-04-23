@@ -13,7 +13,7 @@
   "author": "Maija Kekkonen",
   "license": "CC-BY-4.0",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.6",
     "express": "^4.17.1",
