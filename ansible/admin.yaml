@@ -76,7 +76,7 @@
 
   - name: Upload pm2 ecosystem file
     ansible.builtin.copy:
-      src: /mnt/c/Users/mkkek/Documents/koodi/js/TS-Math/ansible/admin.ecosystem.config.js
+      src: /home/maija/koodi/TS-Math/ansible/admin.ecosystem.config.js
       dest: /home/maija/apps/math-admin/ecosystem.config.js
 
   - name: Restart app

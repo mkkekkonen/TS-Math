@@ -29,7 +29,7 @@
 
   - name: Upload secrets file
     ansible.builtin.copy:
-      src: /mnt/c/Users/mkkek/Documents/koodi/js/TS-Math/ansible/secrets.json
+      src: /home/maija/koodi/TS-Math/ansible/secrets.json
       dest: /home/maija/ts-math/api/src/assets/json/secrets.json
       owner: maija
       group: maija
@@ -72,7 +72,7 @@
 
   - name: Upload pm2 ecosystem file
     ansible.builtin.copy:
-      src: /mnt/c/Users/mkkek/Documents/koodi/js/TS-Math/ansible/mysqlApi.ecosystem.config.js
+      src: /home/maija/koodi/TS-Math/ansible/mysqlApi.ecosystem.config.js
       dest: /home/maija/apps/math-api/ecosystem.config.js
 
   - name: Restart app
