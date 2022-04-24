@@ -1,6 +1,6 @@
 {
   "name": "mk-ts-math",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "",
   "main": "dist/main.js",
   "types": "dist/index.d.ts",
@@ -14,9 +14,11 @@
   "license": "CC-BY-4.0",
   "dependencies": {
     "@types/mathjs": "^6.0.2",
+    "inversify": "^5.1.1",
     "jest": "^24.9.0",
     "konva": "^4.0.18",
     "mathjs": "^7.5.1",
+    "reflect-metadata": "^0.1.13",
     "typescript": "^3.7.3"
   },
   "devDependencies": {

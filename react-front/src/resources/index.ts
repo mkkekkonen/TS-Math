@@ -14,6 +14,7 @@ export default {
 
       'Analytic Geometry': 'Analytic Geometry',
       'Mechanics': 'Mechanics',
+      'The Derivative': 'The Derivative',
 
       // subcategories
 
@@ -23,6 +24,8 @@ export default {
 
       'Kinematics': 'Kinematics',
       'Dynamics': 'Dynamics',
+
+      'Rational Function': 'Rational Function',
 
       // pages
 
@@ -46,6 +49,8 @@ export default {
 
       'Newton\'s 2nd Law': 'Newton\'s 2nd Law',
       'Friction - Horizontal Force on a Horizontal Surface': 'Friction - Horizontal Force on a Horizontal Surface',
+
+      'Plotting the Rational Function': 'Plotting the Rational Function',
     }
   },
   fi: {
@@ -63,6 +68,7 @@ export default {
 
       'Analytic Geometry': 'Analyyttinen geometria',
       'Mechanics': 'Mekaniikka',
+      'The Derivative': 'Derivaatta',
 
       // subcategories
 
@@ -72,6 +78,8 @@ export default {
 
       'Kinematics': 'Kinematiikka',
       'Dynamics': 'Dynamiikka',
+
+      'Rational Function': 'Rationaalifunktio',
       
       // pages
 
@@ -95,6 +103,8 @@ export default {
 
       'Newton\'s 2nd Law': 'Newtonin 2. pääsääntö',
       'Friction - Horizontal Force on a Horizontal Surface': 'Kitka - vaakasuora pinta ja voima',
+
+      'Plotting the Rational Function': 'Rationaalifunktion kuvaaja',
     }
   },
 };
