@@ -55,7 +55,7 @@
     "i18next": "^19.9.2",
     "immutable": "^4.0.0",
     "lodash": "^4.17.15",
-    "mk-ts-math": "file:mk-ts-math-0.0.10.tgz",
+    "mk-ts-math": "file:mk-ts-math-0.0.11.tgz",
     "react": "^16.14.0",
     "react-bootstrap": "^1.6.4",
     "react-dom": "^16.8.6",

@@ -27,6 +27,8 @@ export default {
 
       'Rational Function': 'Rational Function',
 
+      'Limit of a Function': 'Limit of a Function',
+
       // pages
 
       'Distance Between Two Points': 'Distance Between Two Points',
@@ -51,6 +53,8 @@ export default {
       'Friction - Horizontal Force on a Horizontal Surface': 'Friction - Horizontal Force on a Horizontal Surface',
 
       'Plotting the Rational Function': 'Plotting the Rational Function',
+
+      'Limit Laws': 'Limit Laws',
     }
   },
   fi: {
@@ -80,6 +84,8 @@ export default {
       'Dynamics': 'Dynamiikka',
 
       'Rational Function': 'Rationaalifunktio',
+
+      'Limit of a Function': 'Funktion raja-arvo',
       
       // pages
 
@@ -105,6 +111,8 @@ export default {
       'Friction - Horizontal Force on a Horizontal Surface': 'Kitka - vaakasuora pinta ja voima',
 
       'Plotting the Rational Function': 'Rationaalifunktion kuvaaja',
+
+      'Limit Laws': 'Raja-arvon laskusäännöt',
     }
   },
 };

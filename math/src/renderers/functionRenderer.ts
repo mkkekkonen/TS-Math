@@ -5,6 +5,7 @@ import * as util from '../util';
 
 import { AbstractFunction } from '../math/functions';
 import { Vector3 } from '../math/vector3';
+import { TextCircle } from '../ui';
 
 const startVector = new Vector3(-(constants.worldWidth / 2), 0, 0);
 const endVector = new Vector3(constants.worldWidth / 2, 0, 0);
@@ -49,4 +50,21 @@ export const plotFunction = (
   }
 
   return lines;
+};
+
+export const plotLimits = (
+  fn: AbstractFunction,
+  layer: Konva.Layer,
+) => {
+  const circles: TextCircle[] = [];
+
+  for (let x = -5; x < 5; x += 1) {
+    const limit = fn.getLimitAt(x);
+
+    const circle = new TextCircle(x, limit, limit.toString());
+    circles.push(circle);
+    circle.draw(layer);
+  }
+
+  return circles;
 };
