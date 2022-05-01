@@ -1,6 +1,8 @@
 import { AbstractFunction } from './abstractFunction';
 
 /**
+ * I.e. quadratic function
+ *
  * f(x) = ax^2 + bx + c
  */
 export class PolynomialFunction extends AbstractFunction {
@@ -19,4 +21,6 @@ export class PolynomialFunction extends AbstractFunction {
   getValue = (x: number) => (
     (this.a * (x ** 2)) + (this.b * x) + this.c
   )
+
+  getLimitAt = (x: number) => this.getValue(x);
 }

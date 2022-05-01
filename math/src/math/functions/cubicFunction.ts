@@ -21,4 +21,6 @@ export class CubicFunction extends AbstractFunction {
   getValue = (x: number) => (
     (this.a * (x ** 3)) + (this.b * (x ** 2)) + (this.c * x) + this.d
   );
+
+  getLimitAt = (x: number) => this.getValue(x);
 }

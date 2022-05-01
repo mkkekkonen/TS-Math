@@ -1,15 +1,36 @@
-# Limit Laws - Polynomial Function
+# Limit Laws
 
 Limits of functions can be calculated by leveraging the laws concerning
-mathematical limits. The different laws are described below:
+mathematical limits.
 
-(TODO)
+#### Limit Laws
+
+Some basic limit laws (dealing with the case on this page) are listed here.
+
+Limit of a constant:
+
+$\lim\limits_{x \to x_0} c = c$
+
+Limit of an identity function:
+
+$\lim\limits_{x \to x_0} x = x_0$
+
+Multiplication by constant:
+
+$\lim\limits_{x \to x_0} cf(x) = c \lim\limits_{x \to x_0} f(x)$
+
+#### Plotting
 
 The polynomial function used here is as follows:
 
 $y = ax^3 + bx^2 + cx + y$
 
-You can enter the constants of the polynomial function below:
+There's nothing too exciting on this page, as the limits of a
+basic cubic function are (almost) always the same as the values
+of the function.
+
+You can enter the constants of the polynomial function below.
+The function together with its limits are drawn.
 
 <div class="form-group">
   <label for="a">a</sub></label>

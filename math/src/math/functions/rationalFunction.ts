@@ -15,7 +15,9 @@ export class RationalFunction extends AbstractFunction {
     this.Q = Q;
   }
 
-  getValue = (x: number) => {
-    return this.P.getValue(x) / this.Q.getValue(x);
-  }
+  getValue = (x: number) => (
+    this.P.getValue(x) / this.Q.getValue(x)
+  )
+
+  getLimitAt = (x: number) => this.getValue(x);
 }

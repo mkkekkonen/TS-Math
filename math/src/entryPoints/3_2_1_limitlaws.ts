@@ -10,10 +10,6 @@ export const run = () => {
 
   let drawn = false;
 
-  stage.on('mousemove', (evt) => {
-    const { offsetX, offsetY } = evt.evt;
-  });
-
   document.getElementById('drawButton')?.addEventListener('click', () => {
     layer.removeChildren();
     axis2DRenderer.addAxesToLayer(layer);
@@ -26,6 +22,7 @@ export const run = () => {
     const cubicFunction = new CubicFunction(a, b, c, d);
 
     functionRenderer.plotFunction(cubicFunction, layer);
+    functionRenderer.plotLimits(cubicFunction, layer);
     layer.draw();
 
     drawn = true;
