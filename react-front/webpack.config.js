@@ -8,7 +8,7 @@ module.exports = ({
     path: __dirname + (process.env.HEROKU ? '/build-heroku' : '/build')
   },
 
-  devtool: "source-map",
+  devtool: "inline-source-map",
 
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"]
