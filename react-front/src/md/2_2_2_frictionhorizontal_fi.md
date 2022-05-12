@@ -1,4 +1,4 @@
-# Kitka - Vaakasuora pinta ja vaakasuora ulkoinen voima
+# Kitka - vaakasuora pinta ja vaakasuora ulkoinen voima
 
 Kappaleeseen kohdistuva liikekitka lasketaan kaavalla
 

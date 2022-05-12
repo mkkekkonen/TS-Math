@@ -1,22 +1,36 @@
 import Konva from 'konva';
 
 import * as util from '../util';
-import * as constants from '../constants';
 import { Ground, Block, ForceVector } from '../objects2';
 import { Vector3 } from '../math';
 import { Dynamics } from '../physics';
 import { inputManager } from '../input';
 
+const BLOCK_Y = -3.5;
+
+const DEBUG = false;
+
 export const run = () => {
   const { stage, layer } = util.getDefaultKonvaStage2();
   const ground = new Ground(10, 10, -4);
-  const accelerationOfGravity = new Vector3(0, -0.981, 0);
+  const accelerationOfGravity = new Vector3(0, -1.981, 0);
 
   let animation: Konva.Animation;
   let dragging = false;
 
   let frictionCoefficient = 0;
   let mass = 0;
+
+  let _velocity = '';
+  let _force = '';
+  let _forceXAbs = 0;
+  let _forceOfGravity = '';
+  let _forcePullingUp = '';
+  let _perpendicularForce = '';
+  let _kineticFriction = 0;
+  let _pullingForce = '';
+  let _pullingForceDivided = '';
+  let _slowDownForce = '';
 
   stage.on('mousedown', () => {
     dragging = true;
@@ -44,34 +58,67 @@ export const run = () => {
     if (velocityLeft) {
       return new Vector3(kineticFriction, 0, 0);
     }
+
     return new Vector3(0, 0, 0);
   };
 
   const getAcceleration = (velocity: Vector3) => {
     const forceXAbs = Math.abs(forceVector.force.x);
 
-    const perpendicularForce = accelerationOfGravity.multiplyScalar(mass);
+    const forceOfGravity = accelerationOfGravity.multiplyScalar(mass);
+    const forcePullingUp = new Vector3(
+      0,
+      forceVector.force.y > 0 ? forceVector.force.y : 0,
+      0,
+    );
+
+    const perpendicularForce = forceOfGravity.add(forcePullingUp);
     const kineticFriction = -perpendicularForce.multiplyScalar(frictionCoefficient).y;
+    const kineticFrictionAbs = Math.abs(kineticFriction);
+
+    if (DEBUG) {
+      _velocity = velocity.toString();
+      _force = forceVector.force.toString();
+      _forceXAbs = forceXAbs;
+      _forceOfGravity = forceOfGravity.toString();
+      _forcePullingUp = forcePullingUp.toString();
+      _perpendicularForce = perpendicularForce.toString();
+      _kineticFriction = kineticFriction;
+    }
 
     if (forceXAbs) {
-      const pullX = kineticFriction > forceXAbs
+      const pullX = kineticFrictionAbs > forceXAbs
         ? 0
-        : forceXAbs - kineticFriction;
+        : forceXAbs - kineticFrictionAbs;
 
       const pullingForce = new Vector3(
         forceVector.force.x >= 0 ? pullX : -pullX,
         0,
         0,
       );
-      return pullingForce.divideScalar(mass);
+
+      const actualPullingForce = pullingForce.divideScalar(mass);
+
+      if (DEBUG) {
+        _pullingForce = pullingForce.toString();
+        _pullingForceDivided = actualPullingForce.toString();
+      }
+
+      return actualPullingForce;
     }
 
-    return getSlowDownForce(velocity, kineticFriction)
+    const slowDownForce = getSlowDownForce(velocity, kineticFriction)
       .divideScalar(mass);
+
+    if (DEBUG) {
+      _slowDownForce = slowDownForce.toString();
+    }
+
+    return slowDownForce;
   };
 
   const block = new Block(
-    new Vector3(0, -3.5, 0),
+    new Vector3(0, BLOCK_Y, 0),
     0,
     new Dynamics(getAcceleration),
   );
@@ -94,17 +141,29 @@ export const run = () => {
 
           if (dragging) {
             const worldMousePosition = inputManager.getMouseWorldPosition(stage);
-            const subtracted = worldMousePosition.subtract(block.position);
-            const force = new Vector3(subtracted.x, 0, 0);
+            const force = worldMousePosition.subtract(block.position);
+
+            if (force.y < BLOCK_Y) {
+              force.y = BLOCK_Y;
+            }
 
             forceVector.update(0, { newPosition: block.position, newForce: force });
           } else {
             forceVector.update(0, { newPosition: block.position, newForce: new Vector3(0, 0, 0) });
           }
 
-          util.logToDiv(`force x: ${forceVector.force.x}
-block accel: ${block.dynamics?.acceleration?.x || 0}
-block velocity: ${block.velocity.x}`);
+          if (DEBUG) {
+            util.logToDiv(`velocity: ${_velocity}
+force: ${_force}
+force X abs: ${_forceXAbs}
+force of gravity: ${_forceOfGravity}
+force pulling up: ${_forcePullingUp}
+perpendicular force: ${_perpendicularForce}
+kinetic friction: ${_kineticFriction}
+pulling force: ${_pullingForce}
+pulling force divided: ${_pullingForceDivided}
+slow down force: ${_slowDownForce}`);
+          }
 
           forceVector.konvaDraw(layer);
         }
