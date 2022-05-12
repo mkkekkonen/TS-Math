@@ -20,6 +20,9 @@ In this case, the $y$ component of the outside force decreases the perpendicular
 force. The $x$ component of the outside force, on the other hand, moves the
 object horizontally (if its magnitude is greater than the kinetic friction).
 
+(On this page, trigonometry is not actually needed, as the $y$ component of the
+force can be directly read from the vector representing the pulling force.)
+
 You can input the mass of the object and the friction coefficient below.
 Then you can pull the object by clicking on the canvas. Click "Start" to
 start the simulation.

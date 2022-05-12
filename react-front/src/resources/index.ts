@@ -51,6 +51,7 @@ export default {
 
       'Newton\'s 2nd Law': 'Newton\'s 2nd Law',
       'Friction - Horizontal Force on a Horizontal Surface': 'Friction - Horizontal Force on a Horizontal Surface',
+      'Friction - Oblique Force on a Horizontal Surface': 'Friction - Oblique Force on a Horizontal Surface',
 
       'Plotting the Rational Function': 'Plotting the Rational Function',
 
@@ -109,6 +110,7 @@ export default {
 
       'Newton\'s 2nd Law': 'Newtonin 2. pääsääntö',
       'Friction - Horizontal Force on a Horizontal Surface': 'Kitka - vaakasuora pinta ja voima',
+      'Friction - Oblique Force on a Horizontal Surface': 'Kitka - vaakasuora pinta ja vino voima',
 
       'Plotting the Rational Function': 'Rationaalifunktion kuvaaja',
 
