@@ -8,7 +8,7 @@ import { inputManager } from '../input';
 
 const BLOCK_Y = -3.5;
 
-const DEBUG = true;
+const DEBUG = false;
 
 export const run = () => {
   const { stage, layer } = util.getDefaultKonvaStage2();
