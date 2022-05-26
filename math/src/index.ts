@@ -15,6 +15,7 @@ import { run as projectilemotion } from './entryPoints/2_1_3_projectilemotion';
 import { run as newton2 } from './entryPoints/2_2_1_newton2';
 import { run as frictionhorizontal } from './entryPoints/2_2_2_frictionhorizontal';
 import { run as frictionoblique } from './entryPoints/2_2_3_frictionoblique';
+import { run as frictioninclined } from './entryPoints/2_2_4_frictioninclined';
 import { run as plotrational } from './entryPoints/3_1_1_plotrational';
 import { run as limitlaws } from './entryPoints/3_2_1_limitlaws';
 
@@ -36,6 +37,7 @@ export const entryPoints: Record<string, Function> = {
   newton2,
   frictionhorizontal,
   frictionoblique,
+  frictioninclined,
   plotrational,
   limitlaws,
 };

@@ -143,8 +143,8 @@ export const run = () => {
             const worldMousePosition = inputManager.getMouseWorldPosition(stage);
             const force = worldMousePosition.subtract(block.position);
 
-            if (force.y < BLOCK_Y) {
-              force.y = BLOCK_Y;
+            if (force.y < 0) {
+              force.y = 0;
             }
 
             forceVector.update(0, { newPosition: block.position, newForce: force });
