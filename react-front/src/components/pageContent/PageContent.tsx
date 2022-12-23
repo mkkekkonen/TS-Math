@@ -11,7 +11,7 @@ import { InlineMath, BlockMath } from 'react-katex';
 
 import { last } from 'lodash';
 
-import { entryPoints } from 'mk-ts-math';
+import { entryPoints } from 'mk-ts-math-ioc';
 
 import { CodeBlock } from './CodeBlock';
 
