@@ -1,4 +1,10 @@
 {
   "eslint.validate": ["typescript"],
-  "eslint.workingDirectories": ["./math", "./api"]
+  "eslint.workingDirectories": [
+    "./math",
+    "./api"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
